@@ -3,9 +3,15 @@
  */
 
 angular.module('diaApp')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+    .controller('MasterCtrl', MasterCtrl);
 
-function MasterCtrl($scope, $cookieStore) {
+function MasterCtrl($scope, $cookieStore,USER_ROLES,AuthService) {
+
+    $scope.currentUser = null;
+    $scope.userRoles = USER_ROLES;
+    $scope.isAuthorized = AuthService.isAuthorized;
+
+
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -36,4 +42,11 @@ function MasterCtrl($scope, $cookieStore) {
     window.onresize = function() {
         $scope.$apply();
     };
+
+
+ 
+  $scope.setCurrentUser = function (user) {
+    console.info(user);
+    $scope.currentUser = user;
+  };
 }

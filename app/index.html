@@ -129,8 +129,19 @@
         <!-- End Header Bar -->
 
         <!-- Main Content -->
-        <div ui-view></div>
-        <div ng-view=""></div>
+        <!-- <div ui-view></div> -->
+        <!--  -->
+
+
+        <div ng-if="currentUser">Welcome, {{ currentUser.name }}
+          <div ng-view=""></div>
+        </div>
+        <div ng-if="!currentUser">
+          <ng-include src="'views/login.html'"></ng-include>
+        </div>
+
+        
+
 
       </div><!-- End Page Content -->
     </div><!-- End Content Wrapper -->
@@ -159,6 +170,9 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/routes/routes.js"></script>
+    <script src="scripts/services/auth-srv.js"></script>
+    <script src="scripts/services/session-srv.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/master-ctrl.js"></script>
@@ -169,6 +183,7 @@
     <script src="scripts/directives/widget-body.js"></script>
     <script src="scripts/directives/widget-footer.js"></script>
     <script src="scripts/directives/widget-header.js"></script>
+
     <!-- endbuild -->
 </body>
 </html>

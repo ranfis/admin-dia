@@ -8,15 +8,19 @@
  * Controller of the diaApp
  */
 angular.module('diaApp')
-  .controller('LoginCtrl', function ($scope, $http) {
+  .controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
 
-  	$scope.auth = {
-  		email: "ramfis@email.com",
-  		pass: "12345"
+  	$scope.credentials = {
+  		email: "lmartinez@correo.com",
+  		pass: "12345678"
   	}
 
-  	$scope.login2 = function() {
-        console.log("http://104.236.201.101",$scope.auth);
-        $http.post('http://104.236.201.101',$scope.auth);
+  	$scope.authenticate = function(credentials) {
+      AuthService.login(credentials).then(function (user) {
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        $scope.setCurrentUser(user);
+      }, function () {
+        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+      });
     };
   });

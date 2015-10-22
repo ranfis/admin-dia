@@ -1,24 +1,24 @@
-<div class="col-sm-offset-3 col-lg-6 col-md-9 col-xs-12">
+<div class="col-sm-offset-3 col-lg-6 col-md-9 col-xs-12" ng-controller="LoginCtrl">
 	<rd-widget>
 		<rd-widget-body>
 			<div class="widget-icon green pull-left">
 				<i class="fa fa-user"></i>
 			</div>
-			<div class="title">Login</div>
+			<div class="title">Iniciar Sesión</div>
 			<div class="comment">Sistema DIA</div>
 		</rd-widget-body>
 
-		<form class="form-horizontal" ng-submit="login2()" name="loginForm">
+		<form class="form-horizontal" ng-submit="authenticate(credentials)" name="loginForm">
 		  <div class="form-group">
 		    <label for="inputEmail" class="col-sm-3 control-label">Email</label>
 		    <div class="col-sm-8">
-		      <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="auth.email">
+		      <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="credentials.email">
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="inputPass" class="col-sm-3 control-label">Contrase&ntilde;a</label>
 		    <div class="col-sm-8">
-		      <input type="password" class="form-control" id="inputPassword3" placeholder="Contrase&ntilde;a" ng-model="auth.pass">
+		      <input type="password" class="form-control" id="inputPassword3" placeholder="Contrase&ntilde;a" ng-model="credentials.pass">
 		    </div>
 		  </div>
 		  <div class="form-group">
@@ -28,9 +28,5 @@
 		    </div>
 		  </div>
 		</form>
-
-
-
-
 	</rd-widget>
 </div>	
