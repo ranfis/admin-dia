@@ -1,9 +1,11 @@
+'use strict';
+
 angular.module('diaApp')
   .factory('AuthService', function ($http, Session) {
     var authService = {};
    
     authService.login = function (credentials) {
-      requestConfig = {headers: {'Content-Type': "text/plain"}};
+      var requestConfig = {headers: {'Content-Type': "text/plain"}};
       return $http
         .post('http://104.236.201.101/login', credentials,requestConfig)
         .then(function (res) {
@@ -31,4 +33,4 @@ angular.module('diaApp')
     };
    
     return authService;
-  })
+  });

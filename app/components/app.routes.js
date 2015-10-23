@@ -1,34 +1,26 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name diaApp
- * @description
- * # diaApp
- *
- * Main module of the application.
- */
 angular
   .module('diaApp')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
+        templateUrl: 'components/main.html',
+        controller: 'MasterCtrl',
         controllerAs: 'main'
       })
       .when('/about', {
-        templateUrl: 'views/about.html',
+        templateUrl: 'components/about/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
       .when('/tables', {
-        templateUrl: 'views/tables.html',
+        templateUrl: 'components/tables.html',
         controller: 'MasterCtrl',
         controllerAs: 'about'
       })
       .when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
+        templateUrl: 'components/dashboard/dashboard.html',
         controller: 'MasterCtrl',
         controllerAs: 'about'
       })

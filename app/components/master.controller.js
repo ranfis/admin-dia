@@ -1,11 +1,7 @@
-/**
- * Master Controller
- */
+'use strict';
 
 angular.module('diaApp')
-    .controller('MasterCtrl', MasterCtrl);
-
-function MasterCtrl($scope, $cookieStore,USER_ROLES,AuthService) {
+    .controller('MasterCtrl', function($scope, $cookieStore,USER_ROLES,AuthService) {
 
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
@@ -22,6 +18,8 @@ function MasterCtrl($scope, $cookieStore,USER_ROLES,AuthService) {
     };
 
     $scope.$watch($scope.getWidth, function(newValue, oldValue) {
+        //RR
+        console.log(oldValue);
         if (newValue >= mobileView) {
             if (angular.isDefined($cookieStore.get('toggle'))) {
                 $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
@@ -49,4 +47,5 @@ function MasterCtrl($scope, $cookieStore,USER_ROLES,AuthService) {
     console.info(user);
     $scope.currentUser = user;
   };
-}
+});
+

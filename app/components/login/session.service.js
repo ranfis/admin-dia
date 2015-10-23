@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('diaApp')
   .service('Session', function () {
     this.create = function (sessionId, userId, userRole) {
@@ -10,4 +12,4 @@ angular.module('diaApp')
       this.userId = null;
       this.userRole = null;
     };
-  })
+  });
