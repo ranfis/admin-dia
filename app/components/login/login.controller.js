@@ -7,10 +7,12 @@ angular.module('diaApp')
       pass: "12345678"
     };
 
+    //$scope.isLoginPage = true;
+
     $scope.authenticate = function(credentials) {
       AuthService.login(credentials).then(function (user) {
-      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-      $scope.setCurrentUser(user);
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        $scope.setCurrentUser(user);
       }, function () {
         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
       });

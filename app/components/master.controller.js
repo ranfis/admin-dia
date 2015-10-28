@@ -6,6 +6,7 @@ angular.module('diaApp')
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
+    //$scope.isLoginPage = false;
 
 
     /**
@@ -19,7 +20,7 @@ angular.module('diaApp')
 
     $scope.$watch($scope.getWidth, function(newValue, oldValue) {
         //RR
-        console.log(oldValue);
+        oldValue = 1;
         if (newValue >= mobileView) {
             if (angular.isDefined($cookieStore.get('toggle'))) {
                 $scope.toggle = ! $cookieStore.get('toggle') ? false : true;
@@ -41,11 +42,34 @@ angular.module('diaApp')
         $scope.$apply();
     };
 
-
- 
   $scope.setCurrentUser = function (user) {
-    console.info(user);
+    //console.log("setCurrentUser",user);
     $scope.currentUser = user;
   };
 });
 
+/*
+ .run(function ($rootScope, AUTH_EVENTS, AuthService) {
+ $rootScope.$on('$routeChangeStart', function (event, next) {
+ console.log("routeChangeStart");
+ if(!next.data){
+ return;
+ }
+ var authorizedRoles = next.data.authorizedRoles;
+ console.log("authorizedRoles",authorizedRoles);
+ if (!AuthService.isAuthorized(authorizedRoles)) {
+ console.log("!authorizedRoles");
+ event.preventDefault();
+ if (AuthService.isAuthenticated()) {
+ console.log("isAuthenticated");
+ // user is not allowed
+ $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+ } else {
+ console.log("!isAuthenticated");
+ // user is not logged in
+ $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+ }
+ }
+ });
+ })
+ */

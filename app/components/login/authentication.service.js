@@ -1,29 +1,41 @@
 'use strict';
 
 angular.module('diaApp')
-  .factory('AuthService', function ($http, Session) {
+  .factory('AuthService', function ($http, Session,WS_URLS) {
     var authService = {};
-   
+
+    var requestOptions = {headers: {'Content-Type': "text/plain"}};
+
     authService.login = function (credentials) {
-      var requestConfig = {headers: {'Content-Type': "text/plain"}};
       return $http
-        .post('http://104.236.201.101/login', credentials,requestConfig)
+        .post(WS_URLS.login, credentials,requestOptions)
         .then(function (res) {
-          var user = res.data.result;
-          user.email = credentials.email;
-          user.role = "admin";
-          user.name = "Luis";
-          user.lastname = "Martinez";
-          user.photo = "none.png";
-          Session.create(res.data.result.session_id, user.email ,user.role);
+          return res.data.result;
+        })
+        .then(function(session){
+          return authService.userSummary(session);
+        })
+        .then(function(user){
+          Session.create(user);
           return user;
         });
     };
-   
-    authService.isAuthenticated = function () {
-      return !!Session.userId;
+
+    authService.userSummary = function(session){
+      return $http
+        .get(WS_URLS.summary, {params:session})
+        .then(function (res) {
+          var user = res.data.result;
+          user.sessionId = session.session_id;
+          return user;
+        });
     };
-   
+
+    authService.isAuthenticated = function () {
+
+      return !!Session.userEmail;
+    };
+
     authService.isAuthorized = function (authorizedRoles) {
       if (!angular.isArray(authorizedRoles)) {
         authorizedRoles = [authorizedRoles];
@@ -31,6 +43,27 @@ angular.module('diaApp')
       return (authService.isAuthenticated() &&
         authorizedRoles.indexOf(Session.userRole) !== -1);
     };
-   
+
     return authService;
+  })
+  .config(function ($httpProvider) {
+    $httpProvider.interceptors.push([
+      '$injector',
+      function ($injector) {
+        return $injector.get('AuthInterceptor');
+      }
+    ]);
+  })
+  .factory('AuthInterceptor', function ($rootScope, $q,AUTH_EVENTS) {
+    return {
+      responseError: function (response) {
+        $rootScope.$broadcast({
+          401: AUTH_EVENTS.notAuthenticated,
+          403: AUTH_EVENTS.notAuthorized,
+          419: AUTH_EVENTS.sessionTimeout,
+          440: AUTH_EVENTS.sessionTimeout
+        }[response.status], response);
+        return $q.reject(response);
+      }
+    };
   });

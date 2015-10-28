@@ -39,12 +39,12 @@
 
           <!-- Main Content -->
           <!-- <div ui-view></div> -->
-          <div ng-if="currentUser">Welcome, {{ currentUser.name }}
+          <!--<div ng-if="currentUser">Welcome, {{ currentUser.name }}-->
           <div ng-view=""></div>
-          </div>
-          <div ng-if="!currentUser">
-          <ng-include src="'components/login/login.html'"></ng-include>
-          </div>
+          <!--</div>-->
+          <!--<div ng-if="!currentUser">-->
+          <!--<ng-include src="'components/login/login.html'"></ng-include>-->
+          <!--</div>-->
 
         </div><!-- End Page Content -->
       </div><!-- End Content Wrapper -->
