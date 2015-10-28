@@ -35,8 +35,8 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
+      "app/components/app.js",
       "app/components/**/*.js",
-      "app/shared/**/*.js",
       "test/mock/**/*.js",
       "test/spec/**/*.js"
     ],
