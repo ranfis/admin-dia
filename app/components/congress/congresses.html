@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-12">
+    <rd-widget>
+      <rd-widget-header icon="fa-tasks" title="Congresos"></rd-widget-header>
+      <rd-widget-body classes="large no-padding">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Tema</th>
+            <th>Lugar</th>
+            <th>Patrocinio</th>
+            <th></th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="congress in congresses">
+              <td>{{congress.id}}</td>
+              <td>{{congress.nombre}}</td>
+              <td>{{congress.fecha_congreso}}</td>
+              <td>{{congress.ponencia}}</td>
+              <td>{{congress.lugar}}</td>
+              <td>
+                <span ng-repeat="sponsor in congress.patrocinio">
+                  {{sponsor}}
+                </span>
+              </td>
+              <td>
+                <a class="btn btn-sm btn-success" href="#/congresos/{{congress.id}}"><i class="fa fa-pencil"></i></a>
+                <!--<a class="btn btn-sm btn-danger" href="#/congresos/{{congress.id}}"><i class="fa fa-trash"></i></a>-->
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </rd-widget-body>
+      <rd-widget-footer>
+        <a class="btn btn-sm btn-success" href="#/congresos/crear"><i class="fa fa-plus"></i></a>
+        <!--<ul class="pagination pagination-sm pull-right">-->
+          <!--<li><a href="#">&laquo;</a></li>-->
+          <!--<li><a href="#">1</a></li>-->
+          <!--<li><a href="#">2</a></li>-->
+          <!--<li><a href="#">3</a></li>-->
+          <!--<li><a href="#">&raquo;</a></li>-->
+        <!--</ul>-->
+        <!--<div class="clearfix"></div>-->
+      </rd-widget-footer>
+    </rd-widget>
+  </div>
+</div>

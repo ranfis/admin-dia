@@ -39,18 +39,19 @@
 
           <!-- Main Content -->
           <!-- <div ui-view></div> -->
-          <!--<div ng-if="currentUser">Welcome, {{ currentUser.name }}-->
-          <div ng-view=""></div>
-          <!--</div>-->
-          <!--<div ng-if="!currentUser">-->
-          <!--<ng-include src="'components/login/login.html'"></ng-include>-->
-          <!--</div>-->
+          <div ng-if="currentUser">
+            <!--Welcome7, {{ currentUser.nombre_completo }}-->
+            <div ng-view=""></div>
+          </div>
+          <div ng-if="!currentUser">
+            <ng-include src="'components/login/login.html'"></ng-include>
+          </div>
 
         </div><!-- End Page Content -->
       </div><!-- End Content Wrapper -->
     </div><!-- End Page Wrapper -->
 
-  <ng-include src="'shared/analytics/ga.html'"></ng-include>
+  <!--<ng-include src="'shared/analytics/ga.html'"></ng-include>-->
 
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
@@ -81,6 +82,8 @@
   <script src="components/about/about.controller.js"></script>
   <script src="components/master.controller.js"></script>
   <script src="components/login/login.controller.js"></script>
+  <script src="components/congress/congress.service.js"></script>
+  <script src="components/congress/congress.js"></script>
   <script src="components/app.routes.js"></script>
   <!-- endbuild -->
 </body>
