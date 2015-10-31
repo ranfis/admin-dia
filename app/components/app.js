@@ -32,7 +32,7 @@ angular
     admin: 'admin',
     editor: 'editor'
   })
-  .constant('WS_URLS', {
-    login: 'http://104.236.201.101/login',
-    summary: 'http://104.236.201.101/summary'
+  .constant("WS","http://104.236.201.101")
+  .constant("REQUEST",{
+    PLAIN: {headers: {'Content-Type': "text/plain"}}
   });
