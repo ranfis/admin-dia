@@ -1,29 +1,23 @@
 'use strict';
 
 angular.module('diaApp')
-  .factory('AuthService', function ($http, Session,WS_URLS) {
+  .factory('AuthService', function ($http, Session,WS, REQUEST) {
     var authService = {};
-
-    var requestOptions = {headers: {'Content-Type': "text/plain"}};
 
     authService.login = function (credentials) {
       return $http
-        .post(WS_URLS.login, credentials,requestOptions)
-        .then(function (res) {
-          return res.data.result;
-        })
-        .then(function(session){
-          return authService.userSummary(session);
-        })
-        .then(function(user){
+        .post(WS+"/login", credentials,REQUEST.PLAIN)
+        .then(authService.getUserSummary)
+        .then(function (user) {
           Session.create(user);
           return user;
         });
     };
 
-    authService.userSummary = function(session){
+    authService.getUserSummary = function(res){
+      var session = res.data.result;
       return $http
-        .get(WS_URLS.summary, {params:session})
+        .get(WS+"/summary", {params:session})
         .then(function (res) {
           var user = res.data.result;
           user.sessionId = session.session_id;
@@ -32,7 +26,6 @@ angular.module('diaApp')
     };
 
     authService.isAuthenticated = function () {
-
       return !!Session.userEmail;
     };
 
@@ -43,7 +36,6 @@ angular.module('diaApp')
       return (authService.isAuthenticated() &&
         authorizedRoles.indexOf(Session.userRole) !== -1);
     };
-
     return authService;
   })
   .config(function ($httpProvider) {

@@ -10,7 +10,7 @@ angular.module('diaApp')
     };
     this.destroy = function () {
       this.id = null;
-      this.userId = null;
+      this.email = null;
       this.userRole = null;
     };
   });
