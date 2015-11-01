@@ -21,6 +21,7 @@ angular.module('diaApp')
     };
 
     this.create = function(participant){
+      console.log(participant);
       return $http
         .post(WS+"/participant/add", participant,REQUEST.PLAIN)
         .then(function (res) {
@@ -31,6 +32,7 @@ angular.module('diaApp')
     };
 
     this.update = function(participant){
+      console.log(participant);
       console.log("update",participant);
       return $http
         .put(WS+"/participant/update", participant,REQUEST.PLAIN)
