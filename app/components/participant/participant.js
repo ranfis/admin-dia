@@ -2,17 +2,21 @@
 
 angular.module('diaApp')
   .config(function ($routeProvider) {
-
-
     $routeProvider
       .when('/participantes', {
         templateUrl: 'components/participant/participants.html',
         controllerAs: 'participantCtrl',
         controller: function ($scope, ParticipantService) {
           $scope.participants = [];
+          $scope.hasParticipant = false;
+
           ParticipantService.getAll($scope.currentUser.sessionId)
-            .success(function (data) {
-              $scope.participants = data.result;
+            .then(function (participants) {
+              $scope.participants = participants;
+              ParticipantService.participants = $scope.participants;
+              $scope.hasParticipants = ($scope.participants.length >= 0);
+            }, function(err){
+              console.error(err);
             });
         }
       })
@@ -22,39 +26,33 @@ angular.module('diaApp')
         controller: function ($scope, ParticipantService,$location) {
 
           $scope.participant = {
-            nombre:"Nombre",
-            apellido:"Apellido",
+            session_id: $scope.currentUser.sessionId
           };
 
           $scope.addParticipant = function(){
-            $scope.participant.session_id = $scope.currentUser.sessionId;
             ParticipantService.create($scope.participant)
-              .then(function(){
-                $scope.participant = {};
-                $location.path( "/participantes" );
+              .then(function(ok){
+                console.log(ok);
+                if(ok){
+                  $scope.participant = {};
+                  $location.path( "/participantes" );
+                }
               },function(err){
                 console.error(err);
               });
           };
         }
       })
-      //.when('/congresos/:id', {
-      //  templateUrl: 'components/congress/congress.html',
-      //  controllerAs: 'congressCtrl',
-      //  controller: function ($scope, CongressService, $routeParams) {
-      //    var congresses = [];
-      //    $scope.congress = {};
-      //
-      //    CongressService.getAll($scope.currentUser.sessionId)
-      //      .success(function (data) {
-      //        var id = $routeParams.id;
-      //        congresses = data.result;
-      //
-      //        $scope.congress= congresses.filter(function (el) {
-      //          return (el.id === +id);
-      //        })[0];
-      //      });
-      //    // UPDATE
-      //  }
-      //});
+      .when('/participantes/:id', {
+        templateUrl: 'components/participant/participant.html',
+        controllerAs: 'participantCtrl',
+        controller: function ($scope, ParticipantService, $routeParams) {
+          $scope.participant = {};
+
+          var id = $routeParams.id;
+          $scope.participant = ParticipantService.participants.filter(function (el) {
+            return (el.id === +id);
+          })[0];
+        }
+      });
   });

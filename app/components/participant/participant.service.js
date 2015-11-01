@@ -3,6 +3,8 @@
 angular.module('diaApp')
   .service('ParticipantService', function ($http, WS, REQUEST){
 
+    this.participants = [];
+
     this.getAll = function (sessionId) {
       var params = {
         params:{
@@ -11,16 +13,32 @@ angular.module('diaApp')
       };
       return $http
         .get(WS+"/participant/list", params)
-        .success(function(data) {
-          return data.result;
+        .then(function(res) {
+          return res.data.result;
+        }, function(err){
+          console.error(err);
         });
     };
 
     this.create = function(participant){
       return $http
         .post(WS+"/participant/add", participant,REQUEST.PLAIN)
-        .success(function (data) {
-          console.log(data);
+        .then(function (res) {
+          return (res.data.code === 0);
+        }, function(err){
+          console.error(err);
+        });
+    };
+
+    this.update = function(participant){
+      console.log("update",participant);
+      return $http
+        .put(WS+"/participant/update", participant,REQUEST.PLAIN)
+        .then(function (res) {
+          console.log("http",res);
+          return (res.data.code === 0);
+        },function (err){
+          console.error("http",err);
         });
     };
   });
