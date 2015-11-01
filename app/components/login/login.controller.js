@@ -2,12 +2,7 @@
 
 angular.module('diaApp')
   .controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
-    $scope.credentials = {
-      email: "lmartinez@correo.com",
-      pass: "12345678"
-    };
-
-    //$scope.isLoginPage = true;
+    $scope.credentials = {};
 
     $scope.authenticate = function(credentials) {
       AuthService.login(credentials)
