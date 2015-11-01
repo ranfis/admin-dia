@@ -2,17 +2,21 @@
 
 angular.module('diaApp')
   .config(function ($routeProvider) {
-
-
     $routeProvider
       .when('/congresos', {
         templateUrl: 'components/congress/congresses.html',
         controllerAs: 'congressCtrl',
         controller: function ($scope, CongressService) {
           $scope.congresses = [];
+          $scope.hasCongress = false;
+
           CongressService.getAll($scope.currentUser.sessionId)
-            .success(function (data) {
-              $scope.congresses = data.result;
+            .then(function (congresses) {
+              $scope.congresses = congresses;
+              CongressService.congresses = $scope.congresses;
+              $scope.hasCongresses = ($scope.congresses.length >= 0);
+            }, function(err){
+              console.error(err);
             });
         }
       })
@@ -22,19 +26,17 @@ angular.module('diaApp')
         controller: function ($scope, CongressService,$location) {
 
           $scope.congress = {
-            nombre:"Nombre",
-            ponencia:"Ponencia",
-            lugar:"Lugar",
-            fecha_congreso:"2015-11-11",
-            patrocinio: 1
+            session_id: $scope.currentUser.sessionId
           };
 
           $scope.addCongress = function(){
-            $scope.congress.session_id = $scope.currentUser.sessionId;
             CongressService.create($scope.congress)
-              .then(function(){
-                $scope.congress = {};
-                $location.path( "/congresos" );
+              .then(function(ok){
+                console.log(ok);
+                if(ok){
+                  $scope.congress = {};
+                  $location.path( "/congresos" );
+                }
               },function(err){
                 console.error(err);
               });
@@ -45,19 +47,12 @@ angular.module('diaApp')
         templateUrl: 'components/congress/congress.html',
         controllerAs: 'congressCtrl',
         controller: function ($scope, CongressService, $routeParams) {
-          var congresses = [];
           $scope.congress = {};
 
-          CongressService.getAll($scope.currentUser.sessionId)
-            .success(function (data) {
-              var id = $routeParams.id;
-              congresses = data.result;
-
-              $scope.congress= congresses.filter(function (el) {
-                return (el.id === +id);
-              })[0];
-            });
-          // UPDATE
+          var id = $routeParams.id;
+          $scope.congress = CongressService.congresses.filter(function (el) {
+            return (el.id === +id);
+          })[0];
         }
       });
   });

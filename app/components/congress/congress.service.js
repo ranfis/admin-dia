@@ -3,6 +3,8 @@
 angular.module('diaApp')
   .service('CongressService', function ($http, WS, REQUEST){
 
+    this.congresses = [];
+
     this.getAll = function (sessionId) {
       var params = {
         params:{
@@ -11,16 +13,16 @@ angular.module('diaApp')
       };
       return $http
         .get(WS+"/congress/list", params)
-        .success(function(data) {
-          return data.result;
+        .then(function(res) {
+          return res.data.result;
         });
     };
 
     this.create = function(congress){
       return $http
         .post(WS+"/congress/add", congress,REQUEST.PLAIN)
-        .success(function (data) {
-          console.log(data);
+        .then(function (res) {
+          return (res.data.code === 0);
         });
     };
   });
