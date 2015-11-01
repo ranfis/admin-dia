@@ -6,8 +6,6 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'components/main.html',
-        controller: 'MasterCtrl',
-        controllerAs: 'main'
       })
       .otherwise({
         redirectTo: '/'
