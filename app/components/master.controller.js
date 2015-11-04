@@ -46,30 +46,31 @@ angular.module('diaApp')
     //console.log("setCurrentUser",user);
     $scope.currentUser = user;
   };
-});
+}).run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, next) {
+      //console.log("routeChangeStart",next);
+      if(!next.data){
+        $location.path( "/login" );
+        return;
+      }
+      var authorizedRoles = next.data.authorizedRoles;
+      //console.log("authorizedRoles",authorizedRoles);
+      if (!AuthService.isAuthorized(authorizedRoles)) {
+        //console.log("!authorizedRoles");
+        event.preventDefault();
+        if (AuthService.isAuthenticated()) {
+          //console.log("isAuthenticated");
+          // user is not allowedx x
+          $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        } else {
+          //console.log("!isAuthenticated");
+          // user is not logged in
+          $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+          $location.path( "/login" );
+        }
+      }
+    });
+  });
 
-/*
- .run(function ($rootScope, AUTH_EVENTS, AuthService) {
- $rootScope.$on('$routeChangeStart', function (event, next) {
- console.log("routeChangeStart");
- if(!next.data){
- return;
- }
- var authorizedRoles = next.data.authorizedRoles;
- console.log("authorizedRoles",authorizedRoles);
- if (!AuthService.isAuthorized(authorizedRoles)) {
- console.log("!authorizedRoles");
- event.preventDefault();
- if (AuthService.isAuthenticated()) {
- console.log("isAuthenticated");
- // user is not allowed
- $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
- } else {
- console.log("!isAuthenticated");
- // user is not logged in
- $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
- }
- }
- });
- })
- */
+
+
