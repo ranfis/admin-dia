@@ -12,6 +12,7 @@
             <th>Tema</th>
             <th>Lugar</th>
             <th>Patrocinio</th>
+            <th>Participantes</th>
             <th></th>
             </thead>
             <tbody>
@@ -21,7 +22,12 @@
               <td>{{congress.fecha_congreso}}</td>
               <td>{{congress.ponencia}}</td>
               <td>{{congress.lugar}}</td>
-              <td>{{congress.patrocinio}}</td>
+              <td>{{congress.patrocinio.nombre}}</td>
+              <td>
+                <div ng-repeat="participant in congress.participants">
+                  {{participant}}
+                </div>
+              </td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/congresos/{{congress.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" href="#/congresos/{{congress.id}}"><i class="fa fa-trash"></i></a>

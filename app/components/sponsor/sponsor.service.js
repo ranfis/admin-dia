@@ -11,13 +11,7 @@ angular.module('diaApp')
           session_id: sessionId
         }
       };
-      return $http
-        .get(WS+"/sponsor/list", params)
-        .then(function(res) {
-          return res.data.result;
-        }, function(err){
-          console.error(err);
-        });
+      return $http.get(WS+"/sponsor/list", params);
     };
 
     this.create = function(sponsor){

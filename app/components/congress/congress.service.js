@@ -11,11 +11,7 @@ angular.module('diaApp')
           session_id: sessionId
         }
       };
-      return $http
-        .get(WS+"/congress/list", params)
-        .then(function(res) {
-          return res.data.result;
-        });
+      return $http.get(WS+"/congress/list", params);
     };
 
     this.create = function(congress){

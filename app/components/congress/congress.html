@@ -11,37 +11,62 @@
       <div class="form-group">
         <label for="inputNombre" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Nombre</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" ng-model="congress.nombre" required>
+          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" ng-model="congress.nombre" ng-required="">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputFecha" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Fecha del congreso</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputFecha" placeholder="Fecha del congreso" ng-model="congress.fecha_congreso" required>
+          <input type="text" class="form-control" id="inputFecha" placeholder="Fecha del congreso" ng-model="congress.fecha_congreso" ng-required="">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputPonencia" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Ponencia</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputPonencia" placeholder="Ponencia" ng-model="congress.ponencia" required>
+          <input type="text" class="form-control" id="inputPonencia" placeholder="Ponencia" ng-model="congress.ponencia" ng-required="">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputLugar" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Lugar</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputLugar" placeholder="Lugar" ng-model="congress.lugar" required>
+          <input type="text" class="form-control" id="inputLugar" placeholder="Lugar" ng-model="congress.lugar" ng-required="">
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputPatrocinio" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Patrocinio</label>
+        <label for="inputParticipantes" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Participantes</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputPatrocinio" placeholder="Patrocinio" ng-model="congress.patrocinio" required>
+          <select
+            id="inputParticipantes"
+            class="chosen form-control"
+            chosen
+            multiple
+            ng-required=""
+            data-placeholder="Participantes"
+            ng-model="congress.participantes"
+            ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants track by participant.id">
+          </select>
         </div>
       </div>
+
+      <div class="form-group">
+          <label for="inputPatrocinio" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Patrocinio</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <select
+            class="chosen form-control"
+            chosen
+            ng-required=""
+              id="inputPatrocinio"
+            data-placeholder="Patrocinio"
+            ng-model="congress.patrocinio"
+            ng-options="sponsor.id as sponsor.nombre for sponsor in sponsors track by sponsor.id">
+          </select>
+        </div>
+      </div>
+
 
       <div class="form-group">
         <div class="col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-sm-6 col-md-6 col-lg-6">
@@ -51,3 +76,9 @@
     </form>
   </rd-widget>
 </div>
+
+<script ng-if="sponsors.$resolved">
+setTimeout(function(){
+  $(".chosen").chosen();
+},50);
+</script>
