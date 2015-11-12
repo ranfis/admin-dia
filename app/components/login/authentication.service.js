@@ -7,22 +7,32 @@ angular.module('diaApp')
     authService.login = function (credentials) {
       return $http
         .post(WS+"/login", credentials,REQUEST.PLAIN)
-        .then(authService.getUserSummary)
-        .then(function (user) {
-          Session.create(user);
-          return user;
-        });
+        .then(checkResult)
+        .then(getUserSummary)
+        .then(createSession);
     };
 
-    authService.getUserSummary = function(res){
+    var checkResult = function(res){
+      if(res.data.msg !== "OK"){
+        throw new Error(res.data.msg);
+      }
+      return res;
+    };
+
+    var getUserSummary = function(res){
       var session = res.data.result;
       return $http
         .get(WS+"/summary", {params:session})
+        .then(checkResult)
         .then(function (res) {
           var user = res.data.result;
           user.sessionId = session.session_id;
           return user;
         });
+    };
+
+    var createSession = function (user) {
+      return Session.create(user);
     };
 
     authService.isAuthenticated = function () {

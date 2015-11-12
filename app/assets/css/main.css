@@ -88,3 +88,6 @@ body {
 .ng-valid.ng-dirty {
   border-color: #78FA89;
 }
+.msg-error{
+  color: #FA787E;;
+}

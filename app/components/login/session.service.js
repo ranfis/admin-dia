@@ -6,10 +6,13 @@ angular.module('diaApp')
       this.id = user.sessionId;
       this.userEmail = user.email;
       this.userRole = user.role.name;
+      this.name = user.nombre_completo;
+      return this;
     };
     this.destroy = function () {
       this.id = null;
-      this.email = null;
+      this.userEmail = null;
       this.userRole = null;
+      this.name = null;
     };
   });

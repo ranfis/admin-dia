@@ -8,22 +8,29 @@
 			<div class="comment">Sistema DIA</div>
 		</rd-widget-body>
 
-		<form class="form-horizontal" ng-submit="authenticate(credentials)" name="loginForm">
+		<form class="form-horizontal" ng-submit="authenticate(loginForm)" name="loginForm" novalidate>
 		  <div class="form-group">
-		    <label for="inputEmail" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Email</label>
+		    <label for="uEmail" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Correo Electrónico</label>
 		    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-		      <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="credentials.email">
+		      <input type="email" class="form-control" id="uEmail" name="uEmail" placeholder="Correo Electrónico" ng-model="credentials.email" ng-required="true">
+          <div ng-show="loginForm.$submitted || loginForm.uEmail.$touched">
+            <span class="msg-error" ng-show="loginForm.uEmail.$error.required">El correo es requerido.</span>
+            <span class="msg-error" ng-show="loginForm.uEmail.$error.email">Este correo no es valido.</span>
+          </div>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPass" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Contrase&ntilde;a</label>
+		    <label for="uPassword" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Contrase&ntilde;a</label>
 		    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-		      <input type="password" class="form-control" id="inputPass" placeholder="Contrase&ntilde;a" ng-model="credentials.pass">
+		      <input type="password" class="form-control" id="uPassword" placeholder="Contrase&ntilde;a" ng-model="credentials.pass" ng-required="true">
+          <div ng-show="loginForm.$submitted || loginForm.uPassword.$touched">
+            <span class="msg-error" ng-show="loginForm.uPassword.$error.required">La contrase&ntilde;a es requerida.</span>
+          </div>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <div class="col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-sm-6 col-md-6 col-lg-6">
-		      <button type="submit" class="btn btn-success">Ingresar</button>
+          <input type="submit" class="btn btn-success" value="Ingresar">
 		    </div>
 		  </div>
 		</form>

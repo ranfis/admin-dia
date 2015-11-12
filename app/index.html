@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/rdash-ui/dist/css/rdash.min.css" />
     <link rel="stylesheet" href="bower_components/chosen-bootstrap/chosen.bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -42,7 +43,10 @@
           <!-- <div ui-view></div> -->
           <div>
             <!--Welcome7, {{ currentUser.nombre_completo }}-->
-            <div ng-view=""></div>
+            <div ng-view="">
+
+
+            </div>
           </div>
         </div><!-- End Page Content -->
       </div><!-- End Content Wrapper -->
@@ -65,10 +69,12 @@
   <script src="bower_components/angular-touch/angular-touch.js"></script>
   <script src="bower_components/chosen/chosen.jquery.min.js"></script>
   <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
+  <script src="bower_components/toastr/toastr.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
   <script src="components/app.js"></script>
   <script src="shared/directives/loading.js"></script>
   <script src="shared/directives/widget.js"></script>
@@ -80,7 +86,7 @@
   <script src="components/login/session.service.js"></script>
   <script src="components/about/about.controller.js"></script>
   <script src="components/master.controller.js"></script>
-  <script src="components/login/login.controller.js"></script>
+  <script src="components/login/login.js"></script>
   <script src="components/congress/congress.service.js"></script>
   <script src="components/congress/congress.js"></script>
   <script src="components/participant/participant.service.js"></script>
