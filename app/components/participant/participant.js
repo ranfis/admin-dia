@@ -13,6 +13,7 @@ angular.module('diaApp')
           console.error(err);
           show.error(err.message,"¡Error!");
         });
+
       $scope.deleteParticipant = function(id,index){
         show.confirm("Este participante se borrará","¿Está seguro?","Si, borrar",function(){
           ParticipantService.delete(id,Session.id)
@@ -47,11 +48,24 @@ angular.module('diaApp')
       };
     };
 
-    var ParticipantsDetailsCtrl = function ($scope, ParticipantService, $routeParams) {
+    var ParticipantsDetailsCtrl = function ($scope, Session, ParticipantService, $routeParams, $location  ) {
       var id = $routeParams.id;
       $scope.participant = ParticipantService.participants.filter(function (el) {
         return (el.id === +id);
       })[0];
+      $scope.participant.session_id = Session.id;
+
+      $scope.addParticipant = function(){
+        ParticipantService.update($scope.participant)
+          .then(function (ok) {
+            if (ok) {
+              show.success("El participante se ha actualizado con exito","¡Participante actualizado!");
+              $location.path( "/participantes" );
+            }
+          }, function (err) {
+            show.error(err.message,"¡Error!");
+          });
+      }
     };
 
     $routeProvider
