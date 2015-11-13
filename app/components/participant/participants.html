@@ -18,7 +18,7 @@
               <td>{{participant.apellido}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/participantes/{{participant.id}}"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-sm btn-danger" href="#/participantes/{{participant.id}}"><i class="fa fa-trash"></i></a>
+                <a class="btn btn-sm btn-danger" ng-click="deleteParticipant(participant.id,$index)"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             </tbody>

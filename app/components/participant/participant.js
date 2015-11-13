@@ -11,7 +11,21 @@ angular.module('diaApp')
           $scope.hasParticipants = ($scope.participants.length >= 0);
         }, function(err){
           console.error(err);
+          show.error(err.message,"¡Error!");
         });
+      $scope.deleteParticipant = function(id,index){
+        show.confirm("Este participante se borrará","¿Está seguro?","Si, borrar",function(){
+          ParticipantService.delete(id,Session.id)
+            .then(function (ok) {
+              if (ok) {
+                $scope.participants.splice(index, 1);
+                show.success("El participante se ha borrado con exito","¡Participante borrado!");
+              }
+            }, function (err) {
+              show.error(err.message,"¡Error!");
+            });
+        });
+      }
     };
 
     var ParticipantsCreateCtrl = function ($scope, Session, ParticipantService,$location) {
@@ -24,10 +38,11 @@ angular.module('diaApp')
             console.log(ok);
             if(ok){
               $scope.participant = {};
+              show.success("El participante se ha creado con exito","¡Participante creado!");
               $location.path( "/participantes" );
             }
           },function(err){
-            console.error(err);
+            show.error(err.message,"¡Error!");
           });
       };
     };

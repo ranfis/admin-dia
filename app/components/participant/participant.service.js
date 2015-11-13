@@ -2,7 +2,6 @@
 
 angular.module('diaApp')
   .service('ParticipantService', function ($http, WS, REQUEST){
-
     this.participants = [];
 
     this.getAll = function (sessionId) {
@@ -27,6 +26,23 @@ angular.module('diaApp')
     this.update = function(participant){
       return $http
         .put(WS+"/participant/update", participant,REQUEST.PLAIN)
+        .then(function (res) {
+          return (res.data.code === 0);
+        },function (err){
+          console.error("http",err);
+        });
+    };
+
+    this.delete = function(participantId,sessionId){
+      var param = {
+        session_id:sessionId,
+        id:participantId
+      };
+
+      console.log("param",param);
+
+      return $http
+          .put(WS+"/participant/del", param,REQUEST.PLAIN)
         .then(function (res) {
           return (res.data.code === 0);
         },function (err){
