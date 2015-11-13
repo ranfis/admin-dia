@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/chosen/chosen.jquery.min.js',
       'bower_components/angular-chosen-localytics/chosen.js',
       'bower_components/toastr/toastr.js',
+      'bower_components/bootstrap-sweetalert/lib/sweet-alert.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/components/app.js",
