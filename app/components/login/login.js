@@ -20,11 +20,11 @@ angular.module('diaApp')
       };
 
       $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
-        toastr.error(args,"No se pudo iniciar sesion.");
+        show.error(args,"No se pudo iniciar sesion");
       });
 
       $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
-        toastr.success("Bienvenido "+args,"Login exitoso.");
+        show.success("Bienvenido "+args,"Login exitoso");
       });
     };
 
