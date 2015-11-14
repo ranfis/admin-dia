@@ -20,6 +20,7 @@ angular.module('diaApp')
           return (res.data.code === 0);
         }, function(err){
           console.error(err);
+          throw new Error(err.message);
         });
     };
 
@@ -30,6 +31,7 @@ angular.module('diaApp')
           return (res.data.code === 0);
         },function (err){
           console.error("http",err);
+          throw new Error(err.message);
         });
     };
 
@@ -39,7 +41,6 @@ angular.module('diaApp')
         id:participantId
       };
 
-      console.log("param",param);
 
       return $http
           .put(WS+"/participant/del", param,REQUEST.PLAIN)
@@ -47,6 +48,7 @@ angular.module('diaApp')
           return (res.data.code === 0);
         },function (err){
           console.error("http",err);
+          throw new Error(err.message);
         });
     };
   });
