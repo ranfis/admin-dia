@@ -5,12 +5,10 @@ angular.module('diaApp')
 
     var ParticipantsListCtrl = function ($scope, Session, ParticipantService) {
       ParticipantService.getAll(Session.id)
-        .then(function (participants) {
-          $scope.participants = participants.data.result;
+        .then(function (res) {
+          $scope.participants = res.data.result;
           ParticipantService.participants = $scope.participants;
-          $scope.hasParticipants = ($scope.participants.length >= 0);
         }, function(err){
-          console.error(err);
           show.error(err.message,"¡Error!");
         });
 
@@ -33,10 +31,10 @@ angular.module('diaApp')
       $scope.participant = {
         session_id: Session.id
       };
-      $scope.addParticipant = function(){
+      $scope.addParticipant = function(form){
+        if (!form.$valid) return;
         ParticipantService.create($scope.participant)
           .then(function(ok){
-            console.log(ok);
             if(ok){
               $scope.participant = {};
               show.success("El participante se ha creado con exito","¡Participante creado!");
@@ -55,7 +53,8 @@ angular.module('diaApp')
       })[0];
       $scope.participant.session_id = Session.id;
 
-      $scope.addParticipant = function(){
+      $scope.addParticipant = function(form){
+        if (!form.$valid) return;
         ParticipantService.update($scope.participant)
           .then(function (ok) {
             if (ok) {
