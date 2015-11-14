@@ -16,12 +16,12 @@
               <td>{{sponsor.nombre}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/patrocinadores/{{sponsor.id}}"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-sm btn-danger" href="#/patrocinadores/{{sponsor.id}}"><i class="fa fa-trash"></i></a>
+                <a class="btn btn-sm btn-danger" ng-click="deleteSponsor(sponsor.id,$index)"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             </tbody>
           </table>
-          <div ng-if="!hasSponsors">
+          <div ng-if="!sponsors.length > 0">
             <rd-loading></rd-loading>
           </div>
         </div>

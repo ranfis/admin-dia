@@ -2,7 +2,6 @@
 
 angular.module('diaApp')
   .service('SponsorService', function ($http, WS, REQUEST){
-
     this.sponsors = [];
 
     this.getAll = function (sessionId) {
@@ -21,18 +20,34 @@ angular.module('diaApp')
           return (res.data.code === 0);
         }, function(err){
           console.error(err);
+          throw new Error(err.message);
         });
     };
 
     this.update = function(sponsor){
-      console.log("update",sponsor);
       return $http
         .put(WS+"/sponsor/update", sponsor,REQUEST.PLAIN)
         .then(function (res) {
-          console.log("http",res);
           return (res.data.code === 0);
         },function (err){
           console.error("http",err);
+          throw new Error(err.message);
+        });
+    };
+
+    this.delete = function(sponsorId,sessionId){
+      var param = {
+        session_id:sessionId,
+        id:sponsorId
+      };
+
+      return $http
+        .put(WS+"/sponsor/del", param,REQUEST.PLAIN)
+        .then(function (res) {
+          return (res.data.code === 0);
+        },function (err){
+          console.error("http",err);
+          throw new Error(err.message);
         });
     };
   });
