@@ -7,16 +7,15 @@ angular.module('diaApp')
       $scope.credentials = {};
 
       $scope.authenticate = function (form) {
-        if (form.$valid) {
-          AuthService.login($scope.credentials)
-            .then(function (user) {
-              $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, user.name);
-              $scope.setCurrentUser(user);
-              $location.path("/");
-            }, function (err) {
-              $rootScope.$broadcast(AUTH_EVENTS.loginFailed,err.message);
-            });
-        }
+        if (!form.$valid) return;
+        AuthService.login($scope.credentials)
+          .then(function (user) {
+            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, user.name);
+            $scope.setCurrentUser(user);
+            $location.path("/");
+          }, function (err) {
+            $rootScope.$broadcast(AUTH_EVENTS.loginFailed,err.message);
+          });
       };
 
       $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
