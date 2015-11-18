@@ -15,7 +15,7 @@ angular
     admin: 'admin',
     editor: 'editor'
   })
-  .constant("WS","http://localhost/ws-dia")
+  .constant("WS","http://104.236.201.101") // http://localhost/ws-dia
   .constant("REQUEST",{
     PLAIN: {headers: {'Content-Type': "text/plain"}}
   });
