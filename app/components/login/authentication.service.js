@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('diaApp')
-  .factory('AuthService', function ($http, Session,WS, REQUEST) {
+App.factory('AuthService', function ($http, Session,WS, REQUEST) {
     var authService = {};
 
     authService.login = function (credentials) {

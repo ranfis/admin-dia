@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('diaApp')
-  .service('Session', function () {
+App.service('Session', function () {
     this.create = function (user) {
       this.id = user.sessionId;
       this.userEmail = user.email;

@@ -1,12 +1,10 @@
 'use strict';
 
-angular.module('diaApp')
-    .controller('MasterCtrl', function($scope, $cookieStore,USER_ROLES,AuthService) {
+App.controller('MasterCtrl', function($scope, $cookieStore,USER_ROLES,AuthService) {
 
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
-    //$scope.isLoginPage = false;
 
 
     /**

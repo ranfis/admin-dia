@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('diaApp')
-  .config(function ($routeProvider) {
+App.config(function ($routeProvider) {
 
     var LoginCtrl = function ($scope, $rootScope, $location, AUTH_EVENTS, AuthService) {
       $scope.credentials = {};

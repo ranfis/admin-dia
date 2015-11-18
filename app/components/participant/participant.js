@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('diaApp').service('ParticipantService', new GenericService("participant"));
+App.service('ParticipantService', new GenericService("participant"));
 
-angular.module('diaApp')
-  .config(function ($routeProvider) {
+App.config(function ($routeProvider) {
 
     var ParticipantsListCtrl = function ($scope, Session, ParticipantService) {
       ParticipantService.list(Session.id)
