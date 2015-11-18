@@ -78,10 +78,10 @@ App.config(function ($routeProvider) {
 
     CongressesCreateCtrl.resolve = {
       sponsors: function(SponsorService, Session){
-        return SponsorService.getAll(Session.id);
+        return SponsorService.list(Session.id);
       },
       participants: function(ParticipantService, Session){
-        return ParticipantService.getAll(Session.id);
+        return ParticipantService.list(Session.id);
       }
     };
 
