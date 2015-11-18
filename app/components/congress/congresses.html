@@ -24,8 +24,8 @@
               <td>{{congress.lugar}}</td>
               <td>{{congress.patrocinio.nombre}}</td>
               <td>
-                <div ng-repeat="participant in congress.participant">
-                  {{participant}}
+                <div ng-repeat="participant in congress.participantes">
+                  {{participant.nombre}} {{participant.apellido}} <br>
                 </div>
               </td>
               <td>

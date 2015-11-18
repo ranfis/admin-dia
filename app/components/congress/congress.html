@@ -11,7 +11,7 @@
       <div class="form-group">
         <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Nombre</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre" ng-model="congress.nombre" ng-required="">
+          <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre" ng-model="congress.nombre" ng-required="true">
           <div ng-show="congressForm.$submitted || congressForm.inputNombre.$touched">
             <span class="msg-error" ng-show="congressForm.inputNombre.$error.required">El nombre es requerido</span>
           </div>
@@ -21,9 +21,9 @@
       <div class="form-group">
         <label for="inputFecha" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fecha del congreso</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputFecha" name="inputFecha" placeholder="Fecha del congreso" ng-model="congress.fecha_congreso" ng-required="">
+          <input type="text" class="form-control" id="inputFecha" name="inputFecha" placeholder="Fecha del congreso" ng-model="congress.fecha_congreso" ng-required="true">
           <div ng-show="congressForm.$submitted || congressForm.inputFecha.$touched">
-            <span class="msg-error" ng-show="congressForm.inputNombre.$error.required">La fecha es requerida</span>
+            <span class="msg-error" ng-show="congressForm.inputFecha.$error.required">La fecha es requerida</span>
           </div>
         </div>
       </div>
@@ -31,9 +31,9 @@
       <div class="form-group">
         <label for="inputPonencia" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Ponencia</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputPonencia" name="inputPonencia" placeholder="Ponencia" ng-model="congress.ponencia" ng-required="">
+          <input type="text" class="form-control" id="inputPonencia" name="inputPonencia" placeholder="Ponencia" ng-model="congress.ponencia" ng-required="true">
           <div ng-show="congressForm.$submitted || congressForm.inputPonencia.$touched">
-            <span class="msg-error" ng-show="congressForm.inputNombre.$error.required">La ponencia es requerida</span>
+            <span class="msg-error" ng-show="congressForm.inputPonencia.$error.required">La ponencia es requerida</span>
           </div>
         </div>
       </div>
@@ -41,9 +41,9 @@
       <div class="form-group">
         <label for="inputLugar" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Lugar</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputLugar" name="inputLugar" placeholder="Lugar" ng-model="congress.lugar" ng-required="">
+          <input type="text" class="form-control" id="inputLugar" name="inputLugar" placeholder="Lugar" ng-model="congress.lugar" ng-required="true">
           <div ng-show="congressForm.$submitted || congressForm.inputLugar.$touched">
-            <span class="msg-error" ng-show="congressForm.inputNombre.$error.required">El lugar es requerido</span>
+            <span class="msg-error" ng-show="congressForm.inputLugar.$error.required">El lugar es requerido</span>
           </div>
         </div>
       </div>
@@ -53,14 +53,18 @@
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
             id="inputParticipantes"
+            name="inputParticipantes"
             class="chosen form-control"
             chosen
             multiple
-            ng-required=""
+            ng-required="true"
             data-placeholder="Participantes"
             ng-model="congress.participantes"
-            ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants track by participant.id">
+            ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
           </select>
+          <div ng-show="congressForm.$submitted || congressForm.inputParticipantes.$touched">
+            <span class="msg-error" ng-show="congressForm.inputParticipantes.$error.required">Los participantes son requeridos</span>
+          </div>
         </div>
       </div>
 
@@ -70,16 +74,18 @@
           <select
             class="chosen form-control"
             chosen
-            ng-required=""
-              id="inputPatrocinio"
+            ng-required="true"
+            name="inputPatrocinio"
+            id="inputPatrocinio"
             data-placeholder="Patrocinio"
             ng-model="congress.patrocinio"
-            ng-options="sponsor.id as sponsor.nombre for sponsor in sponsors track by sponsor.id">
+            ng-options="sponsor.id as sponsor.nombre for sponsor in sponsors">
           </select>
+          <div ng-show="congressForm.$submitted || congressForm.inputPatrocinio.$touched">
+            <span class="msg-error" ng-show="congressForm.inputPatrocinio.$error.required">El  patrocinador es requerido</span>
+          </div>
         </div>
       </div>
-
-
       <div class="form-group">
         <div class="col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-sm-6 col-md-6 col-lg-6">
           <button type="submit" class="btn btn-success">Guardar</button>
