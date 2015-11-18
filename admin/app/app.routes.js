@@ -1,9 +1,9 @@
 'use strict';
 
-App.config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'components/main.html',
+        templateUrl: 'app/components/dashboard/dashboard.html',
         data: {
           authorizedRoles: ["ADMIN"]
         }
@@ -11,4 +11,9 @@ App.config(function ($routeProvider) {
       .otherwise({
         redirectTo: '/'
       });
-  });
+
+/*  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: true
+  });*/
+});

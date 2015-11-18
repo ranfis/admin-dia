@@ -1,12 +1,11 @@
 'use strict';
 
-App.config(function ($routeProvider) {
-
-    var LoginCtrl = function ($scope, $rootScope, $location, AUTH_EVENTS, AuthService) {
+angular.module('diaApp').config(function ($routeProvider) {
+    var LoginCtrl = function ($scope, Alert, $rootScope, $location, AUTH_EVENTS, AuthService) {
       $scope.credentials = {};
 
       $scope.authenticate = function (form) {
-        if (!form.$valid) return;
+        if (!form.$valid){return;}
         AuthService.login($scope.credentials)
           .then(function (user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, user.name);
@@ -18,17 +17,17 @@ App.config(function ($routeProvider) {
       };
 
       $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
-        show.error(args,"No se pudo iniciar sesion");
+        Alert.error(args,"No se pudo iniciar sesion");
       });
 
       $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
-        show.success("Bienvenido "+args,"Login exitoso");
+        Alert.success("Bienvenido "+args,"Login exitoso");
       });
     };
 
     $routeProvider
       .when('/login', {
-        templateUrl: 'components/login/login.html',
+        templateUrl: 'app/components/login/login.html',
         controller: LoginCtrl
       });
   });

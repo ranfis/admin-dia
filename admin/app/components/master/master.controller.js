@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('MasterCtrl', function($scope, $cookieStore,USER_ROLES,AuthService) {
+angular.module('diaApp').controller('MasterCtrl', function($scope, $cookieStore,USER_ROLES,AuthService) {
 
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;

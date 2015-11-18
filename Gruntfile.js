@@ -21,7 +21,7 @@ module.exports = function (grunt) {
 
   // Configurable paths for the application
   var appConfig = {
-    app: require('./bower.json').appPath || 'app',
+    app: require('./bower.json').appPath || 'admin',
     dist: 'dist'
   };
 
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/components/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/app/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -86,7 +86,7 @@ module.exports = function (grunt) {
                 connect.static('./bower_components')
               ),
               connect().use(
-                '/app/assets/css',
+                '/admin/assets/css',
                 connect.static('./app/styles')
               ),
               connect.static(appConfig.app)
@@ -127,7 +127,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/components/{,*/}*.js'
+          '<%= yeoman.app %>/app/**/*.js'
         ]
       },
       test: {
@@ -207,7 +207,7 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
-          '<%= yeoman.dist %>/components/{,*/}*.js',
+          '<%= yeoman.dist %>/app/components/{,*/}*.js',
           '<%= yeoman.dist %>/assets/css/{,*/}*.css',
           '<%= yeoman.dist %>/assets/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/assets/fonts/*'
@@ -238,7 +238,7 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/assets/css/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/components/{,*/}*.js'],
+      js: ['<%= yeoman.dist %>/app/components/{,*/}*.js'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>',

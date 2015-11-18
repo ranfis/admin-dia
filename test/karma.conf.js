@@ -39,8 +39,10 @@ module.exports = function(config) {
       'bower_components/bootstrap-sweetalert/lib/sweet-alert.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      "app/components/app.js",
-      "app/components/**/*.js",
+      "admin/app/app.module.js",
+      "admin/app/*.js",
+      "admin/app/helper/*.js",
+      "admin/app/components/**/*.js",
       "test/mock/**/*.js",
       "test/spec/**/*.js"
     ],

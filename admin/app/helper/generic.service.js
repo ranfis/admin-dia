@@ -17,9 +17,8 @@ var GenericService = function(serviceName){
       return $http
         .post(WS+"/"+serviceName+"/add", object,REQUEST.PLAIN)
         .then(function (res) {
-          return (res.data.code === 0);
+          return (res.data.msg);
         }, function(err){
-          console.error(err);
           throw new Error(err.message);
         });
     };
@@ -28,9 +27,8 @@ var GenericService = function(serviceName){
       return $http
         .put(WS+"/"+serviceName+"/update", object,REQUEST.PLAIN)
         .then(function (res) {
-          return (res.data.code === 0);
+          return (res.data.msg);
         },function (err){
-          console.error("http",err);
           throw new Error(err.message);
         });
     };
@@ -41,15 +39,15 @@ var GenericService = function(serviceName){
         id:objectId
       };
 
-
       return $http
         .put(WS+"/"+serviceName+"/del", param,REQUEST.PLAIN)
         .then(function (res) {
-          return (res.data.code === 0);
+          return (res.data.msg);
         },function (err){
-          console.error("http",err);
           throw new Error(err.message);
         });
     };
-  }
+  };
 };
+
+GenericService.toString();

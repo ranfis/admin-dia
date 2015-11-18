@@ -1,8 +1,6 @@
 'use strict';
 
-angular
-  .module('diaApp')
-  .constant('AUTH_EVENTS', {
+angular.module('diaApp').constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',
     loginFailed: 'auth-login-failed',
     logoutSuccess: 'auth-logout-success',

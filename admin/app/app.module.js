@@ -1,14 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name diaApp
- * @description
- * # diaApp
- *
- * Main module of the application.
- */
-var App = angular.module('diaApp', [
+angular.module('diaApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -17,7 +9,4 @@ var App = angular.module('diaApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ]);
-
-
-
+]);
