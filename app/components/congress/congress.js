@@ -1,10 +1,11 @@
 'use strict';
+angular.module('diaApp').service('CongressService', new GenericService("congress"));
 
 angular.module('diaApp')
   .config(function ($routeProvider) {
 
     var CongressesListCtrl = function ($scope, Session, CongressService) {
-      CongressService.getAll(Session.id)
+      CongressService.list(Session.id)
         .then(function (res) {
           $scope.congresses = res.data.result;
           CongressService.congresses = $scope.congresses;

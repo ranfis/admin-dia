@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('diaApp', [
+var App = angular.module('diaApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

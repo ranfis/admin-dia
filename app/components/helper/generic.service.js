@@ -1,21 +1,21 @@
 'use strict';
 
-angular.module('diaApp')
-  .service('JournalService', function ($http, WS, REQUEST){
-    this.journals = [];
+var GenericService = function(serviceName){
+  return function ($http, WS, REQUEST){
+    this.objectList = [];
 
-    this.getAll = function (sessionId) {
+    this.list = function (sessionId) {
       var params = {
         params:{
           session_id: sessionId
         }
       };
-      return $http.get(WS+"/journal/list", params);
+      return $http.get(WS+"/"+serviceName+"/list", params);
     };
 
-    this.create = function(journal){
+    this.create = function(object){
       return $http
-        .post(WS+"/journal/add", journal,REQUEST.PLAIN)
+        .post(WS+"/"+serviceName+"/add", object,REQUEST.PLAIN)
         .then(function (res) {
           return (res.data.code === 0);
         }, function(err){
@@ -24,9 +24,9 @@ angular.module('diaApp')
         });
     };
 
-    this.update = function(journal){
+    this.update = function(object){
       return $http
-        .put(WS+"/journal/update", journal,REQUEST.PLAIN)
+        .put(WS+"/"+serviceName+"/update", object,REQUEST.PLAIN)
         .then(function (res) {
           return (res.data.code === 0);
         },function (err){
@@ -35,15 +35,15 @@ angular.module('diaApp')
         });
     };
 
-    this.delete = function(journalId,sessionId){
+    this.delete = function(objectId,sessionId){
       var param = {
         session_id:sessionId,
-        id:journalId
+        id:objectId
       };
 
 
       return $http
-        .put(WS+"/journal/del", param,REQUEST.PLAIN)
+        .put(WS+"/"+serviceName+"/del", param,REQUEST.PLAIN)
         .then(function (res) {
           return (res.data.code === 0);
         },function (err){
@@ -51,4 +51,5 @@ angular.module('diaApp')
           throw new Error(err.message);
         });
     };
-  });
+  }
+};

@@ -1,10 +1,12 @@
 'use strict';
 
+angular.module('diaApp').service('JournalService', new GenericService("journal"));
+
 angular.module('diaApp')
   .config(function ($routeProvider) {
 
     var JournalsListCtrl = function ($scope, Session, JournalService) {
-      JournalService.getAll(Session.id)
+      JournalService.list(Session.id)
         .then(function (res) {
           $scope.journals = res.data.result;
           JournalService.journals = $scope.journals;

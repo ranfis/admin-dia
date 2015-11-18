@@ -1,10 +1,12 @@
 'use strict';
 
+angular.module('diaApp').service('SponsorService', new GenericService("sponsor"));
+
 angular.module('diaApp')
   .config(function ($routeProvider) {
 
     var SponsorsListCtrl = function ($scope, Session, SponsorService) {
-      SponsorService.getAll(Session.id)
+      SponsorService.list(Session.id)
         .then(function (res) {
           $scope.sponsors = res.data.result;
           SponsorService.sponsors = $scope.sponsors;

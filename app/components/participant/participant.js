@@ -1,10 +1,12 @@
 'use strict';
 
+angular.module('diaApp').service('ParticipantService', new GenericService("participant"));
+
 angular.module('diaApp')
   .config(function ($routeProvider) {
 
     var ParticipantsListCtrl = function ($scope, Session, ParticipantService) {
-      ParticipantService.getAll(Session.id)
+      ParticipantService.list(Session.id)
         .then(function (res) {
           $scope.participants = res.data.result;
           ParticipantService.participants = $scope.participants;
