@@ -31,6 +31,7 @@ angular.module('diaApp').factory('AuthService', function ($http, Session,WS, REQ
     };
 
     var createSession = function (user) {
+      Session.store(user);
       return Session.create(user);
     };
 
@@ -38,6 +39,12 @@ angular.module('diaApp').factory('AuthService', function ($http, Session,WS, REQ
       return !!Session.userEmail;
     };
 
+  authService.trySessionRestore = function(run){
+    var user = Session.restore();
+    if(user){
+      run(user);
+    }
+  };
     authService.isAuthorized = function (authorizedRoles) {
       if (!angular.isArray(authorizedRoles)) {
         authorizedRoles = [authorizedRoles];

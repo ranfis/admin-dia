@@ -44,6 +44,7 @@ angular.module('diaApp').controller('MasterCtrl', function($scope, $cookieStore,
     //console.log("setCurrentUser",user);
     $scope.currentUser = user;
   };
+  AuthService.trySessionRestore($scope.setCurrentUser);
 }).run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
       //console.log("routeChangeStart",next);
