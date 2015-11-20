@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <rd-widget>
+      <rd-widget-header icon="fa-tasks" title="Publicaciones"></rd-widget-header>
+      <rd-widget-body classes="large no-padding">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <th>ID</th>
+            <th>Publicación</th>
+            <th>Fecha</th>
+            <th>Revista</th>
+            <th>Volumen</th>
+            <th>Página</th>
+            <th>Autores</th>
+            <th>Cesión de Derechos</th>
+            <th></th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="publication in publications">
+              <td>{{publication.id}}</td>
+              <td>{{publication.description}}</td>
+              <td>{{publication.date}}</td>
+              <td>{{publication.journal}}</td>
+              <td>{{publication.volume}}</td>
+              <td>{{publication.pages}}</td>
+              <td>
+                <div ng-repeat="participant in publication.participantes">
+                  {{participant.nombre}} {{participant.apellido}} <br>
+                </div>
+              </td>
+              <td>{{publication.intellectual_prop}}</td>
+              <td>
+                <a class="btn btn-sm btn-success" href="#/publicaciones/{{publication.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-sm btn-danger" ng-click="deletePublication(publication.id,$index)"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div ng-if="!publications.length > 0">
+            <rd-loading></rd-loading>
+          </div>
+        </div>
+      </rd-widget-body>
+      <rd-widget-footer>
+        <a class="btn btn-sm btn-success" href="#/publicaciones/crear"><i class="fa fa-plus"></i></a>
+      </rd-widget-footer>
+    </rd-widget>
+  </div>
+</div>
