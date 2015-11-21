@@ -1,0 +1,28 @@
+<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+  <rd-widget>
+    <rd-widget-body>
+      <div class="widget-icon green pull-left">
+        <i class="fa fa-usd"></i>
+      </div>
+      <div class="title">Fondos</div>
+      <div class="comment">Información del Fondo</div>
+    </rd-widget-body>
+    <form class="form-horizontal" ng-submit="addFund(fundForm)" name="fundForm" novalidate>
+      <div class="form-group">
+        <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Nombre</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <input type="text" class="form-control" name="inputNombre" id="inputNombre" placeholder="Nombre" ng-model="fund.name" ng-required="true">
+          <div ng-show="fundForm.$submitted || fundForm.inputNombre.$touched">
+            <span class="msg-error" ng-show="fundForm.inputNombre.$error.required">El nombre es requerido</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </rd-widget>
+</div>
