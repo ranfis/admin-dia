@@ -21,7 +21,7 @@
               <td>{{publication.id}}</td>
               <td>{{publication.description}}</td>
               <td>{{publication.date}}</td>
-              <td>{{publication.journal.nombre}}</td>
+              <td>{{publication.journal.description}}</td>
               <td>{{publication.volume}}</td>
               <td>{{publication.pages}}</td>
               <td>
@@ -29,7 +29,7 @@
                   {{participant.nombre}} {{participant.apellido}} <br>
                 </div>
               </td>
-              <td>{{publication.intellectual_prop?'Si':'No'}}</td>
+              <td>{{publication.has_intellectual_prop?'Si':'No'}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/publicaciones/{{publication.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="deletePublication(publication.id,$index)"><i class="fa fa-trash"></i></a>
