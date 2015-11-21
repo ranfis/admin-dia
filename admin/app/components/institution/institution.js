@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('InstitutionService', new GenericService("institution"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
   var InstitutionsListCtrl = function ($scope, Session, Alert, InstitutionService) {
     InstitutionService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
         $scope.institutions = res.data.result;
         InstitutionService.institutions = $scope.institutions;
       }, function(err){
-        Alert.error(err.message,"¡Error!");
+        Alert.error(err.message,MESSAGES.ERROR_TEXT);
       });
 
     $scope.deleteInstitution = function(id,index){
-      Alert.confirm("Este institución se borrará","¿Está seguro?","Si, borrar",function(){
+      Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
         InstitutionService.delete(id,Session.id)
           .then(function(msg){
             if(msg === "OK"){
               $scope.institutions.splice(index, 1);
-              Alert.success("La institución se ha borrado con exito","¡Institución borrada!");
+              Alert.success(MESSAGES.INSTITUTION+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.INSTITUTION+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       });
     };
@@ -43,14 +43,14 @@ angular.module('diaApp').config(function ($routeProvider) {
         .then(function(msg){
           if(msg === "OK"){
             $scope.institution = {};
-            Alert.success("La institución se ha creado con exito","¡Institución creada!");
-            $location.path( "/instituciones" );
+            Alert.success(MESSAGES.INSTITUTION+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.INSTITUTION+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+            $location.path(PATH.INSTITUTION.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         },function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
@@ -67,38 +67,38 @@ angular.module('diaApp').config(function ($routeProvider) {
       InstitutionService.update($scope.institution)
         .then(function(msg){
           if(msg === "OK"){
-            Alert.success("La institución se ha actualizado con exito","¡Institución actualizada!");
-            $location.path( "/instituciones" );
+            Alert.success(MESSAGES.INSTITUTION+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.INSTITUTION+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+            $location.path(PATH.INSTITUTION.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         }, function (err) {
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
 
   $routeProvider
-    .when('/instituciones', {
+    .when(PATH.INSTITUTION.LIST, {
       templateUrl: 'app/components/institution/institutions.html',
       controller: InstitutionsListCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
-    .when('/instituciones/crear', {
+    .when(PATH.INSTITUTION.CREATE, {
       templateUrl: 'app/components/institution/institution.html',
       controller: InstitutionsCreateCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
-    .when('/instituciones/:id', {
+    .when(PATH.INSTITUTION.EDIT, {
       templateUrl: 'app/components/institution/institution.html',
       controller: InstitutionsDetailsCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     });
 });

@@ -32,6 +32,8 @@ angular.module('diaApp')
     JOURNAL: "Revista",
     PARTICIPANT: "Participante",
     PUBLICATION: "Participante",
+    INSTITUTION: "Institución",
+    UNIT: "Unidad",
     // Constant for details of Notifications
     NOTIFICATION_DELETE_SUCCESS : "se ha borrado con exito",
     NOTIFICATION_DELETE_NAME : "borrado/a",
@@ -70,6 +72,16 @@ angular.module('diaApp')
       LIST: "/publicaciones",
       CREATE: "/publicaciones/crear",
       EDIT: "/publicaciones/:id"
+    },
+    INSTITUTION: {
+      LIST: "/instituciones",
+      CREATE: "/instituciones/crear",
+      EDIT: "/instituciones/:id"
+    },
+    UNIT: {
+      LIST: "/unidades",
+      CREATE: "/unidades/crear",
+      EDIT: "/unidades/:id"
     }
   });
 
