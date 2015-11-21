@@ -37,8 +37,9 @@ angular.module('diaApp').config(function ($routeProvider) {
     $scope.journals = journals.data.result;
     $scope.participants = participants.data.result;
     $scope.publication = {
-      session_id: Session.id
-    };
+      session_id: Session.id,
+      has_intellectual_prop : false
+  };
     $scope.addPublication = function(form){
       if (!form.$valid){return;}
       PublicationService.create($scope.publication)
