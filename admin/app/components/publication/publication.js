@@ -54,7 +54,6 @@ angular.module('diaApp').config(function ($routeProvider) {
           }
         },function(err){
           Alert.error(err.message,"¡Error!");
-          console.log(result.data);
         });
     };
   };
