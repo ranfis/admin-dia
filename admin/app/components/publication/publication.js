@@ -72,11 +72,7 @@ angular.module('diaApp').config(function ($routeProvider) {
         .then(function (msg) {
           if (msg === "OK") {
             Alert.success("La publicación se ha actualizado con exito","¡Publicación actualizada!");
-<<<<<<< HEAD
             $location.path( "/publicaciones" );
-=======
-            $location.path( "/publicacion" );
->>>>>>> b98a2a07975c674d104e766ecc45cd2db721b420
           }
           else{
             Alert.error(msg,"¡Error!");
