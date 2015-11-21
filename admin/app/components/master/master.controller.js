@@ -6,7 +6,6 @@ angular.module('diaApp').controller('MasterCtrl', function($scope, $cookieStore,
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
 
-
     /**
      * Sidebar Toggle & Cookie Control
      */
