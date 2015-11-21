@@ -46,7 +46,7 @@ angular.module('diaApp').config(function ($routeProvider) {
           if(msg === "OK"){
             $scope.publication = {};
             Alert.success("La publicación se ha creado con exito","¡Publicación creada!");
-            $location.path( "/publicacion" );
+            $location.path( "/publicaciones" );
           }
           else{
             Alert.error(msg,"¡Error!");
@@ -72,7 +72,7 @@ angular.module('diaApp').config(function ($routeProvider) {
         .then(function (msg) {
           if (msg === "OK") {
             Alert.success("La publicación se ha actualizado con exito","¡Publicación actualizada!");
-            $location.path( "/publicacion" );
+            $location.path( "/publicaciones" );
           }
           else{
             Alert.error(msg,"¡Error!");
