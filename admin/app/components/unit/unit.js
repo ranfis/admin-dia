@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('UnitService', new GenericService("executing_unit"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
   var UnitsListCtrl = function ($scope, Session, Alert, UnitService) {
     UnitService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
         $scope.units = res.data.result;
         UnitService.units = $scope.units;
       }, function(err){
-        Alert.error(err.message,"¡Error!");
+        Alert.error(err.message,MESSAGES.ERROR_TEXT);
       });
 
     $scope.deleteUnit = function(id,index){
-      Alert.confirm("Late unidad se borrará","¿Está seguro?","Si, borrar",function(){
+      Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
         UnitService.delete(id,Session.id)
           .then(function(msg){
             if(msg === "OK"){
               $scope.units.splice(index, 1);
-              Alert.success("La unidad se ha borrado con exito","¡Unidad borrada!");
+              Alert.success(MESSAGES.UNIT+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.UNIT+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       });
     };
@@ -43,14 +43,14 @@ angular.module('diaApp').config(function ($routeProvider) {
         .then(function(msg){
           if(msg === "OK"){
             $scope.unit = {};
-            Alert.success("La unidad se ha creado con exito","¡Unidad creada!");
-            $location.path( "/unidades" );
+            Alert.success(MESSAGES.UNIT+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.UNIT+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+            $location.path(PATH.UNIT.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         },function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
@@ -67,34 +67,34 @@ angular.module('diaApp').config(function ($routeProvider) {
       UnitService.update($scope.unit)
         .then(function(msg){
           if(msg === "OK"){
-            Alert.success("La unidad se ha actualizado con exito","¡Unidad actualizada!");
-            $location.path( "/unidades" );
+            Alert.success(MESSAGES.UNIT+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.UNIT+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+            $location.path(PATH.UNIT.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         }, function (err) {
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
 
   $routeProvider
-    .when('/unidades', {
+    .when(PATH.UNIT.LIST, {
       templateUrl: 'app/components/unit/units.html',
       controller: UnitsListCtrl,
       data: {
         authorizedRoles: ["ADMIN"]
       }
     })
-    .when('/unidades/crear', {
+    .when(PATH.UNIT.CREATE, {
       templateUrl: 'app/components/unit/unit.html',
       controller: UnitsCreateCtrl,
       data: {
         authorizedRoles: ["ADMIN"]
       }
     })
-    .when('/unidades/:id', {
+    .when(PATH.UNIT.EDIT, {
       templateUrl: 'app/components/unit/unit.html',
       controller: UnitsDetailsCtrl,
       data: {
