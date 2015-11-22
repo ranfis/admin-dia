@@ -15,7 +15,6 @@
     "rdash-ui": "^1.0.1",
     "font-awesome": "^4.4.0",
     "chosen-bootstrap": "^1.1.0",
-    "angular-chosen-localytics": "~1.0.7",
     "toastr": "^2.1.2",
     "bootstrap-sweetalert": "~0.4.5",
     "angular-loading-bar": "~0.8.0",
