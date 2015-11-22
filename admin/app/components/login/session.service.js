@@ -6,6 +6,7 @@ angular.module('diaApp').service('Session', function () {
     this.userEmail = user.email;
     this.userRole = user.role.name;
     this.name = user.nombre_completo;
+    this.store(user);
     return this;
   };
   this.restore = function(){

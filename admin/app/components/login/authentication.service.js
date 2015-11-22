@@ -31,7 +31,6 @@ angular.module('diaApp').factory('AuthService', function ($http, Session,WS, REQ
     };
 
     var createSession = function (user) {
-      Session.store(user);
       return Session.create(user);
     };
 

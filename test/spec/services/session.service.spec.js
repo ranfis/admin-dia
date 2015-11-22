@@ -3,33 +3,32 @@
 describe('Service: Session', function () {
   beforeEach(module('diaApp'));
 
+  afterEach(function(){
+    sessionStorage.diaUser = undefined;
+  });
+
+  var testUser = {
+    sessionId: "sessionId",
+    email: "email",
+    role: {
+      name:"role.name"
+    },
+    nombre_completo: "nombre_completo"
+  };
+
   it('create() should set properties', inject(function (Session) {
-    var user = {
-      sessionId: "sessionId",
-      email: "email",
-      role: {
-        name:"role.name"
-      },
-      nombre_completo: "nombre_completo"
-    };
-    Session.create(user);
-    expect(Session.id).toBe(user.sessionId);
-    expect(Session.userEmail).toBe(user.email);
-    expect(Session.userRole).toBe(user.role.name);
-    expect(Session.name).toBe(user.nombre_completo);
+    spyOn(Session, 'store');
+    Session.create(testUser);
+    expect(Session.id).toBe(testUser.sessionId);
+    expect(Session.userEmail).toBe(testUser.email);
+    expect(Session.userRole).toBe(testUser.role.name);
+    expect(Session.name).toBe(testUser.nombre_completo);
+    expect(Session.store).toHaveBeenCalledWith(testUser);
   }));
 
   it('store() should store to sessionStorage', inject(function (Session) {
-    var user = {
-      sessionId: "sessionId",
-      email: "email",
-      role: {
-        name:"role.name"
-      },
-      nombre_completo: "nombre_completo"
-    };
-    Session.store(user);
-    expect(sessionStorage.diaUser).toBe(JSON.stringify(user));
+    Session.store(testUser);
+    expect(sessionStorage.diaUser).toBe(JSON.stringify(testUser));
   }));
 
 /*  it('get() should get from sessionStorage', inject(function (Session) {
@@ -44,20 +43,12 @@ describe('Service: Session', function () {
   }));*/
 
   it('restore() should get user from cookies', inject(function (Session) {
-    var user = {
-      sessionId: "sessionId",
-      email: "email",
-      role: {
-        name:"role.name"
-      },
-      nombre_completo: "nombre_completo"
-    };
-    sessionStorage.diaUser = JSON.stringify(user);
+    sessionStorage.diaUser = JSON.stringify(testUser);
     Session.restore();
-    expect(Session.id).toBe(user.sessionId);
-    expect(Session.userEmail).toBe(user.email);
-    expect(Session.userRole).toBe(user.role.name);
-    expect(Session.name).toBe(user.nombre_completo);
+    expect(Session.id).toBe(testUser.sessionId);
+    expect(Session.userEmail).toBe(testUser.email);
+    expect(Session.userRole).toBe(testUser.role.name);
+    expect(Session.name).toBe(testUser.nombre_completo);
   }));
 
   it('destroy() should clean object', inject(function (Session) {
