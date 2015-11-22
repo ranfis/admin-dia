@@ -12,12 +12,13 @@ angular.module('diaApp').config(function ($routeProvider) {
             $scope.setCurrentUser(user);
             $location.path("/");
           }, function (err) {
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed,err.message);
+            $rootScope.$broadcast(AUTH_EVENTS.loginFailed,err);
           });
       };
 
       $scope.$on(AUTH_EVENTS.loginFailed, function(event, args) {
-        Alert.error(args,"No se pudo iniciar sesion");
+        console.error(args);
+        Alert.error(args);
       });
 
       $scope.$on(AUTH_EVENTS.loginSuccess, function(event, args) {
@@ -25,9 +26,20 @@ angular.module('diaApp').config(function ($routeProvider) {
       });
     };
 
+  var LogoutCtrl = function ($scope, Alert, $rootScope, $location, AUTH_EVENTS, AuthService, Session) {
+    console.info("aaaaaaaaaaaaaaaaaaaa");
+    Session.destroy();
+    $scope.currentUser = null;
+    sessionStorage.diaUser = null;
+    Alert.success("Adios");
+  };
+
     $routeProvider
       .when('/login', {
         templateUrl: 'app/components/login/login.html',
         controller: LoginCtrl
+      })
+      .when('/logout', {
+        controller: LogoutCtrl
       });
   });

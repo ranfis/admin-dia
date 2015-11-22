@@ -10,8 +10,7 @@ angular.module('diaApp', [
   'ngSanitize',
   'ngTouch',
   'angular-loading-bar',
-  'ngAnimate',
-  'ui.toggle'
+  'ngAnimate'
 ]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }]);

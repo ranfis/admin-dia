@@ -7,9 +7,6 @@ angular.module('diaApp').config(function ($routeProvider) {
         data: {
           authorizedRoles: ["ADMIN"]
         }
-      })
-      .otherwise({
-        redirectTo: '/'
       });
 
 /*  $locationProvider.html5Mode({

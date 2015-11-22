@@ -6,16 +6,22 @@ angular.module('diaApp').factory('AuthService', function ($http, Session,WS, REQ
     authService.login = function (credentials) {
       return $http
         .post(WS+"/login", credentials,REQUEST.PLAIN)
-        .then(checkResult)
+        .then(checkResult,handleErrors)
         .then(getUserSummary)
         .then(createSession);
     };
 
     var checkResult = function(res){
+      console.log("-----------",res);
       if(res.data.msg !== "OK"){
-        throw new Error(res.data.msg);
+        throw new Error("MyERR","TuErr",res.data.msg);
       }
       return res;
+    };
+
+    var handleErrors = function(err){
+      console.log(err);
+      throw new Error("Ha ocurrido un error, revise su conexion a internet."); // TODO: Use constant
     };
 
     var getUserSummary = function(res){

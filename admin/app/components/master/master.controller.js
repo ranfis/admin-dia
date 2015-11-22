@@ -48,7 +48,6 @@ angular.module('diaApp').controller('MasterCtrl', function($scope, $cookieStore,
     $rootScope.$on('$routeChangeStart', function (event, next) {
       //console.log("routeChangeStart",next);
       if(!next.data){
-        $location.path( "/login" );
         return;
       }
       var authorizedRoles = next.data.authorizedRoles;
