@@ -1,4 +1,4 @@
-# Proyecto DIA ![](https://magnum.travis-ci.com/ranfis/admin-dia.svg?token=qwtzsfqnqvCJ89YFHpgz)
+# Proyecto DIA [![Build Status](https://magnum.travis-ci.com/ranfis/admin-dia.svg?token=qwtzsfqnqvCJ89YFHpgz)](https://magnum.travis-ci.com/ranfis/admin-dia)
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlCwI0dqehYdxrT3qF63PABnvQguLN2_sFBmADaNg0222cpEdX)
 ######Decanato de  Investigacion de UNIBE
 
