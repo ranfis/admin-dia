@@ -1,34 +1,21 @@
 'use strict';
 
-angular.module('diaApp').factory('AuthService', function ($http, Session,WS, REQUEST) {
+angular.module('diaApp').factory('AuthService', function ($http, Helper,Session,WS, REQUEST) {
     var authService = {};
 
     authService.login = function (credentials) {
       return $http
-        .post(WS+"/login", credentials,REQUEST.PLAIN)
-        .then(checkResult,handleErrors)
+        .post(WS.LOGIN, credentials,REQUEST.PLAIN)
+        .then(Helper.checkResult,Helper.handleErrors)
         .then(getUserSummary)
         .then(createSession);
-    };
-
-    var checkResult = function(res){
-      console.log("-----------",res);
-      if(res.data.msg !== "OK"){
-        throw new Error("MyERR","TuErr",res.data.msg);
-      }
-      return res;
-    };
-
-    var handleErrors = function(err){
-      console.log(err);
-      throw new Error("Ha ocurrido un error, revise su conexion a internet."); // TODO: Use constant
     };
 
     var getUserSummary = function(res){
       var session = res.data.result;
       return $http
-        .get(WS+"/summary", {params:session})
-        .then(checkResult)
+        .get(WS.SUMMARY, {params:session})
+        .then(Helper.checkResult,Helper.handleErrors)
         .then(function (res) {
           var user = res.data.result;
           user.sessionId = session.session_id;

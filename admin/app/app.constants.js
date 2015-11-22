@@ -14,7 +14,23 @@ angular.module('diaApp')
     ADMIN: 'ADMIN',
     EDITOR: 'EDITOR'
   })
-  .constant("WS","http://104.236.201.101") // http://localhost/ws-dia
+  .constant("WS",{
+    URL:"http://104.236.201.101", // http://localhost/ws-dia
+    SUMMARY:"http://104.236.201.101/summary",
+    LOGIN: "http://104.236.201.101/login",
+    LIST: function(service){
+      return "http://104.236.201.101/"+service+"/list";
+    },
+    ADD: function(service){
+      return "http://104.236.201.101/"+service+"/add";
+    },
+    UPDATE: function(service){
+      return "http://104.236.201.101/"+service+"/update";
+    },
+    DELETE: function(service){
+      return "http://104.236.201.101/"+service+"/del";
+    },
+  })
   .constant("REQUEST",{
     PLAIN: {headers: {'Content-Type': "text/plain"}}
   })
@@ -39,9 +55,16 @@ angular.module('diaApp')
     NOTIFICATION_CREATE_NAME : "creado/a",
     NOTIFICATION_UPDATE_SUCCESS : "se ha actualizado con exito",
     NOTIFICATION_UPDATE_NAME : "acualizado/a",
-    LOGOUT: "Se ha cerrado la sesión del usuario"
+    // Messages for login and logout events
+    LOGIN: "Se ha inicado sesión",
+    LOGOUT: "Se ha cerrado la sesión del usuario",
+    ERROR: {
+      NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet."
+    },
+    OK:"OK"
   })
   .constant("PATH",{
+    ROOT:"/",
     SPONSOR: {
       LIST: "/patrocinadores",
       CREATE: "/patrocinadores/crear",
@@ -71,6 +94,8 @@ angular.module('diaApp')
       LIST: "/publicaciones",
       CREATE: "/publicaciones/crear",
       EDIT: "/publicaciones/:id"
-    }
+    },
+    LOGIN: "/login",
+    LOGOUT: "/logout"
   });
 
