@@ -24,9 +24,13 @@ angular.module('diaApp').service('Session', function () {
     this.userEmail = null;
     this.userRole = null;
     this.name = null;
+    this.remove();
   };
   this.store = function(user){
       sessionStorage.diaUser = JSON.stringify(user);
+  };
+  this.remove = function(){
+    delete sessionStorage.diaUser;
   };
 /*  this.store = function(key,value){
     if(typeof value === 'string' || value instanceof String){

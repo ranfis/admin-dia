@@ -17,8 +17,7 @@
     "chosen-bootstrap": "^1.1.0",
     "toastr": "^2.1.2",
     "bootstrap-sweetalert": "~0.4.5",
-    "angular-loading-bar": "~0.8.0",
-    "angular-bootstrap-toggle": "~0.1.1"
+    "angular-loading-bar": "~0.8.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
