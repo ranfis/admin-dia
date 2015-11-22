@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('ParticipantService', new GenericService("participant"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
     var ParticipantsListCtrl = function ($scope, Session, Alert, ParticipantService) {
       ParticipantService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
           $scope.participants = res.data.result;
           ParticipantService.participants = $scope.participants;
         }, function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
 
       $scope.deleteParticipant = function(id,index){
-        Alert.confirm("Este participante se borrará","¿Está seguro?","Si, borrar",function(){
+        Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
           ParticipantService.delete(id,Session.id)
             .then(function(msg){
               if(msg === "OK"){
                 $scope.participants.splice(index, 1);
-                Alert.success("El participante se ha borrado con exito","¡Participante borrado!");
+                Alert.success(MESSAGES.PARTICIPANT+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.PARTICIPANT+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
               }
               else{
-                Alert.error(msg,"¡Error!");
+                Alert.error(msg,MESSAGES.ERROR_TEXT);
               }
             }, function (err) {
-              Alert.error(err.message,"¡Error!");
+              Alert.error(err.message,MESSAGES.ERROR_TEXT);
             });
         });
       };
@@ -43,14 +43,14 @@ angular.module('diaApp').config(function ($routeProvider) {
           .then(function(msg){
             if(msg === "OK"){
               $scope.participant = {};
-              Alert.success("El participante se ha creado con exito","¡Participante creado!");
-              $location.path( "/participantes" );
+              Alert.success(MESSAGES.PARTICIPANT+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.PARTICIPANT+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+              $location.path(PATH.PARTICIPANT.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           },function(err){
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
@@ -67,38 +67,38 @@ angular.module('diaApp').config(function ($routeProvider) {
         ParticipantService.update($scope.participant)
           .then(function(msg){
             if(msg === "OK"){
-              Alert.success("El participante se ha actualizado con exito","¡Participante actualizado!");
-              $location.path( "/participantes" );
+              Alert.success(MESSAGES.PARTICIPANT+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.PARTICIPANT+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+              $location.path(PATH.PARTICIPANT.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
 
     $routeProvider
-      .when('/participantes', {
+      .when(PATH.PARTICIPANT.LIST, {
         templateUrl: 'app/components/participant/participants.html',
         controller: ParticipantsListCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/participantes/crear', {
+      .when(PATH.PARTICIPANT.CREATE, {
         templateUrl: 'app/components/participant/participant.html',
         controller: ParticipantsCreateCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/participantes/:id', {
+      .when(PATH.PARTICIPANT.EDIT, {
         templateUrl: 'app/components/participant/participant.html',
         controller: ParticipantsDetailsCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       });
   });

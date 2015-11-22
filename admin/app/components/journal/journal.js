@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('JournalService', new GenericService("journal"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
     var JournalsListCtrl = function ($scope, Session, Alert, JournalService) {
       JournalService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
           $scope.journals = res.data.result;
           JournalService.journals = $scope.journals;
         }, function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
 
       $scope.deleteJournal = function(id,index){
-        Alert.confirm("Este revista se borrará","¿Está seguro?","Si, borrar",function(){
+        Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
           JournalService.delete(id,Session.id)
             .then(function(msg){
               if(msg === "OK"){
                 $scope.journals.splice(index, 1);
-                Alert.success("La revista se ha borrado con exito","¡Revista borrada!");
+                Alert.success(MESSAGES.JOURNAL+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.JOURNAL+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
               }
               else{
-                Alert.error(msg,"¡Error!");
+                Alert.error(msg,MESSAGES.ERROR_TEXT);
               }
             }, function (err) {
-              Alert.error(err.message,"¡Error!");
+              Alert.error(err.message,MESSAGES.ERROR_TEXT);
             });
         });
       };
@@ -43,14 +43,14 @@ angular.module('diaApp').config(function ($routeProvider) {
           .then(function(msg){
             if(msg === "OK"){
               $scope.journal = {};
-              Alert.success("La revista se ha creado con exito","¡Revista creada!");
-              $location.path( "/revistas" );
+              Alert.success(MESSAGES.JOURNAL+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.JOURNAL+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+              $location.path(PATH.JOURNAL.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           },function(err){
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
@@ -67,38 +67,38 @@ angular.module('diaApp').config(function ($routeProvider) {
         JournalService.update($scope.journal)
           .then(function(msg){
             if(msg === "OK"){
-              Alert.success("La revista se ha actualizado con exito","¡Revista actualizada!");
-              $location.path( "/revistas" );
+              Alert.success(MESSAGES.JOURNAL+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.JOURNAL+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+              $location.path(PATH.JOURNAL.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
 
     $routeProvider
-      .when('/revistas', {
+      .when(PATH.JOURNAL.LIST, {
         templateUrl: 'app/components/journal/journals.html',
         controller: JournalsListCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/revistas/crear', {
+      .when(PATH.JOURNAL.CREATE, {
         templateUrl: 'app/components/journal/journal.html',
         controller: JournalsCreateCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/revistas/:id', {
+      .when(PATH.JOURNAL.EDIT, {
         templateUrl: 'app/components/journal/journal.html',
         controller: JournalsDetailsCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       });
   });

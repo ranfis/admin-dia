@@ -5,7 +5,7 @@ var GenericService = GenericService || {};
 angular.module('diaApp').service('SponsorService', new GenericService("sponsor"));
 
 angular.module('diaApp')
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
     var SponsorsListCtrl = function ($scope, Session, Alert, SponsorService) {
       SponsorService.list(Session.id)
@@ -13,22 +13,22 @@ angular.module('diaApp')
           $scope.sponsors = res.data.result;
           SponsorService.sponsors = $scope.sponsors;
         }, function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
 
       $scope.deleteSponsor = function(id,index){
-        Alert.confirm("Este patrocinador se borrará","¿Está seguro?","Si, borrar",function(){
+        Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
           SponsorService.delete(id,Session.id)
             .then(function(msg){
               if(msg === "OK"){
                 $scope.sponsors.splice(index, 1);
-                Alert.success("El patrocinador se ha borrado con exito","¡Patrocinador borrado!");
+                Alert.success(MESSAGES.SPONSOR+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.SPONSOR+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
               }
               else{
-                Alert.error(msg,"¡Error!");
+                Alert.error(msg,MESSAGES.ERROR_TEXT);
               }
             }, function (err) {
-              Alert.error(err.message,"¡Error!");
+              Alert.error(err.message,MESSAGES.ERROR_TEXT);
             });
         });
       };
@@ -44,14 +44,14 @@ angular.module('diaApp')
           .then(function(msg){
             if(msg === "OK"){
               $scope.sponsor = {};
-              Alert.success("El patrocinador se ha creado con exito","¡Patrocinador creado!");
-              $location.path( "/patrocinadores" );
+              Alert.success(MESSAGES.SPONSOR+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.SPONSOR+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+              $location.path(PATH.SPONSOR.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           },function(err){
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
@@ -68,38 +68,38 @@ angular.module('diaApp')
         SponsorService.update($scope.sponsor)
           .then(function(msg){
             if(msg === "OK"){
-              Alert.success("El patrocinador se ha actualizado con exito","¡Patrocinador actualizado!");
-              $location.path( "/patrocinadores" );
+              Alert.success(MESSAGES.SPONSOR+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.SPONSOR+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+              $location.path(PATH.SPONSOR.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
 
     $routeProvider
-      .when('/patrocinadores', {
+      .when(PATH.SPONSOR.LIST, {
         templateUrl: 'app/components/sponsor/sponsors.html',
         controller: SponsorsListCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/patrocinadores/crear', {
+      .when(PATH.SPONSOR.CREATE, {
         templateUrl: 'app/components/sponsor/sponsor.html',
         controller: SponsorsCreateCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/patrocinadores/:id', {
+      .when(PATH.SPONSOR.EDIT, {
         templateUrl: 'app/components/sponsor/sponsor.html',
         controller: SponsorsDetailsCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       });
   });

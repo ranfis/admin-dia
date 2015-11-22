@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('PublicationService', new GenericService("publication"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
   var PublicationsListCtrl = function ($scope, Session,Alert, PublicationService) {
     PublicationService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
         $scope.publications = res.data.result;
         PublicationService.publications = $scope.publications;
       }, function(err){
-        Alert.error(err.message,"¡Error!");
+        Alert.error(err.message,MESSAGES.ERROR_TEXT);
       });
 
     $scope.deletePublication = function(id,index){
-      Alert.confirm("Esta publicación se borrará","¿Está seguro?","Si, borrar",function(){
+      Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
         PublicationService.delete(id,Session.id)
           .then(function(msg){
             if(msg === "OK"){
               $scope.publications.splice(index, 1);
-              Alert.success("La publicación se ha borrado con exito","¡Publicación borrada!");
+              Alert.success(MESSAGES.PUBLICATION+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.PUBLICATION+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       });
     };
@@ -46,15 +46,15 @@ angular.module('diaApp').config(function ($routeProvider) {
         .then(function(msg){
           if(msg === "OK"){
             $scope.publication = {};
-            Alert.success("La publicación se ha creado con exito","¡Publicación creada!");
-            $location.path( "/publicaciones" );
+            Alert.success(MESSAGES.PUBLICATION+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.PUBLICATION+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+            $location.path(PATH.PUBLICATION.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
 
           }
         },function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
@@ -71,14 +71,14 @@ angular.module('diaApp').config(function ($routeProvider) {
       PublicationService.update($scope.publication)
         .then(function (msg) {
           if (msg === "OK") {
-            Alert.success("La publicación se ha actualizado con exito","¡Publicación actualizada!");
-            $location.path( "/publicaciones" );
+            Alert.success(MESSAGES.PUBLICATION+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.PUBLICATION+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+            $location.path(PATH.PUBLICATION.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         }, function (err) {
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
@@ -93,27 +93,27 @@ angular.module('diaApp').config(function ($routeProvider) {
   };
 
   $routeProvider
-    .when('/publicaciones', {
+    .when(PATH.PUBLICATION.LIST, {
       templateUrl: 'app/components/publication/publications.html',
       controller: PublicationsListCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
-    .when('/publicaciones/crear', {
+    .when(PATH.PUBLICATION.CREATE, {
       templateUrl: 'app/components/publication/publication.html',
       controller: PublicationsCreateCtrl,
       resolve: PublicationsCreateCtrl.resolve,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
-    .when('/publicaciones/:id', {
+    .when(PATH.PUBLICATION.EDIT, {
       templateUrl: 'app/components/publication/publication.html',
       controller: PublicationsDetailsCtrl,
       resolve: PublicationsCreateCtrl.resolve,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     });
 });

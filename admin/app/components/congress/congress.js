@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('CongressService', new GenericService("congress"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
     var CongressesListCtrl = function ($scope, Session,Alert, CongressService) {
       CongressService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
           $scope.congresses = res.data.result;
           CongressService.congresses = $scope.congresses;
         }, function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
 
       $scope.deleteCongress = function(id,index){
-        Alert.confirm("Este congreso se borrará","¿Está seguro?","Si, borrar",function(){
+        Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
           CongressService.delete(id,Session.id)
             .then(function(msg){
               if(msg === "OK"){
                 $scope.congresses.splice(index, 1);
-                Alert.success("El congreso se ha borrado con exito","¡Congreso borrado!");
+                Alert.success(MESSAGES.CONGRESS+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.CONGRESS+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
               }
               else{
-                Alert.error(msg,"¡Error!");
+                Alert.error(msg,MESSAGES.ERROR_TEXT);
               }
             }, function (err) {
-              Alert.error(err.message,"¡Error!");
+              Alert.error(err.message,MESSAGES.ERROR_TEXT);
             });
         });
       };
@@ -45,14 +45,14 @@ angular.module('diaApp').config(function ($routeProvider) {
           .then(function(msg){
             if(msg === "OK"){
               $scope.congress = {};
-              Alert.success("El congreso se ha creado con exito","¡Congreso creado!");
-              $location.path( "/congresos" );
+              Alert.success(MESSAGES.CONGRESS+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.CONGRESS+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+              $location.path(PATH.CONGRESS.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           },function(err){
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
@@ -69,14 +69,14 @@ angular.module('diaApp').config(function ($routeProvider) {
         CongressService.update($scope.congress)
           .then(function (msg) {
             if (msg === "OK") {
-              Alert.success("El congreso se ha actualizado con exito","¡Congreso actualizado!");
-              $location.path( "/congresos" );
+              Alert.success(MESSAGES.CONGRESS+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.CONGRESS+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+              $location.path(PATH.CONGRESS.LIST);
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       };
     };
@@ -91,27 +91,27 @@ angular.module('diaApp').config(function ($routeProvider) {
     };
 
     $routeProvider
-      .when('/congresos', {
+      .when(PATH.CONGRESS.LIST, {
         templateUrl: 'app/components/congress/congresses.html',
         controller: CongressesListCtrl,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/congresos/crear', {
+      .when(PATH.CONGRESS.CREATE, {
         templateUrl: 'app/components/congress/congress.html',
         controller: CongressesCreateCtrl,
         resolve: CongressesCreateCtrl.resolve,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
-      .when('/congresos/:id', {
+      .when(PATH.CONGRESS.EDIT, {
         templateUrl: 'app/components/congress/congress.html',
         controller: CongressesDetailsCtrl,
         resolve: CongressesCreateCtrl.resolve,
         data: {
-          authorizedRoles: ["ADMIN"]
+          authorizedRoles: [USER_ROLES.ADMIN]
         }
       });
   });

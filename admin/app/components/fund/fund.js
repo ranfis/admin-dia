@@ -4,7 +4,7 @@ var GenericService = GenericService || {};
 
 angular.module('diaApp').service('FundService', new GenericService("fund"));
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
   var FundsListCtrl = function ($scope, Session, Alert, FundService) {
     FundService.list(Session.id)
@@ -12,22 +12,22 @@ angular.module('diaApp').config(function ($routeProvider) {
         $scope.funds = res.data.result;
         FundService.funds = $scope.funds;
       }, function(err){
-        Alert.error(err.message,"¡Error!");
+        Alert.error(err.message,MESSAGES.ERROR_TEXT);
       });
 
     $scope.deleteFund = function(id,index){
-      Alert.confirm("Este fondo se borrará","¿Está seguro?","Si, borrar",function(){
+      Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
         FundService.delete(id,Session.id)
           .then(function(msg){
             if(msg === "OK"){
               $scope.funds.splice(index, 1);
-              Alert.success("El fondo se ha borrado con exito","¡Fondo borrado!");
+              Alert.success(MESSAGES.FUND+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+MESSAGES.FUND+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
             }
             else{
-              Alert.error(msg,"¡Error!");
+              Alert.error(msg,MESSAGES.ERROR_TEXT);
             }
           }, function (err) {
-            Alert.error(err.message,"¡Error!");
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
       });
     };
@@ -43,14 +43,14 @@ angular.module('diaApp').config(function ($routeProvider) {
         .then(function(msg){
           if(msg === "OK"){
             $scope.fund = {};
-            Alert.success("El fondo se ha creado con exito","¡Fondo creado!");
-            $location.path( "/fondos" );
+            Alert.success(MESSAGES.FUND+" "+MESSAGES.NOTIFICATION_CREATE_SUCCESS,"¡"+MESSAGES.FUND+" "+MESSAGES.NOTIFICATION_CREATE_NAME+"!");
+            $location.path(PATH.FUND.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         },function(err){
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
@@ -67,38 +67,38 @@ angular.module('diaApp').config(function ($routeProvider) {
       FundService.update($scope.fund)
         .then(function(msg){
           if(msg === "OK"){
-            Alert.success("El fondo se ha actualizado con exito","¡Fondo actualizado!");
-            $location.path( "/fondos" );
+            Alert.success(MESSAGES.FUND+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.FUND+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+            $location.path(PATH.FUND.LIST);
           }
           else{
-            Alert.error(msg,"¡Error!");
+            Alert.error(msg,MESSAGES.ERROR_TEXT);
           }
         }, function (err) {
-          Alert.error(err.message,"¡Error!");
+          Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
     };
   };
 
   $routeProvider
-    .when('/fondos', {
+    .when(PATH.FUND.LIST, {
       templateUrl: 'app/components/fund/funds.html',
       controller: FundsListCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
-    .when('/fondos/crear', {
+    .when(PATH.FUND.CREATE, {
       templateUrl: 'app/components/fund/fund.html',
       controller: FundsCreateCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
-    .when('/fondos/:id', {
+    .when(PATH.FUND.EDIT, {
       templateUrl: 'app/components/fund/fund.html',
       controller: FundsDetailsCtrl,
       data: {
-        authorizedRoles: ["ADMIN"]
+        authorizedRoles: [USER_ROLES.ADMIN]
       }
     });
 });
