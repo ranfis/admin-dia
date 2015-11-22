@@ -44,30 +44,30 @@ angular.module('diaApp').controller('MasterCtrl', function($scope, $cookieStore,
     $scope.currentUser = user;
   };
   AuthService.trySessionRestore($scope.setCurrentUser);
-}).run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
+})
+  .run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
       //console.log("routeChangeStart",next);
-      if(!next.data){
-        return;
-      }
-      var authorizedRoles = next.data.authorizedRoles;
-      //console.log("authorizedRoles",authorizedRoles);
-      if (!AuthService.isAuthorized(authorizedRoles)) {
-        //console.log("!authorizedRoles");
-        event.preventDefault();
-        if (AuthService.isAuthenticated()) {
-          //console.log("isAuthenticated");
-          // user is not allowedx x
-          $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-        } else {
-          //console.log("!isAuthenticated");
-          // user is not logged in
-          $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-          $location.path( "/login" );
+      if(next.data){
+        var authorizedRoles = next.data.authorizedRoles;
+        //console.log("authorizedRoles",authorizedRoles);
+        if (!AuthService.isAuthorized(authorizedRoles)) {
+          //console.log("!authorizedRoles");
+          event.preventDefault();
+          if (AuthService.isAuthenticated()) {
+            //console.log("isAuthenticated");
+            // user is not allowedx x
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+          } else {
+            //console.log("!isAuthenticated");
+            // user is not logged in
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+            $location.path( "/login" );
+          }
         }
       }
     });
-  });
+});
 
 
 

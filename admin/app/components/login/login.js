@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('diaApp').config(function ($routeProvider) {
+angular.module('diaApp').config(function ($routeProvider, MESSAGES) {
     var LoginCtrl = function ($scope, Alert, $rootScope, $location, AUTH_EVENTS, AuthService) {
       $scope.credentials = {};
 
@@ -27,11 +27,9 @@ angular.module('diaApp').config(function ($routeProvider) {
     };
 
   var LogoutCtrl = function ($scope, Alert, $rootScope, $location, AUTH_EVENTS, AuthService, Session) {
-    console.info("aaaaaaaaaaaaaaaaaaaa");
     Session.destroy();
     $scope.currentUser = null;
-    sessionStorage.diaUser = null;
-    Alert.success("Adios");
+    Alert.success(MESSAGES.LOGOUT);
   };
 
     $routeProvider
@@ -40,6 +38,7 @@ angular.module('diaApp').config(function ($routeProvider) {
         controller: LoginCtrl
       })
       .when('/logout', {
-        controller: LogoutCtrl
+        controller: LogoutCtrl,
+        templateUrl: 'app/components/login/login.html'
       });
   });

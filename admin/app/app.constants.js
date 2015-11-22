@@ -38,7 +38,8 @@ angular.module('diaApp')
     NOTIFICATION_CREATE_SUCCESS : "se ha creado con exito",
     NOTIFICATION_CREATE_NAME : "creado/a",
     NOTIFICATION_UPDATE_SUCCESS : "se ha actualizado con exito",
-    NOTIFICATION_UPDATE_NAME : "acualizado/a"
+    NOTIFICATION_UPDATE_NAME : "acualizado/a",
+    LOGOUT: "Se ha cerrado la sesión del usuario"
   })
   .constant("PATH",{
     SPONSOR: {
