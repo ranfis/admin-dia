@@ -37,6 +37,7 @@ module.exports = function(config) {
       'bower_components/toastr/toastr.js',
       'bower_components/bootstrap-sweetalert/lib/sweet-alert.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
+      'bower_components/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "admin/app/app.js",
