@@ -18,7 +18,7 @@
     "bootstrap-sweetalert": "~0.4.5",
     "angular-loading-bar": "~0.8.0",
     "font-awesome-animation": "~0.0.7",
-    "font-awesome-min": "~4.3.0"
+    "font-awesome-min": "~4.3.0",
     "angular-bootstrap-toggle": "~0.1.1"
   },
   "devDependencies": {

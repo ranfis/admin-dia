@@ -16,14 +16,12 @@ angular.module('diaApp')
     return ids;
   };
   this.checkResult = function(res){
-    console.log("checkResult");
     if(res.data.msg !== MESSAGES.OK){
       throw new Error(res.data.msg);
     }
     return res;
   };
   this.handleErrors = function(){
-    console.log("handleErrors");
     throw new Error(MESSAGES.ERROR.NO_INTERNET);
   };
 });
