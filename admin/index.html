@@ -16,16 +16,18 @@
     <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome-animation/dist/font-awesome-animation.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome-animation/dist/font-awesome-animation.min.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome-min/css/font-awesome.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- endbuild -->
     <!-- styles -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- styles -->
   </head>
-  <body ng-controller="MasterCtrl">
+  <body ng-controller="MainCtrl">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -82,11 +84,11 @@
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
 
-  <script src="app/app.module.js"></script>
-  <script src="app/app.constants.js"></script>
-  <script src="app/app.aliases.js"></script>
-  <script src="app/helper/helper.js"></script>
-  <script src="app/helper/generic.service.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/constants.js"></script>
+  <script src="app/scripts/helper.js"></script>
+  <script src="app/scripts/generic.service.js"></script>
+  <script src="app/scripts/alert.service.js"></script>
   <script src="app/shared/directives/loading.js"></script>
   <script src="app/shared/directives/widget.js"></script>
   <script src="app/shared/directives/widget-body.js"></script>
@@ -94,7 +96,7 @@
   <script src="app/shared/directives/widget-header.js"></script>
   <script src="app/components/login/authentication.service.js"></script>
   <script src="app/components/login/session.service.js"></script>
-  <script src="app/components/master/master.controller.js"></script>
+  <script src="app/components/main/main.js"></script>
   <script src="app/components/login/login.js"></script>
   <script src="app/components/congress/congress.js"></script>
   <script src="app/components/participant/participant.js"></script>
@@ -102,7 +104,6 @@
   <script src="app/components/journal/journal.js"></script>
   <script src="app/components/publication/publication.js"></script>
   <script src="app/components/fund/fund.js"></script>
-  <script src="app/app.routes.js"></script>
   <!-- endbuild -->
 </body>
 </html>
