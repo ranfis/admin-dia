@@ -11,7 +11,8 @@ angular.module('diaApp', [
   'ngTouch',
   'angular-loading-bar',
   'ngAnimate',
-  'ui.toggle'
+  'ui.toggle',
+  "diaAppFilters"
 ]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }]);
