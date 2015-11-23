@@ -56,7 +56,7 @@ angular.module('diaApp')
     NOTIFICATION_CREATE_SUCCESS : "se ha creado con exito",
     NOTIFICATION_CREATE_NAME : "creado/a",
     NOTIFICATION_UPDATE_SUCCESS : "se ha actualizado con exito",
-    NOTIFICATION_UPDATE_NAME : "acualizado/a",
+    NOTIFICATION_UPDATE_NAME : "actualizado/a",
     // Messages for login and logout events
     LOGIN: "Se ha inicado sesión",
     LOGOUT: "Se ha cerrado la sesión del usuario",
