@@ -1,0 +1,59 @@
+<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+  <rd-widget>
+    <rd-widget-body>
+      <div class="widget-icon green pull-left">
+        <i class="fa fa-male"></i>
+      </div>
+      <div class="title">Proyecto</div>
+      <div class="comment">Información del Proyecto</div>
+    </rd-widget-body>
+    <form class="form-horizontal" ng-submit="addProject(proyectForm)" name="proyectForm" novalidate>
+      <div class="form-group">
+        <label for="inputDescripcion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Descripcion</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <input type="text" class="form-control" name="inputDescripcion" id="inputDescripcion" placeholder="Descripcion" ng-model="proyect.description" ng-required="true">
+          <div ng-show="proyectForm.$submitted || proyectForm.inputDescripcion.$touched">
+            <span class="msg-error" ng-show="proyectForm.inputDescripcion.$error.required">Este campo es requerido.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputAsesor" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Asesor</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <input type="text" class="form-control" name="inputAsesor" id="inputAsesor" placeholder="Asesor" ng-model="proyect.adviser " ng-required="true">
+          <div ng-show="proyectForm.$submitted || proyectForm.inputAsesor.$touched">
+            <span class="msg-error" ng-show="proyectForm.inputDescripcion.$error.required">Este campo es requerido.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputCounterpart" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Contrapartida</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <input type="number" class="form-control" name="inputCounterpart" id="inputCounterpart" placeholder="Contrapartida" ng-model="proyect.counterpart " ng-required="true">
+          <div ng-show="proyectForm.$submitted || proyectForm.inputCounterpart.$touched">
+            <span class="msg-error" ng-show="proyectForm.inputCounterpart.$error.required">Este campo es requerido.</span>
+            <span class="msg-error" ng-show="proyectForm.inputCounterpart.$error.counterpart">Este campo esta incorrecto.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputInput" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Aporte</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <input type="text" class="form-control" name="inputInput" id="inputInput" placeholder="Aporte" ng-model="proyect.input" ng-required="true">
+          <div ng-show="proyectForm.$submitted || proyectForm.inputInput.$touched">
+            <span class="msg-error" ng-show="proyectForm.inputInput.$error.required">Este campo es requerido.</span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <ui-submit></ui-submit>
+    </form>
+  </rd-widget>
+</div>
