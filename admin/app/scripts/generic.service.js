@@ -1,14 +1,14 @@
 'use strict';
 
 var GenericService = function(serviceName){
-  return function ($http, WS, REQUEST){
+  return function ($http, WS, Helper, REQUEST){
     this.list = function (sessionId) {
       var params = {
         params:{
           session_id: sessionId
         }
       };
-      return $http.get(WS.LIST(serviceName), params);
+      return $http.get(WS.LIST(serviceName), params).then(Helper.checkResult,Helper.handleErrors)
     };
     this.create = function(object){
       return $http

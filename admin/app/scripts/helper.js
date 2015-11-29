@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('diaApp')
-  .service('Helper', function (MESSAGES) {
+  .service('Helper', function (MESSAGES, Session) {
     this.selectById = function(list,id){
       var match = list.filter(function(e){
         return (e.id === +id);
@@ -16,6 +16,11 @@ angular.module('diaApp')
       return ids;
     };
     this.checkResult = function(res){
+      console.info(res);
+      console.info(res.data.msg);
+      if(res.data.msg == "Sesi&oacute;n expirada"){
+        Session.destroy();
+      }
       if(res.data.msg !== MESSAGES.OK){
         throw new Error(res.data.msg);
       }
