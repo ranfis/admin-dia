@@ -94,14 +94,14 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
 
   $routeProvider
     .when(PATH.PUBLICATION.LIST, {
-      templateUrl: 'app/components/publication/publications.html',
+      templateUrl: PATH.PUBLICATION.PLURAL,
       controller: PublicationsListCtrl,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
     .when(PATH.PUBLICATION.CREATE, {
-      templateUrl: 'app/components/publication/publication.html',
+      templateUrl: PATH.PUBLICATION.SINGLE,
       controller: PublicationsCreateCtrl,
       resolve: PublicationsCreateCtrl.resolve,
       data: {
@@ -109,7 +109,7 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
       }
     })
     .when(PATH.PUBLICATION.EDIT, {
-      templateUrl: 'app/components/publication/publication.html',
+      templateUrl: PATH.PUBLICATION.SINGLE,
       controller: PublicationsDetailsCtrl,
       resolve: PublicationsCreateCtrl.resolve,
       data: {

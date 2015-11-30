@@ -82,21 +82,21 @@ angular.module('diaApp')
 
     $routeProvider
       .when(PATH.SPONSOR.LIST, {
-        templateUrl: 'app/components/sponsor/sponsors.html',
+        templateUrl: PATH.SPONSOR.PLURAL,
         controller: SponsorsListCtrl,
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
       .when(PATH.SPONSOR.CREATE, {
-        templateUrl: 'app/components/sponsor/sponsor.html',
+        templateUrl: PATH.SPONSOR.SINGLE,
         controller: SponsorsCreateCtrl,
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
       .when(PATH.SPONSOR.EDIT, {
-        templateUrl: 'app/components/sponsor/sponsor.html',
+        templateUrl: PATH.SPONSOR.SINGLE,
         controller: SponsorsDetailsCtrl,
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]

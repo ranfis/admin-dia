@@ -92,14 +92,14 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
 
     $routeProvider
       .when(PATH.CONGRESS.LIST, {
-        templateUrl: 'app/components/congress/congresses.html',
+        templateUrl: PATH.CONGRESS.PLURAL,
         controller: CongressesListCtrl,
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]
         }
       })
       .when(PATH.CONGRESS.CREATE, {
-        templateUrl: 'app/components/congress/congress.html',
+        templateUrl: PATH.CONGRESS.SINGLE,
         controller: CongressesCreateCtrl,
         resolve: CongressesCreateCtrl.resolve,
         data: {
@@ -107,7 +107,7 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
         }
       })
       .when(PATH.CONGRESS.EDIT, {
-        templateUrl: 'app/components/congress/congress.html',
+        templateUrl: PATH.CONGRESS.SINGLE,
         controller: CongressesDetailsCtrl,
         resolve: CongressesCreateCtrl.resolve,
         data: {

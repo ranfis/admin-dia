@@ -70,42 +70,58 @@ angular.module('diaApp')
     SPONSOR: {
       LIST: "/patrocinadores",
       CREATE: "/patrocinadores/crear",
-      EDIT: "/patrocinadores/:id"
+      EDIT: "/patrocinadores/:id",
+      SINGLE: "app/components/sponsor/sponsor.html",
+      PLURAL: "app/components/sponsor/sponsors.html"
     },
     CONGRESS: {
       LIST: "/congresos",
       CREATE: "/congresos/crear",
-      EDIT: "/congresos/:id"
+      EDIT: "/congresos/:id",
+      SINGLE: "app/components/congress/congress.html",
+      PLURAL: "app/components/congress/congresses.html"
     },
     FUND: {
       LIST: "/fondos",
       CREATE: "/fondos/crear",
-      EDIT: "/fondos/:id"
+      EDIT: "/fondos/:id",
+      SINGLE: "app/components/fund/fund.html",
+      PLURAL: "app/components/fund/funds.html"
     },
     JOURNAL: {
       LIST: "/revistas",
       CREATE: "/revistas/crear",
-      EDIT: "/revistas/:id"
+      EDIT: "/revistas/:id",
+      SINGLE: "app/components/journal/journal.html",
+      PLURAL: "app/components/journal/journals.html"
     },
     PARTICIPANT: {
       LIST: "/participantes",
       CREATE: "/participantes/crear",
-      EDIT: "/participantes/:id"
+      EDIT: "/participantes/:id",
+      SINGLE: "app/components/participant/participant.html",
+      PLURAL: "app/components/participant/participants.html"
     },
     PUBLICATION: {
       LIST: "/publicaciones",
       CREATE: "/publicaciones/crear",
-      EDIT: "/publicaciones/:id"
+      EDIT: "/publicaciones/:id",
+      SINGLE: "app/components/publication/publication.html",
+      PLURAL: "app/components/publication/publications.html"
     },
     INSTITUTION: {
       LIST: "/instituciones",
       CREATE: "/instituciones/crear",
-      EDIT: "/instituciones/:id"
+      EDIT: "/instituciones/:id",
+      SINGLE: "app/components/institution/institution.html",
+      PLURAL: "app/components/institution/institutions.html"
     },
     UNIT: {
       LIST: "/unidades",
       CREATE: "/unidades/crear",
-      EDIT: "/unidades/:id"
+      EDIT: "/unidades/:id",
+      SINGLE: "app/components/unit/unit.html",
+      PLURAL: "app/components/unit/units.html"
     },
     LOGIN: "/login",
     LOGOUT: "/logout"

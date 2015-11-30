@@ -81,21 +81,21 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
 
   $routeProvider
     .when(PATH.INSTITUTION.LIST, {
-      templateUrl: 'app/components/institution/institutions.html',
+      templateUrl: PATH.INSTITUTION.PLURAL,
       controller: InstitutionsListCtrl,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
     .when(PATH.INSTITUTION.CREATE, {
-      templateUrl: 'app/components/institution/institution.html',
+      templateUrl: PATH.INSTITUTION.SINGLE,
       controller: InstitutionsCreateCtrl,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
     .when(PATH.INSTITUTION.EDIT, {
-      templateUrl: 'app/components/institution/institution.html',
+      templateUrl: PATH.INSTITUTION.SINGLE,
       controller: InstitutionsDetailsCtrl,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
