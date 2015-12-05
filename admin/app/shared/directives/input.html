@@ -1,10 +1,7 @@
 <div class="form-group">
-  <label for="input{{uName}}" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">{{uName}}</label>
+  <label for="{{uID}}" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">{{uName}}</label>
   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-    <input type="text" class="form-control" name="input{{uName}}" id="input{{uName}}" placeholder="{{uName}}" ng-model="ngModel" ng-required="true">
-    <div ng-show="!ngForm.$valid && ngForm.inputNombre.$touched">
-      <span class="msg-error" ng-show="ngForm.inputNombre.$error.required">El nombre es requerido</span>
-    </div>
-    {{ngForm | json}}
+    <input type="text" class="form-control" name="{{uID}}" id="{{uID}}" placeholder="{{uName}}" ng-model="ngModel" ng-required="true" data-error="{{uError}}">
+    <div class="help-block with-errors"></div>
   </div>
 </div>

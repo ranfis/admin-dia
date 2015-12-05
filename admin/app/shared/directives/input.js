@@ -6,8 +6,13 @@ angular.module('diaApp')
       restrict: 'E',
       scope: {
         uName: '@',
-        ngModel: '=',
-        ngForm: '='
+        uError: '@',
+        ngModel: '='
+      },
+      link: function(scope){
+        scope.uID = "input"+scope.uName;
+        scope.uError = "Este campo es requerido.";
+        $("form").validator();
       },
       templateUrl: 'app/shared/directives/input.html'
     };

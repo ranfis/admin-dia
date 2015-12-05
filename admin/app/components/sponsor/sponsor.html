@@ -8,15 +8,7 @@
       <div class="comment">Información del patrocinador</div>
     </rd-widget-body>
     <form class="form-horizontal" ng-submit="addSponsor(sponsorForm)" name="sponsorForm" novalidate>
-      <div class="form-group">
-        <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Nombre</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputNombre" id="inputNombre" placeholder="Nombre" ng-model="sponsor.nombre" ng-required="true">
-          <div ng-show="sponsorForm.$submitted || sponsorForm.inputNombre.$touched">
-            <span class="msg-error" ng-show="sponsorForm.inputNombre.$error.required">El nombre es requerido</span>
-          </div>
-        </div>
-      </div>
+      <ui-input u-name="Nombre" ng-model="sponsor.nombre"></ui-input>
       <ui-submit></ui-submit>
     </form>
   </rd-widget>
