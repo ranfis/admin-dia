@@ -68,7 +68,6 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
     $scope.project.researcher = $scope.project.researcher.id; // Retrieve the actual select value
     $scope.project.coresearcher = Helper.getIDs($scope.project.coresearcher); // Retrieve the actual select value
     $scope.project.fund = Helper.getIDs($scope.project.fund);
-
     //$scope.project.patrocinio = $scope.project.patrocinio.id; // Retrieve the actual select value
     $scope.addProject = function(form){
       if (!form.$valid){return;}
