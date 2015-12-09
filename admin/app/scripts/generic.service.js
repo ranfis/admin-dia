@@ -28,6 +28,22 @@ var GenericService = function(serviceName){
           throw new Error(err.message);
         });
     };
+    this.upsert = function(object){
+      var f = function (){
+        if(object.id){
+          return $http.put(WS.UPDATE(serviceName), object,REQUEST.PLAIN)
+        }
+        else{
+          return $http.post(WS.ADD(serviceName), object,REQUEST.PLAIN)
+        }
+      };
+
+      return f().then(function (res) {
+          return (res.data.msg);
+        },function (err){
+          throw new Error(err.message);
+        });
+    };
     this.delete = function(objectId,sessionId){
       var param = {
         session_id:sessionId,
