@@ -3,6 +3,7 @@
 angular.module('diaApp')
   .config(function ($routeProvider, PATH, MESSAGES) {
     var LoginCtrl = function ($scope, Alert, $rootScope, $location, AUTH_EVENTS, AuthService) {
+
       $scope.credentials = {};
       $scope.authenticate = function (form) {
         if (!form.$valid){return;}
