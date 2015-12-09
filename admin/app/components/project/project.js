@@ -33,12 +33,14 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
     };
   };
 
-  var ProjectsCreateCtrl = function ($scope, Session, Alert, participants, ProjectService,$location) {
+  var ProjectsCreateCtrl = function ($scope, Session, Alert, participants,funds, ProjectService,$location) {
+    $scope.funds = funds.data.result;
     $scope.participants = participants.data.result;
     $scope.project = {
-      session_id: Session.id
+      session_id: Session.id,
+      patent : false,
+      software : true,
     };
-    $scope.project.state_application = 1;
 
     $scope.addProject = function(form){
       if (!form.$valid){return;}
@@ -58,12 +60,15 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
     };
   };
 
-  var ProjectsDetailsCtrl = function ($scope, Session, Alert, Helper, participants, ProjectService, $routeParams, $location  ) {
-    $scope.project.state_application = 1;
+  var ProjectsDetailsCtrl = function ($scope, Session, Alert, Helper, participants, funds, ProjectService, $routeParams, $location  ) {
+    $scope.funds = funds.data.result;
     $scope.participants = participants.data.result; // Needed to fill participants select box
     $scope.project = Helper.selectById(ProjectService.projects, $routeParams.id); // Getting the selected project from memory
     $scope.project.session_id = Session.id;
     $scope.project.researcher = $scope.project.researcher.id; // Retrieve the actual select value
+    $scope.project.coresearcher = Helper.getIDs($scope.project.coresearcher); // Retrieve the actual select value
+    $scope.project.fund = Helper.getIDs($scope.project.fund);
+
     //$scope.project.patrocinio = $scope.project.patrocinio.id; // Retrieve the actual select value
     $scope.addProject = function(form){
       if (!form.$valid){return;}
@@ -85,6 +90,9 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
   ProjectsCreateCtrl.resolve = {
     participants: function(ParticipantService, Session){
       return ParticipantService.list(Session.id);
+    },
+    funds: function(FundService, Session) {
+      return FundService.list(Session.id);
     }
   };
 
