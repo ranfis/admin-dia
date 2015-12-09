@@ -35,7 +35,7 @@
             multiple
             data-error="Este campo es requerido."
             ng-required="true"
-            data-placeholder="Autores"
+            data-placeholder="Elige los autores."
             ng-model="congress.participantes"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
           </select>
@@ -47,13 +47,13 @@
           <label for="inputPatrocinio" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Patrocinio</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
-            class="chosen form-control"
+            class="form-control"
             chosen
             ng-required="true"
             name="inputPatrocinio"
             data-error="Este campo es requerido."
             id="inputPatrocinio"
-            data-placeholder="Patrocinio"
+            data-placeholder="Elige un patrocinador."
             ng-model="congress.patrocinio"
             ng-options="sponsor.id as sponsor.nombre for sponsor in sponsors">
           </select>
@@ -64,9 +64,3 @@
     </form>
   </rd-widget>
 </div>
-
-<script ng-if="sponsors.$resolved">
-setTimeout(function(){
-  $(".chosen").chosen();
-},50);
-</script>
