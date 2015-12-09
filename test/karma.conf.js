@@ -40,6 +40,7 @@ module.exports = function(config) {
       'bower_components/bootstrap-validator/dist/validator.min.js',
       'bower_components/chosen/chosen.jquery.min.js',
       'bower_components/angular-chosen-localytics/chosen.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "admin/app/app.js",
