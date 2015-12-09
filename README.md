@@ -12,9 +12,8 @@ Base de datos iterativa para manejar los proyectos que se relizan en el Decanato
 
 ## Set up server (In Windows)
 * Install NodeJs from the [official page](https://nodejs.org/en/download/).
-* Install git from the [official page](https://git-scm.com/download/win).
-* Run `sudo apt-get install build-essential`
-* `npm install -g grunt-cli bower yo generator-karma generator-angular` for build dependencies.
+* Install Git from the [official page](https://git-scm.com/download/win).
+* Run `npm install -g grunt-cli bower yo generator-karma generator-angular` for build dependencies.
 
 ## Installing dependencies
 * `npm install -g bower grunt-cli`
