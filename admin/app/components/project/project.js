@@ -6,14 +6,12 @@ angular.module('diaApp').service('ProjectService', new GenericService("project")
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-  var ProjectsListCtrl = function ($scope, Session, Alert, ProjectService) {
+  var ProjectsListCtrl = function ($scope, Session,Alert, ProjectService) {
     ProjectService.list(Session.id)
       .then(function (res) {
-        console.log("res",res);
         $scope.projects = res.data.result;
         ProjectService.projects = $scope.projects;
       }, function(err){
-        console.log("err",err);
         Alert.error(err.message,MESSAGES.ERROR_TEXT);
       });
 
@@ -35,10 +33,13 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
     };
   };
 
-  var ProjectsCreateCtrl = function ($scope, Session, Alert, ProjectService,$location) {
+  var ProjectsCreateCtrl = function ($scope, Session, Alert, participants, ProjectService,$location) {
+    $scope.participants = participants.data.result;
     $scope.project = {
       session_id: Session.id
     };
+    $scope.project.state_application = 1;
+
     $scope.addProject = function(form){
       if (!form.$valid){return;}
       ProjectService.create($scope.project)
@@ -57,18 +58,18 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
     };
   };
 
-  var ProjectsDetailsCtrl = function ($scope, Session, Alert, ProjectService, $routeParams, $location  ) {
-    var id = $routeParams.id;
-    $scope.project = ProjectService.projects.filter(function (el) {
-      return (el.id === +id);
-    })[0];
+  var ProjectsDetailsCtrl = function ($scope, Session, Alert, Helper, participants, ProjectService, $routeParams, $location  ) {
+    $scope.project.state_application = 1;
+    $scope.participants = participants.data.result; // Needed to fill participants select box
+    $scope.project = Helper.selectById(ProjectService.projects, $routeParams.id); // Getting the selected project from memory
     $scope.project.session_id = Session.id;
-
+    $scope.project.researcher = $scope.project.researcher.id; // Retrieve the actual select value
+    //$scope.project.patrocinio = $scope.project.patrocinio.id; // Retrieve the actual select value
     $scope.addProject = function(form){
       if (!form.$valid){return;}
       ProjectService.update($scope.project)
-        .then(function(msg){
-          if(msg === "OK"){
+        .then(function (msg) {
+          if (msg === "OK") {
             Alert.success(MESSAGES.PROJECT+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+MESSAGES.PROJECT+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
             $location.path(PATH.PROJECT.LIST);
           }
@@ -81,24 +82,32 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
     };
   };
 
+  ProjectsCreateCtrl.resolve = {
+    participants: function(ParticipantService, Session){
+      return ParticipantService.list(Session.id);
+    }
+  };
+
   $routeProvider
     .when(PATH.PROJECT.LIST, {
-      templateUrl: 'app/components/project/projects.html',
+      templateUrl: PATH.PROJECT.PLURAL,
       controller: ProjectsListCtrl,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
     .when(PATH.PROJECT.CREATE, {
-      templateUrl: 'app/components/project/project.html',
+      templateUrl: PATH.PROJECT.SINGLE,
       controller: ProjectsCreateCtrl,
+      resolve: ProjectsCreateCtrl.resolve,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
       }
     })
     .when(PATH.PROJECT.EDIT, {
-      templateUrl: 'app/components/project/project.html',
+      templateUrl: PATH.PROJECT.SINGLE,
       controller: ProjectsDetailsCtrl,
+      resolve: ProjectsCreateCtrl.resolve,
       data: {
         authorizedRoles: [USER_ROLES.ADMIN]
       }
