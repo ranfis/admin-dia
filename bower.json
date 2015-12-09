@@ -36,5 +36,8 @@
         "dist/js/bootstrap.js"
       ]
     }
+  },
+  "resolutions": {
+    "chosen": "~1.4.0"
   }
 }
