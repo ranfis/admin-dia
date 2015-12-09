@@ -11,6 +11,8 @@
   "undef": true,
   "unused": true,
   "globals": {
+    "GenericController": true,
+    "GenericService": true,
     "angular": false,
     "toastr": false,
     "swal": false,

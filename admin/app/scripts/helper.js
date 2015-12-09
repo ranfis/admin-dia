@@ -16,9 +16,7 @@ angular.module('diaApp')
       return ids;
     };
     this.checkResult = function(res){
-      console.info(res);
-      console.info(res.data.msg);
-      if(res.data.msg == "Sesi&oacute;n expirada"){
+      if(res.data.msg === "Sesi&oacute;n expirada"){
         Session.destroy();
       }
       if(res.data.msg !== MESSAGES.OK){

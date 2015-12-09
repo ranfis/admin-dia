@@ -37,7 +37,7 @@ angular.module('diaApp')
   .constant("MESSAGES",{
     // Constants for delete function of services
     DELETE_QUESTION : "¿Está seguro?",
-    DELETE_ELEMENT : "Dicho elemento se borrará",
+    DELETE_ELEMENT : "Este registro se borrará.",
     DELETE_CONFIRM : "Si, borrar",
     // Constant for errors
     ERROR_TEXT : "¡Error!",
