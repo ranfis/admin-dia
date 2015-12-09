@@ -33,14 +33,21 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
       };
     };
 
-    var CongressesCreateCtrl = function ($scope, Session, Alert, sponsors, participants, CongressService,$location) {
-      $scope.sponsors = sponsors.data.result;
-      $scope.participants = participants.data.result;
+    var CongressesCreateCtrl = function ($scope, Session, Alert, SponsorService, ParticipantService, CongressService,$location) {
+      SponsorService.list(Session.id)
+        .then(function(res){
+          $scope.sponsors = res.data.result;
+        });
+      ParticipantService.list(Session.id)
+        .then(function(res){
+          $scope.participants = res.data.result;
+        });
       $scope.congress = {
         session_id: Session.id
       };
       $scope.addCongress = function(form){
         if (!form.$valid){return;}
+        $scope.congress.fecha_congreso = $scope.congress.fecha_congreso+"-00-00";
         CongressService.create($scope.congress)
           .then(function(msg){
             if(msg === "OK"){
@@ -57,15 +64,23 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
       };
     };
 
-    var CongressesDetailsCtrl = function ($scope, Session, Alert, Helper, sponsors, participants, CongressService, $routeParams, $location  ) {
-      $scope.sponsors = sponsors.data.result; // Needed to fill sponsors select box
-      $scope.participants = participants.data.result; // Needed to fill participants select box
+    var CongressesDetailsCtrl = function ($scope, Session, Alert, Helper, SponsorService, ParticipantService, CongressService, $routeParams, $location  ) {
+      SponsorService.list(Session.id)
+        .then(function(res){
+          $scope.sponsors = res.data.result;
+        });
+      ParticipantService.list(Session.id)
+        .then(function(res){
+          $scope.participants = res.data.result;
+        });
       $scope.congress = Helper.selectById(CongressService.congresses, $routeParams.id); // Getting the selected congress from memory
+      $scope.congress.fecha_congreso = +$scope.congress.fecha_congreso.slice(0,4);
       $scope.congress.session_id = Session.id;
       $scope.congress.participantes = Helper.getIDs($scope.congress.participantes); // Retrieve the actual select value
       $scope.congress.patrocinio = $scope.congress.patrocinio.id; // Retrieve the actual select value
       $scope.addCongress = function(form){
         if (!form.$valid){return;}
+        $scope.congress.fecha_congreso = $scope.congress.fecha_congreso+"-00-00";
         CongressService.update($scope.congress)
           .then(function (msg) {
             if (msg === "OK") {
@@ -81,15 +96,6 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
       };
     };
 
-    CongressesCreateCtrl.resolve = {
-      sponsors: function(SponsorService, Session){
-        return SponsorService.list(Session.id);
-      },
-      participants: function(ParticipantService, Session){
-        return ParticipantService.list(Session.id);
-      }
-    };
-
     $routeProvider
       .when(PATH.CONGRESS.LIST, {
         templateUrl: PATH.CONGRESS.PLURAL,
@@ -101,7 +107,6 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
       .when(PATH.CONGRESS.CREATE, {
         templateUrl: PATH.CONGRESS.SINGLE,
         controller: CongressesCreateCtrl,
-        resolve: CongressesCreateCtrl.resolve,
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]
         }
@@ -109,7 +114,6 @@ angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESS
       .when(PATH.CONGRESS.EDIT, {
         templateUrl: PATH.CONGRESS.SINGLE,
         controller: CongressesDetailsCtrl,
-        resolve: CongressesCreateCtrl.resolve,
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]
         }

@@ -8,45 +8,21 @@
       <div class="comment">Información del congreso</div>
     </rd-widget-body>
     <form class="form-horizontal" ng-submit="addCongress(congressForm)" name="congressForm" novalidate>
-      <div class="form-group">
-        <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Nombre</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre" ng-model="congress.nombre" ng-required="true">
-          <div ng-show="congressForm.$submitted || congressForm.inputNombre.$touched">
-            <span class="msg-error" ng-show="congressForm.inputNombre.$error.required">El nombre es requerido</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label for="inputFecha" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fecha del congreso</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputFecha" name="inputFecha" placeholder="Fecha del congreso" ng-model="congress.fecha_congreso" ng-required="true">
-          <div ng-show="congressForm.$submitted || congressForm.inputFecha.$touched">
-            <span class="msg-error" ng-show="congressForm.inputFecha.$error.required">La fecha es requerida</span>
-          </div>
-        </div>
-      </div>
+      <ui-input u-name="Nombre" ng-model="congress.nombre"></ui-input>
 
-      <div class="form-group">
-        <label for="inputPonencia" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Ponencia</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputPonencia" name="inputPonencia" placeholder="Ponencia" ng-model="congress.ponencia" ng-required="true">
-          <div ng-show="congressForm.$submitted || congressForm.inputPonencia.$touched">
-            <span class="msg-error" ng-show="congressForm.inputPonencia.$error.required">La ponencia es requerida</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-name="Fecha"
+        u-error="Por favor llenar con un año valido."
+        u-type="number"
+        u-desc="Año del congreso"
+        u-min="2000" u-max="2100"
+        ng-model="congress.fecha_congreso">
+      </ui-input>
 
-      <div class="form-group">
-        <label for="inputLugar" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Lugar</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputLugar" name="inputLugar" placeholder="Lugar" ng-model="congress.lugar" ng-required="true">
-          <div ng-show="congressForm.$submitted || congressForm.inputLugar.$touched">
-            <span class="msg-error" ng-show="congressForm.inputLugar.$error.required">El lugar es requerido</span>
-          </div>
-        </div>
-      </div>
+      <ui-input u-name="Ponencia" ng-model="congress.ponencia"></ui-input>
+
+      <ui-input u-name="Lugar" ng-model="congress.lugar"></ui-input>
 
       <div class="form-group">
         <label for="inputParticipantes" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Autores</label>
@@ -57,14 +33,13 @@
             class="chosen form-control"
             chosen
             multiple
+            data-error="Este campo es requerido."
             ng-required="true"
-            data-placeholder="Autores"
+            data-placeholder="Elige los autores."
             ng-model="congress.participantes"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
           </select>
-          <div ng-show="congressForm.$submitted || congressForm.inputParticipantes.$touched">
-            <span class="msg-error" ng-show="congressForm.inputParticipantes.$error.required">Los autores son requeridos</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
@@ -72,27 +47,20 @@
           <label for="inputPatrocinio" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Patrocinio</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
-            class="chosen form-control"
+            class="form-control"
             chosen
             ng-required="true"
             name="inputPatrocinio"
+            data-error="Este campo es requerido."
             id="inputPatrocinio"
-            data-placeholder="Patrocinio"
+            data-placeholder="Elige un patrocinador."
             ng-model="congress.patrocinio"
             ng-options="sponsor.id as sponsor.nombre for sponsor in sponsors">
           </select>
-          <div ng-show="congressForm.$submitted || congressForm.inputPatrocinio.$touched">
-            <span class="msg-error" ng-show="congressForm.inputPatrocinio.$error.required">El  patrocinador es requerido</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
       <ui-submit></ui-submit>
     </form>
   </rd-widget>
 </div>
-
-<script ng-if="sponsors.$resolved">
-setTimeout(function(){
-  $(".chosen").chosen();
-},50);
-</script>

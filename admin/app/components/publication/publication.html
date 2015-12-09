@@ -7,46 +7,22 @@
       <div class="title">Publicación</div>
       <div class="comment">Información de la publicación</div>
     </rd-widget-body>
-    <form class="form-horizontal" ng-submit="addPublication(publicationForm)" name="publicationForm" novalidate>
-      <div class="form-group">
-        <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Publicación</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Publicación" ng-model="publication.description" ng-required="true">
-          <div ng-show="publicationForm.$submitted || publicationForm.inputNombre.$touched">
-            <span class="msg-error" ng-show="publicationForm.inputNombre.$error.required">La publicación es requerida</span>
-          </div>
-        </div>
-      </div>
+    <form class="form-horizontal" ng-submit="addPublication(uForm)" name="uForm" novalidate>
 
-      <div class="form-group">
-        <label for="inputFecha" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fecha de la publicacion</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputFecha" name="inputFecha" placeholder="Fecha de la publicación" ng-model="publication.date" ng-required="true">
-          <div ng-show="publicationForm.$submitted || publicationForm.inputFecha.$touched">
-            <span class="msg-error" ng-show="publicationForm.inputFecha.$error.required">La fecha es requerida</span>
-          </div>
-        </div>
-      </div>
+      <ui-input u-name="Publicacion" u-desc="Publicación" ng-model="publication.description"></ui-input>
 
-      <div class="form-group">
-        <label for="inputVolumen" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Volumen</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputVolumen" name="inputVolumen" placeholder="Volumen" ng-model="publication.volume" ng-required="true">
-          <div ng-show="publicationForm.$submitted || publicationForm.inputVolumen.$touched">
-            <span class="msg-error" ng-show="publicationForm.inputVolumen.$error.required">El volumen es requerido</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-name="Fecha"
+        u-error="Por favor llenar con un año valido."
+        u-type="number"
+        u-desc="Año de la publicación"
+        u-min="2000" u-max="2100"
+        ng-model="publication.date">
+      </ui-input>
 
-      <div class="form-group">
-        <label for="inputPaginas" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Página</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputPaginas" name="inputPaginas" placeholder="Página" ng-model="publication.pages" ng-required="true">
-          <div ng-show="publicationForm.$submitted || publicationForm.inputPaginas.$touched">
-            <span class="msg-error" ng-show="publicationForm.inputPaginas.$error.required">La página es requerida</span>
-          </div>
-        </div>
-      </div>
+      <ui-input u-name="Volumen" ng-model="publication.volume"></ui-input>
+
+      <ui-input u-name="Pagina" u-desc="Página" ng-model="publication.pages"></ui-input>
 
       <div class="form-group">
         <label for="inputDerechos" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Cesión de Derechos</label>
@@ -61,17 +37,16 @@
         <select
           id="inputParticipantes"
           name="inputParticipantes"
-          class="chosen form-control"
+          class="form-control"
           chosen
           multiple
+          data-error="Este campo es requerido."
           ng-required="true"
-          data-placeholder="Autores"
+          data-placeholder="Elige los autores."
           ng-model="publication.participantes"
           ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
         </select>
-        <div ng-show="publicationForm.$submitted || publicationForm.inputParticipantes.$touched">
-          <span class="msg-error" ng-show="publicationForm.inputParticipantes.$error.required">Los autores son requeridos</span>
-        </div>
+        <div class="help-block with-errors"></div>
       </div>
 </div>
 
@@ -79,27 +54,20 @@
         <label for="inputRevista" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Revista</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
-            class="chosen form-control"
+            class="form-control"
             chosen
             ng-required="true"
+            data-error="Este campo es requerido."
             name="inputRevista"
             id="inputRevista"
-            data-placeholder="Revista"
+            data-placeholder="Elige una revista."
             ng-model="publication.journal"
             ng-options="journal.id as journal.description for journal in journals">
           </select>
-          <div ng-show="publicationForm.$submitted || publicationForm.inputRevista.$touched">
-            <span class="msg-error" ng-show="publicationForm.inputRevista.$error.required">La revista es requerida</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
       <ui-submit></ui-submit>
     </form>
   </rd-widget>
 </div>
-
-<script ng-if="journals.$resolved">
-  setTimeout(function(){
-    $(".chosen").chosen();
-  },50);
-</script>

@@ -7,26 +7,9 @@
       <div class="title">Investigador</div>
       <div class="comment">Información del Investigador</div>
     </rd-widget-body>
-    <form class="form-horizontal" ng-submit="addParticipant(participantForm)" name="participantForm" novalidate>
-      <div class="form-group">
-        <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Nombre</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputNombre" id="inputNombre" placeholder="Nombre" ng-model="participant.nombre" ng-required="true">
-          <div ng-show="participantForm.$submitted || participantForm.inputNombre.$touched">
-            <span class="msg-error" ng-show="participantForm.inputNombre.$error.required">El nombre es requerido</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="inputApellido" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Apellido</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputApellido" id="inputApellido" placeholder="Apellido" ng-model="participant.apellido" ng-required="true">
-          <div ng-show="participantForm.$submitted || participantForm.inputApellido.$touched">
-            <span class="msg-error" ng-show="participantForm.inputApellido.$error.required">El apellido es requerido</span>
-          </div>
-        </div>
-      </div>
+    <form class="form-horizontal" ng-submit="addParticipant(uForm)" name="uForm" novalidate>
+      <ui-input u-name="Nombre" ng-model="participant.nombre"></ui-input>
+      <ui-input u-name="Apellido" ng-model="participant.apellido"></ui-input>
       <ui-submit></ui-submit>
     </form>
   </rd-widget>
