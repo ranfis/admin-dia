@@ -8,13 +8,11 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>ID</th>
             <th>Nombre</th>
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="journal in journals | filter : searchFilter">
-              <td>{{journal.id}}</td>
+            <tr ng-repeat="journal in journals | filter : searchFilter | orderBy:'-id'">
               <td>{{journal.description}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/revistas/{{journal.id}}"><i class="fa fa-pencil"></i></a>

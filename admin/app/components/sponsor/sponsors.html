@@ -8,13 +8,11 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>ID</th>
             <th>Nombre</th>
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="sponsor in sponsors | filter : searchFilter">
-              <td>{{sponsor.id}}</td>
+            <tr ng-repeat="sponsor in sponsors | filter : searchFilter | orderBy:'-id'">
               <td>{{sponsor.nombre}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/patrocinadores/{{sponsor.id}}"><i class="fa fa-pencil"></i></a>

@@ -8,14 +8,12 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="participant in participants | filter : searchFilter">
-              <td>{{participant.id}}</td>
+            <tr ng-repeat="participant in participants | filter : searchFilter | orderBy:'-id'">
               <td>{{participant.nombre}}</td>
               <td>{{participant.apellido}}</td>
               <td>

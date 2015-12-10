@@ -8,7 +8,6 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>ID</th>
             <th>Nombre</th>
             <th>Fecha</th>
             <th>Tema</th>
@@ -18,8 +17,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="congress in congresses | filter : searchFilter ">
-              <td>{{congress.id}}</td>
+            <tr ng-repeat="congress in congresses | filter : searchFilter | orderBy:'-id'">
               <td>{{congress.nombre}}</td>
               <td>{{congress.fecha_congreso}}</td>
               <td>{{congress.ponencia}}</td>

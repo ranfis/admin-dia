@@ -8,13 +8,11 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>ID</th>
             <th>Nombre</th>
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="institution in institutions | filter : searchFilter">
-              <td>{{institution.id}}</td>
+            <tr ng-repeat="institution in institutions | filter : searchFilter | orderBy:'-id'">
               <td>{{institution.name}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/instituciones/{{institution.id}}"><i class="fa fa-pencil"></i></a>
