@@ -7,32 +7,16 @@
       <div class="title">Proyecto</div>
       <div class="comment">Información del Proyecto</div>
     </rd-widget-body>
-    <form class="form-horizontal" ng-submit="addProject(projectForm)" name="projectForm" novalidate>
-      <div class="form-group">
-        <label for="inputNombre" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Nombre</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputNombre" id="inputNombre" placeholder="Nombre" ng-model="project.description" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputNombre.$touched">
-            <span class="msg-error" ng-show="projectForm.inputNombre.$error.required">Este campo es requerido.</span>
-          </div>
-        </div>
-      </div>
+    <form class="form-horizontal" ng-submit="save(projectForm)" name="projectForm" novalidate>
 
-      <div class="form-group">
-        <label for="inputFechaInicio" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fecha de Inicio</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputFechaInicio" name="inputFechaInicio" placeholder="Fecha de Inicio" ng-model="project.date_start" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputFechaInicio.$touched">
-            <span class="msg-error" ng-show="projectForm.inputFechaInicio.$error.required">La fecha de inicio es requerida</span>
-          </div>
-        </div>
-      </div>
+
+      <ui-input u-name="Nombre" ng-model="project.description"></ui-input>
 
       <div class="form-group">
         <label for="inputInvestigadorPrincipal" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Investigador Principal</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
-            class="chosen form-control"
+            class="form-control"
             chosen
             ng-required="true"
             name="inputInvestigadorPrincipal"
@@ -41,21 +25,27 @@
             ng-model="project.researcher"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
           </select>
-          <div ng-show="projectForm.$submitted || projectForm.inputInvestigadorPrincipal.$touched">
-            <span class="msg-error" ng-show="projectForm.inputInvestigadorPrincipal.$error.required">El  investigador principal es requerido</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="inputFechaFinal" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fecha del Fin</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" id="inputFechaFinal" name="inputFechaFinal" placeholder="Fecha del Fin" ng-model="project.date_application" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputFechaFinal.$touched">
-            <span class="msg-error" ng-show="projectForm.inputFechaFinal.$error.required">La fecha del fin es requerida</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-name="FechaInicio"
+        u-error="Por favor llenar con un año valido."
+        u-type="number"
+        u-desc="Fecha de Inicio"
+        u-min="2000" u-max="2100"
+        ng-model="project.date_start">
+      </ui-input>
+
+      <ui-input
+        u-name="FechaFin"
+        u-error="Por favor llenar con un año valido."
+        u-type="number"
+        u-desc="Fecha del Fin"
+        u-min="2000" u-max="2100"
+        ng-model="project.date_application">
+      </ui-input>
 
       <div class="form-group">
         <label for="inputEstadoAplicacion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado Aplicación</label>
@@ -71,7 +61,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="form-group">
         <label for="inputEstadoActual" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado Actual</label>
@@ -93,7 +82,7 @@
           <select
             id="inputCoInvestigadores"
             name="inputCoInvestigadores"
-            class="chosen form-control"
+            class="form-control"
             chosen
             multiple
             ng-required="true"
@@ -101,41 +90,34 @@
             ng-model="project.coresearcher"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
           </select>
-          <div ng-show="projectForm.$submitted || projectForm.inputCoInvestigadores.$touched">
-            <span class="msg-error" ng-show="projectForm.inputCoInvestigadores.$error.required">Los co-investigadores son requeridos</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
+      <!--TODO: Use chosen-->
       <div class="form-group">
         <label for="inputInstitucion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Institucion</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <input type="text" class="form-control" name="inputInstitucion" id="inputInstitucion" placeholder="Institucion" ng-model="project.institutions.principal" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputInstitucion.$touched">
-            <span class="msg-error" ng-show="projectForm.inputInstitucion.$error.required">Este campo es requerido.</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
+      <!--TODO: Use chosen-->
       <div class="form-group">
         <label for="inputInstitucionOtras" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Otras instituciones</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <input type="text" class="form-control" name="inputInstitucionOtras" id="inputInstitucionOtras" placeholder="InstitucionOtras" ng-model="project.institutions.principal" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputInstitucionOtras.$touched">
-            <span class="msg-error" ng-show="projectForm.inputInstitucionOtras.$error.required">Este campo es requerido.</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
-
-
+      <!--TODO: Use chosen-->
       <div class="form-group">
         <label for="inputAsesor" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Asesor</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <input type="text" class="form-control" name="inputAsesor" id="inputAsesor" placeholder="Asesor" ng-model="project.adviser " ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputAsesor.$touched">
-            <span class="msg-error" ng-show="projectForm.inputAsesor.$error.required">Este campo es requerido.</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
@@ -145,7 +127,7 @@
           <select
             id="inputFunds"
             name="inputFunds"
-            class="chosen form-control"
+            class="form-control"
             chosen
             multiple
             ng-required="true"
@@ -153,82 +135,63 @@
             ng-model="project.fund"
             ng-options="fund.id as fund.name for fund in funds">
           </select>
-          <div ng-show="projectForm.$submitted || projectForm.inputFunds.$touched">
-            <span class="msg-error" ng-show="projectForm.inputFunds.$error.required">Los co-investigadores son requeridos</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
+      <!--TODO: Use chosen-->
       <div class="form-group">
         <label for="inputCurrency" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Moneda</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <input type="text" class="form-control" name="inputCurrency" id="inputCurrency" placeholder="Moneda" ng-model="project.currency" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputCurrency.$touched">
-            <span class="msg-error" ng-show="projectForm.inputCurrency.$error.required">Este campo es requerido.</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="inputTotalAmout" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Monto Total</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="number" class="form-control" name="inputTotalAmout" id="inputTotalAmout" placeholder="Monto Total" ng-model="project.total_amount" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputTotalAmout.$touched">
-            <span class="msg-error" ng-show="projectForm.inputTotalAmout.$error.required">Este campo es requerido.</span>
-            <span class="msg-error" ng-show="projectForm.inputTotalAmout.$error.totalamount">Este campo esta incorrecto.</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-type="number"
+        ng-model="project.total_amount"
+        u-name="MontoTotal"
+        u-desc="Monto Total"
+        u-min="0">
+      </ui-input>
 
-      <div class="form-group">
-        <label for="inputCounterpart" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Contrapartida</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="number" class="form-control" name="inputCounterpart" id="inputCounterpart" placeholder="Contrapartida" ng-model="project.counterpart " ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputCounterpart.$touched">
-            <span class="msg-error" ng-show="projectForm.inputCounterpart.$error.required">Este campo es requerido.</span>
-            <span class="msg-error" ng-show="projectForm.inputCounterpart.$error.counterpart">Este campo esta incorrecto.</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-type="number"
+        ng-model="project.counterpart"
+        u-name="Contrapartida"
+        u-min="0">
+      </ui-input>
 
-      <div class="form-group">
-        <label for="inputOverhead" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Overhead</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="number" class="form-control" name="inputOverhead" id="inputOverhead" placeholder="Overhead" min="1" ng-model="project.overhead" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputOverhead.$touched">
-            <span class="msg-error" ng-show="projectForm.inputOverhead.$error.required">Este campo es requerido.</span>
-            <span class="msg-error" ng-show="projectForm.inputOverhead.$error.overhead">Este campo esta incorrecto.</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-type="number"
+        ng-model="project.overhead"
+        u-name="Overhead"
+        u-min="0">
+      </ui-input>
 
-      <div class="form-group">
-        <label for="inputInput" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Aporte</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputInput" id="inputInput" placeholder="Aporte" ng-model="project.input" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputInput.$touched">
-            <span class="msg-error" ng-show="projectForm.inputInput.$error.required">Este campo es requerido.</span>
-          </div>
-        </div>
-      </div>
+      <ui-input
+        u-type="number"
+        ng-model="project.input"
+        u-name="Aporte"
+        u-min="0">
+      </ui-input>
 
+      <!--TODO: Use chosen-->
       <div class="form-group">
         <label for="inputUnits" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad ejecutora</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <input type="text" class="form-control" name="inputUnits" id="inputUnits" placeholder="Unidad ejecutora" ng-model="project.executing_units.executing_unit" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputUnits.$touched">
-            <span class="msg-error" ng-show="projectForm.inputUnits.$error.required">Este campo es requerido.</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
+      <!--TODO: Use chosen-->
       <div class="form-group">
         <label for="inputUnitsExecuting" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad supervisora</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <input type="text" class="form-control" name="inputUnitsExecuting" id="inputUnitsExecuting" placeholder="Unidad supervisora" ng-model="project.executing_units.superviser_unit" ng-required="true">
-          <div ng-show="projectForm.$submitted || projectForm.inputUnitsExecuting.$touched">
-            <span class="msg-error" ng-show="projectForm.inputUnitsExecuting.$error.required">Este campo es requerido.</span>
-          </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
@@ -237,6 +200,7 @@
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <toggle id="inputPatent" name="inputPatent" ng-model="project.patent" on="Si" off="No" onstyle="btn-success" offstyle="btn-primary"></toggle>
         </div>
+        <div class="help-block with-errors"></div>
       </div>
 
       <div class="form-group">
@@ -244,6 +208,7 @@
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <toggle id="inputSoftware" name="inputSoftware" ng-model="project.software" on="Si" off="No" onstyle="btn-success" offstyle="btn-primary"></toggle>
         </div>
+        <div class="help-block with-errors"></div>
       </div>
 
       <ui-submit></ui-submit>
