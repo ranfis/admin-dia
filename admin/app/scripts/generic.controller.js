@@ -1,6 +1,6 @@
 "use strict";
 
-var GenericController = function(serviceName, name, entity, listName,resolveDeps) {
+var GenericController = function(serviceName, name, entity, listName,resolveDeps,afterFetch,beforeSubmit) {
   var ENTITY = entity.toUpperCase();
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
@@ -11,6 +11,9 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
         .then(function (res) {
           $scope[listName] = res.data.result;
           service[listName] = $scope[listName];
+          if(afterFetch){
+            afterFetch($scope);
+          }
         }, function (err) {
           Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
@@ -46,6 +49,9 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
       };
       $scope.save = function (form) {
         if (!form.$valid){return;}
+        if(beforeSubmit){
+          beforeSubmit($scope);
+        }
         service.create($scope[entity])
           .then(function () {
             $scope[entity] = {};
@@ -76,8 +82,9 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
       $scope[entity].session_id = Session.id;
 
       $scope.save = function (form) {
-        if (!form.$valid) {
-          return;
+        if (!form.$valid) {return;}
+        if(beforeSubmit){
+          beforeSubmit($scope);
         }
         service.update($scope[entity])
           .then(function () {
