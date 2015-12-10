@@ -8,14 +8,40 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>description</th>
+            <th>date_application</th>
+            <th>actual_status</th>
+            <th>advisor</th>
+            <th>application_status</th>
+            <th>co_researchers</th>
+            <th>contrapartida</th>
+            <th>currency</th>
+            <th>date_start</th>
+            <th>funds</th>
+            <th>input</th>
+            <th>overhead</th>
+            <th>patent</th>
+            <th>software</th>
+            <th>total_amount</th>
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="participant in participants | filter : searchFilter | orderBy:'-id'">
-              <td>{{participant.nombre}}</td>
-              <td>{{participant.apellido}}</td>
+            <tr ng-repeat="project in projects | filter : searchFilter">
+              <td>{{project.description}}</td>
+              <td>{{project.date_application}}</td>
+              <td>{{project.actual_status.description}}</td>
+              <td>{{project.advisor.id}}</td>
+              <td>{{project.application_status.description}}</td>
+              <td>{{project.co_researchers}}</td>
+              <td>{{project.contrapartida}}</td>
+              <td>{{project.currency.id}}</td>
+              <td>{{project.date_start}}</td>
+              <td>{{project.funds}}</td>
+              <td>{{project.input}}</td>
+              <td>{{project.overhead}}</td>
+              <td>{{project.patent}}</td>
+              <td>{{project.software}}</td>
+              <td>{{project.total_amount}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/participantes/{{participant.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(participant.id,$index)"><i class="fa fa-trash"></i></a>
@@ -23,13 +49,13 @@
             </tr>
             </tbody>
           </table>
-          <div ng-if="!participants.length > 0">
+          <div ng-if="!projects.length > 0">
             <rd-loading></rd-loading>
           </div>
         </div>
       </rd-widget-body>
       <rd-widget-footer>
-        <a class="btn btn-sm btn-success" href="#/proyectos/crear"><i class="fa fa-plus"></i></a>
+        <a class="btn btn-sm btn-success" href="#/projectos/crear"><i class="fa fa-plus"></i></a>
       </rd-widget-footer>
     </rd-widget>
   </div>
