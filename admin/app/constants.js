@@ -67,6 +67,13 @@ angular.module('diaApp')
   })
   .constant("PATH",{
     ROOT:"/",
+    PROJECT: {
+      LIST: "/proyectos",
+      CREATE: "/proyectos/crear",
+      EDIT: "/proyectos/:id",
+      SINGLE: "app/components/project/project.html",
+      PLURAL: "app/components/project/projects.html"
+    },
     SPONSOR: {
       LIST: "/patrocinadores",
       CREATE: "/patrocinadores/crear",
