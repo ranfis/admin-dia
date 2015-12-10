@@ -6,7 +6,8 @@ angular.module('diaApp').service('ParticipantService', new GenericService("parti
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var ParticipantsListCtrl = function ($scope, Session, Alert, ParticipantService) {
+    var ParticipantsListCtrl = function ($scope, Session, Alert, ParticipantService, $rootScope) {
+      $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       ParticipantService.list(Session.id)
         .then(function (res) {
           $scope.participants = res.data.result;

@@ -6,7 +6,8 @@ angular.module('diaApp').service('InstitutionService', new GenericService("insti
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-  var InstitutionsListCtrl = function ($scope, Session, Alert, InstitutionService) {
+  var InstitutionsListCtrl = function ($scope, Session, Alert, InstitutionService, $rootScope) {
+    $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
     InstitutionService.list(Session.id)
       .then(function (res) {
         $scope.institutions = res.data.result;

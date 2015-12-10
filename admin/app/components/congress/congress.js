@@ -6,7 +6,8 @@ angular.module('diaApp').service('CongressService', new GenericService("congress
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var CongressesListCtrl = function ($scope, Session,Alert, CongressService) {
+    var CongressesListCtrl = function ($scope, Session,Alert, CongressService, $rootScope) {
+      $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       CongressService.list(Session.id)
         .then(function (res) {
           $scope.congresses = res.data.result;

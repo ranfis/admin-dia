@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <rd-widget>
-      <rd-widget-header icon="fa-users" title="Congresos"></rd-widget-header>
+      <rd-widget-header icon="fa-users" title="Congresos">
+          <input type="text" placeholder="Buscar" class="form-control input-sm" ng-model="$root.searchFilter">
+      </rd-widget-header>
       <rd-widget-body classes="large no-padding">
         <div class="table-responsive">
           <table class="table table-striped">
@@ -16,7 +18,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="congress in congresses">
+            <tr ng-repeat="congress in congresses | filter : searchFilter ">
               <td>{{congress.id}}</td>
               <td>{{congress.nombre}}</td>
               <td>{{congress.fecha_congreso}}</td>

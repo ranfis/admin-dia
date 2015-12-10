@@ -6,7 +6,8 @@ angular.module('diaApp').service('JournalService', new GenericService("journal")
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var JournalsListCtrl = function ($scope, Session, Alert, JournalService) {
+    var JournalsListCtrl = function ($scope, Session, Alert, JournalService, $rootScope) {
+      $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       JournalService.list(Session.id)
         .then(function (res) {
           $scope.journals = res.data.result;

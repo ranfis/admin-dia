@@ -7,7 +7,8 @@ angular.module('diaApp').service('SponsorService', new GenericService("sponsor")
 angular.module('diaApp')
   .config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var SponsorsListCtrl = function ($scope, Session, Alert, SponsorService) {
+    var SponsorsListCtrl = function ($scope, Session, Alert, SponsorService, $rootScope) {
+      $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       SponsorService.list(Session.id)
         .then(function (res) {
           $scope.sponsors = res.data.result;

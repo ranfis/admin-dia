@@ -6,7 +6,8 @@ angular.module('diaApp').service('PublicationService', new GenericService("publi
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-  var PublicationsListCtrl = function ($scope, Session,Alert, PublicationService) {
+  var PublicationsListCtrl = function ($scope, Session,Alert, PublicationService, $rootScope) {
+    $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
     PublicationService.list(Session.id)
       .then(function (res) {
         $scope.publications = res.data.result;

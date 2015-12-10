@@ -6,7 +6,8 @@ angular.module('diaApp').service('FundService', new GenericService("fund"));
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-  var FundsListCtrl = function ($scope, Session, Alert, FundService) {
+  var FundsListCtrl = function ($scope, Session, Alert, FundService, $rootScope) {
+    $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
     FundService.list(Session.id)
       .then(function (res) {
         $scope.funds = res.data.result;

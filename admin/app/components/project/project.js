@@ -6,7 +6,8 @@ angular.module('diaApp').service('ProjectService', new GenericService("project")
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-  var ProjectsListCtrl = function ($scope, Session,Alert, ProjectService) {
+  var ProjectsListCtrl = function ($scope, Session,Alert, ProjectService, $rootScope) {
+    $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
     ProjectService.list(Session.id)
       .then(function (res) {
         $scope.projects = res.data.result;

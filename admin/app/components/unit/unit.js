@@ -6,7 +6,8 @@ angular.module('diaApp').service('UnitService', new GenericService("executing_un
 
 angular.module('diaApp').config(function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-  var UnitsListCtrl = function ($scope, Session, Alert, UnitService) {
+  var UnitsListCtrl = function ($scope, Session, Alert, UnitService, $rootScope) {
+    $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
     UnitService.list(Session.id)
       .then(function (res) {
         $scope.units = res.data.result;
