@@ -4,7 +4,8 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
   var ENTITY = entity.toUpperCase();
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var ListCtrl = function ($scope, Session, Alert, $injector) {
+    var ListCtrl = function ($scope, Session, Alert, $injector, $rootScope) {
+      $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       var service = $injector.get(serviceName);
       service.list(Session.id)
         .then(function (res) {

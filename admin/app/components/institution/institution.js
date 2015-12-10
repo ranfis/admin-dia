@@ -5,3 +5,4 @@ angular.module('diaApp').service('InstitutionService', new GenericService("insti
 angular.module('diaApp').config(
   new GenericController("InstitutionService","Institucion","institution","institutions")
 );
+

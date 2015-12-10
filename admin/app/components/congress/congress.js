@@ -6,3 +6,4 @@ angular.module('diaApp').config(
   new GenericController("CongressService","Congresos","congress","congresses",
     [{service:"SponsorService",list:"sponsors"},{service:"ParticipantService",list:"participants"}])
 );
+

@@ -5,3 +5,4 @@ angular.module('diaApp').service('UnitService', new GenericService("executing_un
 angular.module('diaApp').config(
   new GenericController("UnitService","Unidad","unit","units")
 );
+

@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <rd-widget>
-      <rd-widget-header icon="fa-file-text-o" title="Revistas"></rd-widget-header>
+      <rd-widget-header icon="fa-file-text-o" title="Revistas">
+        <input type="text" placeholder="Buscar" class="form-control input-sm" ng-model="$root.searchFilter">
+      </rd-widget-header>
       <rd-widget-body classes="large no-padding">
         <div class="table-responsive">
           <table class="table table-striped">
@@ -11,7 +13,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="journal in journals">
+            <tr ng-repeat="journal in journals | filter : searchFilter">
               <td>{{journal.id}}</td>
               <td>{{journal.description}}</td>
               <td>
