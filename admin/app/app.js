@@ -13,7 +13,8 @@ angular.module('diaApp', [
   'ngAnimate',
   'ui.toggle',
   "diaAppFilters",
-  "localytics.directives"
+  "localytics.directives",
+  "ui.bootstrap"
 ]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }]);

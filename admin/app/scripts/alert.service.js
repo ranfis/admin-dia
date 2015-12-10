@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('diaApp').service('Alert', function () {
+angular.module('diaApp').service('Alert', function ($uibModal) {
 
   toastr.options = {
     "closeButton": true,
@@ -37,7 +37,11 @@ angular.module('diaApp').service('Alert', function () {
       confirmButtonClass: "btn-danger",
       confirmButtonText: confirmText,
       cancelButtonText: "Cancelar",
-      closeOnConfirm: true,
+      closeOnConfirm: true
     }, cb);
   };
+
+  this.modal = function(options){
+    $uibModal.open(options);
+  }
 });
