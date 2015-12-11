@@ -43,8 +43,8 @@
               <td>{{project.software}}</td>
               <td>{{project.total_amount}}</td>
               <td>
-                <a class="btn btn-sm btn-success" href="#/participantes/{{participant.id}}"><i class="fa fa-pencil"></i></a>
-                <a class="btn btn-sm btn-danger" ng-click="delete(participant.id,$index)"><i class="fa fa-trash"></i></a>
+                <a class="btn btn-sm btn-success" href="#/proyectos/{{project.id}}"><i class="fa fa-pencil"></i></a>
+                <a class="btn btn-sm btn-danger" ng-click="delete(project.id,$index)"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
             </tbody>
@@ -55,7 +55,7 @@
         </div>
       </rd-widget-body>
       <rd-widget-footer>
-        <a class="btn btn-sm btn-success" href="#/projectos/crear"><i class="fa fa-plus"></i></a>
+        <a class="btn btn-sm btn-success" href="#/proyectos/crear"><i class="fa fa-plus"></i></a>
       </rd-widget-footer>
     </rd-widget>
   </div>

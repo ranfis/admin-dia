@@ -5,16 +5,20 @@ angular.module('diaApp').service('PublicationService', new GenericService("publi
 angular.module('diaApp').config(
   new GenericController("PublicationService","Publicaciones","publication","publications",
     [{service:"JournalService",list:"journals"},{service:"ParticipantService",list:"participants"}],
-    // After Fetch
+    // After Fetch List
     function($scope){
       $scope["publications"].forEach(function(publication){
         publication.date = +publication.date.slice(0,4);
       });
-      //console.log("Esto va a correr cuando hagan el list",$scope);
+    },
+    // After Fetch
+    function ($scope,Helper) {
+      console.info($scope);
+      //$scope["publication"].participantes = Helper.getIDs($scope["publication"].participantes); // Retrieve the actual select value
+      //$scope["publication"].journal = $scope["publication"].journal.id; // Retrieve the actual select value
     },
     // Change Before Submit
     function($scope){
       $scope.publication.date+="-00-00";
-      //console.log("Esto va a corer cuando hagan el save()",$scope);
     })
 );

@@ -1,6 +1,6 @@
 "use strict";
 
-var GenericController = function(serviceName, name, entity, listName,resolveDeps,afterFetch,beforeSubmit) {
+var GenericController = function(serviceName, name, entity, listName, resolveDeps, afterFetchList, afterFetch, beforeSubmit) {
   var ENTITY = entity.toUpperCase();
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
@@ -11,8 +11,8 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
         .then(function (res) {
           $scope[listName] = res.data.result;
           service[listName] = $scope[listName];
-          if(afterFetch){
-            afterFetch($scope);
+          if(afterFetchList){
+            afterFetchList($scope);
           }
         }, function (err) {
           Alert.error(err.message,MESSAGES.ERROR_TEXT);
@@ -64,7 +64,7 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
     };
     CreateCtrl.inject = [serviceName];
 
-    var DetailsCtrl = function ($scope, Session, Alert, $routeParams, $location, $injector) {
+    var DetailsCtrl = function ($scope, Session, Alert, Helper, $routeParams, $location, $injector) {
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -75,11 +75,12 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
         });
       }
       var service = $injector.get(serviceName);
-      var id = $routeParams.id;
-      $scope[entity] = service[listName].filter(function (el) {
-        return (el.id === +id);
-      })[0];
+      $scope[entity] = Helper.selectById(service[listName], $routeParams.id); // Getting the selected congress from memory
       $scope[entity].session_id = Session.id;
+
+      if(afterFetch){
+        afterFetch($scope,Helper);
+      }
 
       $scope.save = function (form) {
         if (!form.$valid) {return;}
@@ -95,7 +96,7 @@ var GenericController = function(serviceName, name, entity, listName,resolveDeps
           });
       };
     };
-    CreateCtrl.inject = [serviceName];
+    DetailsCtrl.inject = [serviceName];
 
     $routeProvider
       .when(PATH[ENTITY].LIST, {
