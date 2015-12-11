@@ -18,6 +18,9 @@ angular.module('diaApp')
     URL:"http://104.236.201.101", // http://localhost/ws-dia
     SUMMARY:"http://104.236.201.101/summary",
     LOGIN: "http://104.236.201.101/login",
+    GET: function(service){
+      return "http://104.236.201.101/"+service+"/get";
+    },
     LIST: function(service){
       return "http://104.236.201.101/"+service+"/list";
     },
