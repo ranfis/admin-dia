@@ -1,0 +1,29 @@
+<div class="form-group">
+  <label for="{{uID}}" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">{{uDesc}}{{ngModel || "*"}}</label>
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <select ng-if="!uMulti"
+      id="{{uID}}"
+      name="{{uID}}"
+      class="chosen-select form-control"
+      chosen
+      ng-required="true"
+      data-placeholder="{{uDesc}}"
+      ng-model="ngModel"
+      data-error="{{uError}}"
+      ng-options="item.id as {{uListLabel}} for item in uList">
+    </select>
+    <select ng-if="uMulti"
+      id="{{uID}}"
+      name="{{uID}}"
+      class="chosen-select form-control"
+      chosen
+      multiple
+      ng-required="true"
+      data-placeholder="{{uDesc}}"
+      ng-model="ngModel"
+      data-error="{{uError}}"
+      ng-options="item.id as {{uListLabel}} for item in uList">
+    </select>
+    <div class="help-block with-errors"></div>
+  </div>
+</div>
