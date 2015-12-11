@@ -1,4 +1,6 @@
 'use strict';
+(function() {
+var WS_URL = "http://104.236.201.101/";
 
 angular.module('diaApp')
   .constant('AUTH_EVENTS', {
@@ -15,23 +17,22 @@ angular.module('diaApp')
     EDITOR: 'EDITOR'
   })
   .constant("WS",{
-    URL:"http://104.236.201.101", // http://localhost/ws-dia
-    SUMMARY:"http://104.236.201.101/summary",
-    LOGIN: "http://104.236.201.101/login",
+    SUMMARY:WS_URL+"/summary",
+    LOGIN: WS_URL+"/login",
     GET: function(service){
-      return "http://104.236.201.101/"+service+"/get";
+      return WS_URL+service+"/get";
     },
     LIST: function(service){
-      return "http://104.236.201.101/"+service+"/list";
+      return WS_URL+service+"/list";
     },
     ADD: function(service){
-      return "http://104.236.201.101/"+service+"/add";
+      return WS_URL+service+"/add";
     },
     UPDATE: function(service){
-      return "http://104.236.201.101/"+service+"/update";
+      return WS_URL+service+"/update";
     },
     DELETE: function(service){
-      return "http://104.236.201.101/"+service+"/del";
+      return WS_URL+service+"/del";
     },
   })
   .constant("REQUEST",{
@@ -136,4 +137,4 @@ angular.module('diaApp')
     LOGIN: "/login",
     LOGOUT: "/logout"
   });
-
+})();
