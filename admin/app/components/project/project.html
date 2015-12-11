@@ -8,10 +8,9 @@
       <div class="comment">Información del Proyecto</div>
     </rd-widget-body>
     <form class="form-horizontal" ng-submit="save(projectForm)" name="projectForm" novalidate>
-
-
       <ui-input u-name="Nombre" ng-model="project.description"></ui-input>
 
+      <!-- Investigador Principal-->
       <div class="form-group">
         <label for="inputInvestigadorPrincipal" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Investigador Principal</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -29,6 +28,7 @@
         </div>
       </div>
 
+      <!--Fecha de inicio-->
       <ui-input
         u-name="FechaInicio"
         u-error="Por favor llenar con un año valido."
@@ -38,6 +38,7 @@
         ng-model="project.date_start">
       </ui-input>
 
+      <!--Fecha de finalizacion-->
       <ui-input
         u-name="FechaFin"
         u-error="Por favor llenar con un año valido."
@@ -47,35 +48,38 @@
         ng-model="project.date_application">
       </ui-input>
 
+      <!--Estado de aplicacion-->
       <div class="form-group">
         <label for="inputEstadoAplicacion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado Aplicación</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
-          <div id="inputEstadoAplicacion" class="btn-group" data-toggle="buttons" ng-init="project.state_application">
+          <div id="inputEstadoAplicacion" class="btn-group" data-toggle="buttons" ng-init="project.application_status">
             <label class="btn btn-primary">
-              <input type="radio" name="inputEstadoAplicacion" id="state_application1" value="1" ng-model="project.state_application">Aceptada</label>
+              <input type="radio" name="inputEstadoAplicacion" id="state_application1" value="1" ng-model="project.application_status">Aceptada</label>
             <label class="btn btn-primary">
-              <input type="radio" name="inputEstadoAplicacion" id="state_application2" value="2"  ng-model="project.state_application">En revisión</label>
+              <input type="radio" name="inputEstadoAplicacion" id="state_application2" value="2"  ng-model="project.application_status">En revisión</label>
             <label class="btn btn-primary">
-              <input type="radio" name="inputEstadoAplicacion" id="state_application3" value="3"  ng-model="project.state_application">Rechazada</label>
+              <input type="radio" name="inputEstadoAplicacion" id="state_application3" value="3"  ng-model="project.application_status">Rechazada</label>
           </div>
         </div>
       </div>
 
+      <!--Estado actual-->
       <div class="form-group">
         <label for="inputEstadoActual" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado Actual</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <div id="inputEstadoActual" class="btn-group" data-toggle="buttons" ng-init="project.state_actual">
+          <div id="inputEstadoActual" class="btn-group" data-toggle="buttons" ng-init="project.current_status">
             <label class="btn btn-primary">
-              <input type="radio" name="inputEstadoActual" id="state_actual1" value="1" ng-model="project.state_actual">Finalizada</label>
+              <input type="radio" name="inputEstadoActual" id="state_actual1" value="1" ng-model="project.current_status">Finalizada</label>
             <label class="btn btn-primary">
-              <input type="radio" name="inputEstadoActual" id="state_actual2" value="2"  ng-model="project.state_actual">En proceso</label>
+              <input type="radio" name="inputEstadoActual" id="state_actual2" value="2"  ng-model="project.current_status">En proceso</label>
             <label class="btn btn-primary">
-              <input type="radio" name="inputEstadoActual" id="state_actual3" value="3"  ng-model="project.state_actual">No finalizo</label>
+              <input type="radio" name="inputEstadoActual" id="state_actual3" value="3"  ng-model="project.current_status">No finalizo</label>
           </div>
         </div>
       </div>
 
+      <!--Co-Investigadores-->
       <div class="form-group">
         <label for="inputCoInvestigadores" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Co-Investigadores</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -94,44 +98,54 @@
         </div>
       </div>
 
-      <!--TODO: Use chosen-->
+      <!--Instituciones-->
       <div class="form-group">
-        <label for="inputInstitucion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Institucion</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputInstitucion" id="inputInstitucion" placeholder="Institucion" ng-model="project.institutions.principal" ng-required="true">
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--TODO: Use chosen-->
-      <div class="form-group">
-        <label for="inputInstitucionOtras" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Otras instituciones</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputInstitucionOtras" id="inputInstitucionOtras" placeholder="InstitucionOtras" ng-model="project.institutions.principal" ng-required="true">
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--TODO: Use chosen-->
-      <div class="form-group">
-        <label for="inputAsesor" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Asesor</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputAsesor" id="inputAsesor" placeholder="Asesor" ng-model="project.adviser " ng-required="true">
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="inputFunds" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fondos</label>
+        <label for="inputCoInvestigadores" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Instituciones</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
-            id="inputFunds"
-            name="inputFunds"
+            id="inputInstitucion"
+            name="inputInstitucion"
             class="form-control"
             chosen
             multiple
             ng-required="true"
-            data-placeholder="Fondos"
+            data-placeholder="Instituciones"
+            ng-model="project.institutions"
+            ng-options="institution.id as institution.name for institution in institutions">
+          </select>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+
+      <!--Asesor-->
+      <div class="form-group">
+        <label for="inputAsesor" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Asesor</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <select
+            id="inputAsesor"
+            name="inputAsesor"
+            class="form-control"
+            chosen
+            ng-required="true"
+            data-placeholder="Asesor"
+            ng-model="project.adviser"
+            ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
+          </select>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+
+      <!--Fondo-->
+      <div class="form-group">
+        <label for="inputFund" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fondo</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <select
+            id="inputFund"
+            name="inputFund"
+            class="form-control"
+            chosen
+            ng-required="true"
+            data-placeholder="Fondo"
             ng-model="project.fund"
             ng-options="fund.id as fund.name for fund in funds">
           </select>
@@ -139,11 +153,20 @@
         </div>
       </div>
 
-      <!--TODO: Use chosen-->
+      <!--Moneda-->
       <div class="form-group">
         <label for="inputCurrency" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Moneda</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputCurrency" id="inputCurrency" placeholder="Moneda" ng-model="project.currency" ng-required="true">
+          <select
+            id="inputCurrency"
+            name="inputCurrency"
+            class="form-control"
+            chosen
+            ng-required="true"
+            data-placeholder="Moneda"
+            ng-model="project.currency"
+            ng-options="currency.id as currency.symbol for currency in currencies">
+          </select>
           <div class="help-block with-errors"></div>
         </div>
       </div>
@@ -177,24 +200,43 @@
         u-min="0">
       </ui-input>
 
-      <!--TODO: Use chosen-->
+      <!--Unidad Ejecutora-->
       <div class="form-group">
-        <label for="inputUnits" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad ejecutora</label>
+        <label for="inputUnitsExecuting" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad ejecutora</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputUnits" id="inputUnits" placeholder="Unidad ejecutora" ng-model="project.executing_units.executing_unit" ng-required="true">
+          <select
+            id="inputUnitsExecuting"
+            name="inputUnitsExecuting"
+            class="form-control"
+            chosen
+            ng-required="true"
+            data-placeholder="Unidad ejecutora"
+            ng-model="project.executing_units.executing_unit"
+            ng-options="unit.id as unit.name for unit in units">
+          </select>
           <div class="help-block with-errors"></div>
         </div>
       </div>
 
-      <!--TODO: Use chosen-->
+      <!--Unidad Supervisora-->
       <div class="form-group">
-        <label for="inputUnitsExecuting" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad supervisora</label>
+        <label for="inputUnitsSuperviser" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad Supervisora</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" class="form-control" name="inputUnitsExecuting" id="inputUnitsExecuting" placeholder="Unidad supervisora" ng-model="project.executing_units.superviser_unit" ng-required="true">
+          <select
+            id="inputUnitsSuperviser"
+            name="inputUnitsSuperviser"
+            class="form-control"
+            chosen
+            ng-required="true"
+            data-placeholder="Unidad Supervisora"
+            ng-model="project.executing_units.superviser_unit"
+            ng-options="unit.id as unit.name for unit in units">
+          </select>
           <div class="help-block with-errors"></div>
         </div>
       </div>
 
+      <!--Patente-->
       <div class="form-group">
         <label for="inputPatent" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Patente</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -203,6 +245,7 @@
         <div class="help-block with-errors"></div>
       </div>
 
+      <!--Software-->
       <div class="form-group">
         <label for="inputSoftware" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Software</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -215,10 +258,3 @@
     </form>
   </rd-widget>
 </div>
-
-
-<script ng-if="sponsors.$resolved">
-  setTimeout(function(){
-    $(".chosen").chosen();
-  },50);
-</script>
