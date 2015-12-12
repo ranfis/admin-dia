@@ -1,16 +1,7 @@
 'use strict';
 
 angular.module('diaApp')
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'app/components/dashboard/dashboard.html',
-        data: {
-          authorizedRoles: ["ADMIN"]
-        }
-      });
-  })
-  .controller('MainCtrl', function($scope, $cookieStore,USER_ROLES,AuthService) {
+  .controller('MainCtrl', function($scope, $cookieStore,USER_ROLES,AuthService, DashboardService) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;

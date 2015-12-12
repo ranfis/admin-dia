@@ -19,6 +19,7 @@ angular.module('diaApp')
   .constant("WS",{
     SUMMARY:WS_URL+"/summary",
     LOGIN: WS_URL+"/login",
+    DASHBOARD: WS_URL+"/dashboard",
     GET: function(service){
       return WS_URL+service+"/get";
     },
@@ -77,6 +78,9 @@ angular.module('diaApp')
       EDIT: "/proyectos/:id",
       SINGLE: "app/components/project/project.html",
       PLURAL: "app/components/project/projects.html"
+    },
+    DASHBOARD: {
+      SINGLE: "app/components/dashboard/dashboard.html",
     },
     SPONSOR: {
       LIST: "/patrocinadores",
