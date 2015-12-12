@@ -4,7 +4,9 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
   var ENTITY = entity.toUpperCase();
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var ListCtrl = function ($scope, Session, Alert, $injector, $rootScope) {
+    var ListCtrl = function ($scope, Session, Alert, Helper, $injector, $rootScope) {
+      $rootScope.title = name;
+      $rootScope.nav = name;
       $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       var service = $injector.get(serviceName);
       service.list(Session.id)
@@ -12,7 +14,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
           $scope[listName] = res.data.result;
           service[listName] = $scope[listName];
           if(afterFetchList){
-            afterFetchList($scope);
+            afterFetchList($scope, Helper);
           }
         }, function (err) {
           Alert.error(err.message,MESSAGES.ERROR_TEXT);
@@ -32,7 +34,9 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     };
     ListCtrl.inject = [serviceName];
 
-    var CreateCtrl = function ($scope, Session, Alert, $location, $injector) {
+    var CreateCtrl = function ($scope,$rootScope, Session, Alert, Helper, $location, $injector) {
+      $rootScope.title = name;
+      $rootScope.nav = name+"/nuevo";
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -50,7 +54,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       $scope.save = function (form) {
         if (!form.$valid){return;}
         if(beforeSubmit){
-          beforeSubmit($scope);
+          beforeSubmit($scope, Helper);
         }
         service.create($scope[entity])
           .then(function () {
@@ -64,7 +68,10 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     };
     CreateCtrl.inject = [serviceName];
 
-    var DetailsCtrl = function ($scope, Session, Alert, Helper, $routeParams, $location, $injector) {
+    var DetailsCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
+      var id = $routeParams.id;
+      $rootScope.title = name;
+      $rootScope.nav = name+"/editar/"+id;
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -75,7 +82,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
         });
       }
       var service = $injector.get(serviceName);
-      $scope[entity] = Helper.selectById(service[listName], $routeParams.id); // Getting the selected congress from memory
+      $scope[entity] = Helper.selectById(service[listName], id); // Getting the selected congress from memory
       $scope[entity].session_id = Session.id;
 
       if(afterFetch){
@@ -85,7 +92,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       $scope.save = function (form) {
         if (!form.$valid) {return;}
         if(beforeSubmit){
-          beforeSubmit($scope);
+          beforeSubmit($scope, Helper);
         }
         service.update($scope[entity])
           .then(function () {

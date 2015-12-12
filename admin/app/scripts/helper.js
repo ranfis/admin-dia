@@ -15,6 +15,13 @@ angular.module('diaApp')
       });
       return ids;
     };
+    this.setWSYear = function(date){
+      var newdate = date+"-00-00";
+      return newdate.slice(0,10) || "0000-00-00";
+    };
+    this.getWSYear = function(date){
+      return +date.slice(0,4);
+    };
     this.checkResult = function(res){
       if(res.data.msg === "Sesi&oacute;n expirada"){
         Session.destroy();
@@ -29,10 +36,5 @@ angular.module('diaApp')
     };
     this.handleErrors = function(){
       throw new Error(MESSAGES.ERROR.NO_INTERNET);
-    };
-  })
-  .filter('siNo', function() {
-    return function(input) {
-      return input ? 'Sipi' : 'Nop';
     };
   });
