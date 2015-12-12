@@ -9,7 +9,7 @@ angular.module('diaApp').service('DashboardService', function ($http, WS, Helper
     };
     return $http.get(WS.DASHBOARD, params).then(Helper.checkResult,Helper.handleErrors);
   };
-})
+});
 
 var DashboardCtrl = function($scope, Session, DashboardService, MESSAGES, $rootScope){
   $rootScope.title = "Dashboard";

@@ -21,15 +21,15 @@ angular.module('diaApp').config(
     // After Fetch
     function ($scope,Helper) {
       console.info($scope);
-      $scope["project"].counterpart = $scope["project"].contrapartida; // TODO: Really??, Retrieve the actual select value
-      //$scope["project"].researcher = $scope["project"].researcher.id; // Retrieve the actual select value
+      $scope["project"].counterpart = $scope["project"].counterpart; // Retrieve the actual select value
+      //$scope["project"].researcher = $scope["project"].researcher.id; // Retrieve tReally??, he actual select value
       $scope["project"].researcher = 5; // Retrieve the actual select value
       $scope["project"].co_researchers = Helper.getIDs($scope["project"].co_researchers); // Retrieve the actual select value
       $scope["project"].funds = Helper.getIDs($scope["project"].funds); // Retrieve the actual select value
       $scope["project"].currency = $scope["project"].currency.id; // Retrieve the actual select value
-      $scope["project"].adviser = $scope["project"].advisor.id; // TODO: Really??, Retrieve the actual select value
+      $scope["project"].adviser = $scope["project"].adviser.id; // Retrieve the actual select value
       $scope["project"].application_status = ""+$scope["project"].application_status.id; // Retrieve the actual select value
-      $scope["project"].current_status = ""+  $scope["project"].actual_status.id; // TODO: Really??, Retrieve the actual select value
+      $scope["project"].current_status = ""+  $scope["project"].current_status.id; // Retrieve the actual select value
       //$scope["project"].institution = $scope["project"].institution.id; // Retrieve the actual select value
       //$scope["project"].other_institutions = Helper.getIDs($scope["project"].co_researchers); // Retrieve the actual select value
 
