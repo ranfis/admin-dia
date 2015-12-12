@@ -2,6 +2,8 @@
 
 angular.module('diaApp').service('Alert', function ($uibModal) {
 
+  this.isModalOpen = false;
+
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -41,7 +43,14 @@ angular.module('diaApp').service('Alert', function ($uibModal) {
     }, cb);
   };
 
-  this.modal = function(options){
-    $uibModal.open(options);
+  this.openModal = function(options){
+    this.isModalOpen = $uibModal.open(options);
+  };
+
+  this.closeModal = function(){
+    if(this.isModalOpen){
+      this.isModalOpen.close();
+      this.isModalOpen = false;
+    }
   }
 });
