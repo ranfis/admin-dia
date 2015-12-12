@@ -20,6 +20,8 @@ angular.module('diaApp')
     SUMMARY:WS_URL+"/summary",
     LOGIN: WS_URL+"/login",
     DASHBOARD: WS_URL+"/dashboard",
+    REPORT_EARNINGS: WS_URL+"report/projects/earnings/",
+    REPORT_OVERHEAD:   WS_URL+"report/projects/earnings/overhead/",
     GET: function(service){
       return WS_URL+service+"/get";
     },
@@ -81,6 +83,10 @@ angular.module('diaApp')
     },
     DASHBOARD: {
       SINGLE: "app/components/dashboard/dashboard.html",
+    },
+    REPORT: {
+      LIST: "/reportes",
+      SINGLE: "app/components/report/reports.html"
     },
     SPONSOR: {
       LIST: "/patrocinadores",
