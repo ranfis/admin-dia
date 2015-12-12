@@ -11,7 +11,10 @@ angular.module('diaApp').service('DashboardService', function ($http, WS, Helper
   };
 })
 
-var DashboardCtrl = function($scope, Session, DashboardService, MESSAGES){
+var DashboardCtrl = function($scope, Session, DashboardService, MESSAGES, $rootScope){
+  $rootScope.title = "Dashboard";
+  $rootScope.nav = "Dashboard";
+
   DashboardService.list(Session.id)
     .then(function (res) {
       $scope.dashboard = res.data.result;
