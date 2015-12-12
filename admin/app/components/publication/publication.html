@@ -42,7 +42,7 @@
           multiple
           data-error="Este campo es requerido."
           ng-required="true"
-          data-placeholder="Elige los autores."
+          data-placeholder="Elige los autores"
           ng-model="publication.participantes"
           ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
         </select>
@@ -60,7 +60,7 @@
             data-error="Este campo es requerido."
             name="inputRevista"
             id="inputRevista"
-            data-placeholder="Elige una revista."
+            data-placeholder="Elige una revista"
             ng-model="publication.journal"
             ng-options="journal.id as journal.description for journal in journals">
           </select>

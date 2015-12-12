@@ -18,11 +18,11 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
           Alert.error(err.message,MESSAGES.ERROR_TEXT);
         });
 
-      $scope.delete = function (id, index) {
+      $scope.delete = function (item) {
         Alert.confirm(MESSAGES.DELETE_ELEMENT,MESSAGES.DELETE_QUESTION,MESSAGES.DELETE_CONFIRM,function(){
-          service.delete(id, Session.id)
+          service.delete(item.id, Session.id)
             .then(function () {
-              $scope[listName].splice(index, 1);
+              $scope[listName].splice($scope[listName].indexOf(item), 1);
               Alert.success(name+" "+MESSAGES.NOTIFICATION_DELETE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_DELETE_NAME+"!");
             }, function (err) {
               Alert.error(err.message,MESSAGES.ERROR_TEXT);

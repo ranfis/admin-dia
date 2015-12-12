@@ -35,7 +35,7 @@
             multiple
             data-error="Este campo es requerido."
             ng-required="true"
-            data-placeholder="Elige los autores."
+            data-placeholder="Elige los autores"
             ng-model="congress.participantes"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
           </select>
@@ -53,7 +53,7 @@
             name="inputPatrocinio"
             data-error="Este campo es requerido."
             id="inputPatrocinio"
-            data-placeholder="Elige un patrocinador."
+            data-placeholder="Elige un patrocinador"
             ng-model="congress.patrocinio"
             ng-options="sponsor.id as sponsor.nombre for sponsor in sponsors">
           </select>

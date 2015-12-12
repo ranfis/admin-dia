@@ -5,7 +5,7 @@
         <div class="widget-icon green pull-left">
           <i class="fa fa-folder-open"></i>
         </div>
-        <div class="title">80</div>
+        <div class="title">{{dashboard.projects_total || 0}}</div>
         <div class="comment">Proyectos</div>
       </rd-widget-body>
     </rd-widget>
@@ -16,7 +16,7 @@
         <div class="widget-icon red pull-left">
           <i class="fa fa-users"></i>
         </div>
-        <div class="title">16</div>
+        <div class="title">{{dashboard.congress || 0}}</div>
         <div class="comment">Congresos</div>
       </rd-widget-body>
     </rd-widget>
@@ -27,7 +27,7 @@
         <div class="widget-icon orange pull-left">
           <i class="fa fa-newspaper-o"></i>
         </div>
-        <div class="title">225</div>
+        <div class="title">{{dashboard.publications || 0}}</div>
         <div class="comment">Publicaciones</div>
       </rd-widget-body>
     </rd-widget>
@@ -38,7 +38,7 @@
         <div class="widget-icon blue pull-left">
           <i class="fa fa-male"></i>
         </div>
-        <div class="title">62</div>
+        <div class="title">{{dashboard.participants || 0}}</div>
         <div class="comment">Investigadores</div>
       </rd-widget-body>
     </rd-widget>
@@ -55,9 +55,13 @@
         <div class="table-responsive">
           <table class="table">
             <tbody>
-            <tr><td>Proyectos Aprobado</td><td>10</td><td><span class="text-success"><i class="fa fa-check text-center"></i></span></td></tr>
-            <tr><td>Proyectos en Proceso</td><td>5</td><td><span class="text-warning"><i class="fa fa-warning"></i></span></td></tr>
-            <tr><td>Proyectos Rechazado</td><td>21</td><td><span class="text-success"><span class="text-danger"><i class="fa fa-times"></i></span></td></tr>
+            <tr><td>Proyectos Aprobado</td><td>{{dashboard.projects_accepted || 0}}</td><td><span class="text-success"><i class="fa fa-check text-center"></i></span></td></tr>
+            <tr><td><span class="pull-right">Proyectos finalizados</span></td><td>{{dashboard.projects_finished || 0}}</td><td></td>
+            <tr><td><span class="pull-right">Proyectos en proceso</span></td><td>{{dashboard.projects_processing || 0}}</td><td></td>
+            <tr><td><span class="pull-right">Proyectos no finalizados</span></td><td>{{dashboard.projects_no_finished || 0}}</td><td></td>
+            </tr>
+            <tr><td>Proyectos en Proceso</td><td>{{dashboard.projects_review || 0}}</td><td><span class="text-warning"><i class="fa fa-warning"></i></span></td></tr>
+            <tr><td>Proyectos Rechazado</td><td>{{dashboard.projects_denied || 0}}</td><td><span class="text-success"><span class="text-danger"><i class="fa fa-times"></i></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -73,12 +77,25 @@
       <rd-widget-body classes="medium no-padding">
         <div class="table-responsive">
           <table class="table">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Ponencia</th>
+              <th>Lugar</th>
+            </tr>
+            </thead>
             <tbody>
-            <tr><td class="text-left">Ponencia 1 con nombre</td><td>Congreso 1 con nombre largo</td></tr>
-            <tr><td class="text-left">Ponencia 2</td><td>Congreso 2</td></tr>
-            <tr><td class="text-left">Ponencia 3</td><td>Congreso 3</td></tr>
+            <tr ng-repeat="congress in dashboard.last_congress">
+              <td class="text-left">{{congress.nombre}}</td>
+              <td>{{congress.ponencia}}</td>
+              <td>{{congress.lugar}}</td>
+            </tr>
+
             </tbody>
           </table>
+          <div ng-if="!dashboard.last_congress.length > 0">
+            <rd-loading></rd-loading>
+          </div>
         </div>
       </rd-widget-body>
       <rd-widget>
@@ -94,11 +111,25 @@
       <rd-widget-body classes="medium no-padding">
         <div class="table-responsive">
           <table class="table">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Revista</th>
+              <th>Derechos</th>
+            </tr>
+            </thead>
             <tbody>
-            <tr><td class="text-left">Nombre de Publicacion</td><td>Revista numero 1</td></tr>
-            <tr><td class="text-left">Nombre de Publicacion 2</td><td>Revista publicacion</td></tr>
+            <tr ng-repeat="publication in dashboard.last_publications">
+              <td class="text-left">{{publication.description}}</td>
+              <td>{{publication.journal.description}}</td>
+              <td>{{publication.has_intellectual_prop | sino}}</td>
+            </tr>
+
             </tbody>
           </table>
+          <div ng-if="!dashboard.last_publications.length > 0">
+            <rd-loading></rd-loading>
+          </div>
         </div>
       </rd-widget-body>
     </rd-widget>
