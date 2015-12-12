@@ -4,7 +4,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
   var ENTITY = entity.toUpperCase();
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var ListCtrl = function ($scope, Session, Alert, $injector, $rootScope) {
+    var ListCtrl = function ($scope, Session, Alert, Helper, $injector, $rootScope) {
       $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       var service = $injector.get(serviceName);
       service.list(Session.id)
@@ -12,7 +12,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
           $scope[listName] = res.data.result;
           service[listName] = $scope[listName];
           if(afterFetchList){
-            afterFetchList($scope);
+            afterFetchList($scope, Helper);
           }
         }, function (err) {
           Alert.error(err.message,MESSAGES.ERROR_TEXT);
@@ -32,7 +32,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     };
     ListCtrl.inject = [serviceName];
 
-    var CreateCtrl = function ($scope, Session, Alert, $location, $injector) {
+    var CreateCtrl = function ($scope, Session, Alert, Helper, $location, $injector) {
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -50,7 +50,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       $scope.save = function (form) {
         if (!form.$valid){return;}
         if(beforeSubmit){
-          beforeSubmit($scope);
+          beforeSubmit($scope, Helper);
         }
         service.create($scope[entity])
           .then(function () {
@@ -85,7 +85,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       $scope.save = function (form) {
         if (!form.$valid) {return;}
         if(beforeSubmit){
-          beforeSubmit($scope);
+          beforeSubmit($scope, Helper);
         }
         service.update($scope[entity])
           .then(function () {
