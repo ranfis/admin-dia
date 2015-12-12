@@ -1,13 +1,13 @@
 <div class="row header">
   <div class="col-xs-12">
-    <div class="user pull-right">
+    <div class="user pull-right" ng-hide="loggedIn===false">
       <div class="item dropdown">
         <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <img src="assets/img/avatar.jpg">
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
           <li class="dropdown-header">
-            {{currentUser.nombre_completo || "No ha iniciado sesión"}}
+            {{username}}
           </li>
           <li class="divider"></li>
           <li class="link">

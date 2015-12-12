@@ -7,6 +7,7 @@ angular.module('diaApp')
     $scope.isAuthorized = AuthService.isAuthorized;
     $rootScope.title = "";
     $rootScope.nav = "";
+    $rootScope.loggedIn = false;
 
     /**
      * Sidebar Toggle & Cookie Control
@@ -44,13 +45,17 @@ angular.module('diaApp')
   $scope.setCurrentUser = function (user) {
     //console.log("setCurrentUser",user);
     $scope.currentUser = user;
+    $rootScope.loggedIn = true;
+    $rootScope.username = user.nombre_completo;
   };
   AuthService.trySessionRestore($scope.setCurrentUser);
 })
   .run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
+      $rootScope.loggedIn = false;
       //console.log("routeChangeStart",next);
       if(next.data){
+        $rootScope.loggedIn = true;
         var authorizedRoles = next.data.authorizedRoles;
         //console.log("authorizedRoles",authorizedRoles);
         if (!AuthService.isAuthorized(authorizedRoles)) {

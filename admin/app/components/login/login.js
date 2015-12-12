@@ -11,6 +11,7 @@ angular.module('diaApp')
           .then(function (user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, user.name);
             $scope.setCurrentUser(user);
+            $rootScope.loggedIn = false;
             $location.path(PATH.ROOT);
           }, function (err) {
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed,err);
