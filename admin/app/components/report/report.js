@@ -1,8 +1,9 @@
 'use strict';
 
 
-var ReportCtrl = function($scope, Session, WS){
-
+var ReportCtrl = function($scope, Session, WS, $rootScope){
+  $rootScope.title = "Reporte";
+  $rootScope.nav = "Reporte";
   $scope.encodedSession = btoa(Session.id);
   $scope.save = function(index) {
     var location_url = "";
