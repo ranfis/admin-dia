@@ -13,12 +13,12 @@ angular.module('diaApp').config(
     },
     // After Fetch
     function ($scope,Helper) {
-      console.info($scope);
-      //$scope["publication"].participantes = Helper.getIDs($scope["publication"].participantes); // Retrieve the actual select value
-      //$scope["publication"].journal = $scope["publication"].journal.id; // Retrieve the actual select value
+      $scope["publication"].participantes = Helper.getIDs($scope["publication"].participantes); // Retrieve the actual select value
+      $scope["publication"].journal = $scope["publication"].journal.id; // Retrieve the actual select value
     },
     // Change Before Submit
     function($scope){
+      $scope["publication"].has_intellectual_prop = $scope["publication"].has_intellectual_prop || false;
       $scope.publication.date+="-00-00";
     })
 );
