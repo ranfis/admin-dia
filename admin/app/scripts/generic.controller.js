@@ -5,6 +5,8 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
     var ListCtrl = function ($scope, Session, Alert, Helper, $injector, $rootScope) {
+      $rootScope.title = name;
+      $rootScope.nav = name;
       $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       var service = $injector.get(serviceName);
       service.list(Session.id)
@@ -32,7 +34,9 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     };
     ListCtrl.inject = [serviceName];
 
-    var CreateCtrl = function ($scope, Session, Alert, Helper, $location, $injector) {
+    var CreateCtrl = function ($scope,$rootScope, Session, Alert, Helper, $location, $injector) {
+      $rootScope.title = name;
+      $rootScope.nav = name+"/nuevo";
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -64,7 +68,10 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     };
     CreateCtrl.inject = [serviceName];
 
-    var DetailsCtrl = function ($scope, Session, Alert, Helper, $routeParams, $location, $injector) {
+    var DetailsCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
+      var id = $routeParams.id;
+      $rootScope.title = name;
+      $rootScope.nav = name+"/editar/"+id;
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -75,7 +82,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
         });
       }
       var service = $injector.get(serviceName);
-      $scope[entity] = Helper.selectById(service[listName], $routeParams.id); // Getting the selected congress from memory
+      $scope[entity] = Helper.selectById(service[listName], id); // Getting the selected congress from memory
       $scope[entity].session_id = Session.id;
 
       if(afterFetch){

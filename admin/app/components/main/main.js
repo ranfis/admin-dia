@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('diaApp')
-  .controller('MainCtrl', function($scope, $cookieStore,USER_ROLES,AuthService, DashboardService) {
+  .controller('MainCtrl', function($scope,$rootScope, $cookieStore,USER_ROLES,AuthService) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
+    $rootScope.title = "";
+    $rootScope.nav = "";
 
     /**
      * Sidebar Toggle & Cookie Control
