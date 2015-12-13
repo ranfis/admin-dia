@@ -20,8 +20,10 @@ angular.module('diaApp')
     SUMMARY:WS_URL+"/summary",
     LOGIN: WS_URL+"/login",
     DASHBOARD: WS_URL+"/dashboard",
-    REPORT_EARNINGS: WS_URL+"report/projects/earnings/",
-    REPORT_OVERHEAD:   WS_URL+"report/projects/earnings/overhead/",
+    REPORT: {
+      EARNINGS: WS_URL+"report/projects/earnings/",
+      OVERHEAD:   WS_URL+"report/projects/earnings/overhead/"
+    },
     GET: function(service){
       return WS_URL+service+"/get";
     },

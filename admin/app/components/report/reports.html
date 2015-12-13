@@ -7,13 +7,49 @@
       <div class="title">Reportes</div>
       <div class="comment">Generación de Reportes</div>
     </rd-widget-body>
-    <form class="form-horizontal" ng-submit="save(1)" name="rForm" novalidate>
-      <label class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">Reporte de Ganancias de Monto Total de Proyectos</label>
-      <ui-submit-without></ui-submit-without>
+
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+        <h4>Ganancias</h4>
+        <hr/>
+      </div>
+    </div>
+
+    <form class="form-horizontal" ng-submit="save(1, rForm1)" name="rForm1" novalidate>
+      <fieldset class="form-group ">
+        <label class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">Monto Total de Proyectos</label>
+        <ui-submit-without></ui-submit-without>
+      </fieldset>
     </form>
-    <form class="form-horizontal" ng-submit="save(2)" name="rForm" novalidate>
-      <label class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">Reporte de Ganancias de Overhead de Proyectos</label>
-      <ui-submit-without></ui-submit-without>
+
+    <form class="form-horizontal" ng-submit="save(2, rForm2)" name="rForm2" novalidate>
+      <fieldset class="form-group">
+        <label class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 control-label">Overhead de Proyectos</label>
+        <ui-submit-without></ui-submit-without>
+      </fieldset>
+    </form>
+
+    <form class="form-horizontal" ng-submit="save(3, rForm3)" name="rForm3" novalidate>
+      <fieldset class="form-group">
+        <label for="year_earning" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Monto Total por año</label>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <input type="number" min="2000" max="3000" class="form-control" name="year" id="year_earning" placeholder="Fecha de aplicacion" ng-model="report.year.earning" ng-required="true" data-error="Por favor llenar con un año valido.">
+          <div class="help-block with-errors"></div>
+        </div>
+        <ui-submit-without></ui-submit-without>
+      </fieldset>
+    </form>
+
+    <form class="form-horizontal" ng-submit="save(4, rForm4)" name="rForm4" novalidate>
+      <fieldset class="form-group">
+        <label for="year_overhead" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">Overhead por año</label>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <input type="number" min="2000" max="3000" class="form-control" name="year" id="year_overhead" placeholder="Fecha de aplicacion" ng-model="report.year.overhead" ng-required="true" data-error="Por favor llenar con un año valido.">
+          <div class="help-block with-errors"></div>
+        </div>
+        <ui-submit-without></ui-submit-without>
+      </fieldset>
     </form>
   </rd-widget>
 </div>

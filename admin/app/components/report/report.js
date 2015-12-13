@@ -2,22 +2,37 @@
 
 
 var ReportCtrl = function($scope, Session, WS, $rootScope){
-  $rootScope.title = "Reporte";
-  $rootScope.nav = "Reporte";
-  $scope.encodedSession = btoa(Session.id);
-  $scope.save = function(index) {
+  $scope.report = {
+    year: {
+      earning:"",
+      overhead:""
+    }
+  };
+  $rootScope.title = "Reportes";
+  $rootScope.nav = "Reportes";
+  var encodedSession = btoa(Session.id);
+  $scope.save = function(index, form) {
     var location_url = "";
     switch(index) {
       case 1: {
-        location_url = WS.REPORT_EARNINGS;
+        location_url = WS.REPORT.EARNINGS+encodedSession;
         break;
       }
       case 2: {
-        location_url = WS.REPORT_OVERHEAD;
+        location_url = WS.REPORT.OVERHEAD+encodedSession;
+        break;
+      }
+      case 3: {
+        location_url = WS.REPORT.EARNINGS+encodedSession+"?year="+$scope.report.year.earning;
+        break;
+      }
+      case 4: {
+        location_url = WS.REPORT.OVERHEAD+encodedSession+"?year="+$scope.report.year.overhead;
         break;
       }
     }
-    window.location.href = location_url+$scope.encodedSession;
+    if (!form.$valid){return;}
+    window.location.href = location_url;
   }
 };
 angular.module('diaApp').controller(ReportCtrl)
