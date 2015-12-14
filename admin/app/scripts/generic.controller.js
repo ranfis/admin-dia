@@ -37,7 +37,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
 
     var CreateCtrl = function ($scope,$rootScope, Session, Alert, Helper, $location, $injector) {
       $rootScope.title = name;
-      $rootScope.nav = name+"/nuevo";
+      $rootScope.nav = name+" / Nuevo";
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
@@ -72,7 +72,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     var DetailsCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
       var id = $routeParams.id;
       $rootScope.title = name;
-      $rootScope.nav = name+"/editar/"+id;
+      $rootScope.nav = name+" / Editar / "+id;
       if(resolveDeps){
         resolveDeps.forEach(function(dep){
           var depService = $injector.get(dep.service);
