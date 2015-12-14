@@ -23,6 +23,7 @@
             data-placeholder="Investigador Principal"
             ng-model="project.researcher"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
+            <option><option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
@@ -104,6 +105,7 @@
             data-placeholder="Institucion Principal"
             ng-model="project.institution"
             ng-options="institution.id as institution.name for institution in institutions">
+            <option><option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
@@ -141,6 +143,7 @@
             data-placeholder="Asesor"
             ng-model="project.adviser"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
+            <option><option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
@@ -178,6 +181,7 @@
             data-placeholder="Moneda"
             ng-model="project.currency"
             ng-options="currency.id as currency.symbol for currency in currencies">
+            <option><option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
@@ -229,6 +233,7 @@
             data-placeholder="Unidad Ejecutora"
             ng-model="project.executing_unit"
             ng-options="unit.id as unit.name for unit in units">
+            <option><option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
@@ -247,6 +252,7 @@
             data-placeholder="Unidad Supervisora"
             ng-model="project.superviser_unit"
             ng-options="unit.id as unit.name for unit in units">
+            <option><option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
