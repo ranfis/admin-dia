@@ -8,13 +8,13 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
+            <th class="text-center">Nombre de la Unidad</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="unit in units | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{unit.name}}</td>
-              <td>
+              <td class="text-center">{{unit.name}}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/unidades/{{unit.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(unit)"><i class="fa fa-trash"></i></a>
               </td>

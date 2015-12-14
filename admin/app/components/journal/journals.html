@@ -8,13 +8,13 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
+            <th class="text-center">Nombre de la Revista</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="journal in journals | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{journal.description}}</td>
-              <td>
+              <td class="text-center">{{journal.description}}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/revistas/{{journal.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(journal)"><i class="fa fa-trash"></i></a>
               </td>

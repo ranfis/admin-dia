@@ -8,29 +8,29 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Publicación</th>
-            <th>Fecha</th>
-            <th>Revista</th>
-            <th>Volumen</th>
-            <th>Página</th>
-            <th>Autores</th>
-            <th>Cesión de Derechos</th>
+            <th class="text-center">Publicación</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Revista</th>
+            <th class="text-center">Volumen</th>
+            <th class="text-center">Página</th>
+            <th class="text-center">Autores</th>
+            <th class="text-center">Cesión de Derechos</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="publication in publications | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{publication.description}}</td>
-              <td>{{publication.date}}</td>
-              <td>{{publication.journal.description}}</td>
-              <td>{{publication.volume}}</td>
-              <td>{{publication.pages}}</td>
-              <td>
+              <td class="text-center">{{publication.description}}</td>
+              <td class="text-center">{{publication.date}}</td>
+              <td class="text-center">{{publication.journal.description}}</td>
+              <td class="text-center">{{publication.volume}}</td>
+              <td class="text-center">{{publication.pages}}</td>
+              <td class="text-center">
                 <div ng-repeat="participant in publication.participantes">
-                  {{participant.nombre}} {{participant.apellido}} <br>
+                  - {{participant.nombre}} {{participant.apellido}} <br>
                 </div>
               </td>
-              <td>{{ publication.has_intellectual_prop | sino }}</td>
-              <td>
+              <td class="text-center">{{ publication.has_intellectual_prop | sino }}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/publicaciones/{{publication.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(publication)"><i class="fa fa-trash"></i></a>
               </td>

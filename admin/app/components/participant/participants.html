@@ -8,15 +8,15 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Apellido</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="participant in participants | filter : searchFilter | orderBy: '-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{participant.nombre}}</td>
-              <td>{{participant.apellido}}</td>
-              <td>
+              <td class="text-center">{{participant.nombre}}</td>
+              <td class="text-center">{{participant.apellido}}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/participantes/{{participant.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(participant)"><i class="fa fa-trash"></i></a>
               </td>

@@ -8,13 +8,13 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
+            <th class="text-center">Nombre de la Institución</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="institution in institutions | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{institution.name}}</td>
-              <td>
+              <td class="text-center">{{institution.name}}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/instituciones/{{institution.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(institution)"><i class="fa fa-trash"></i></a>
               </td>

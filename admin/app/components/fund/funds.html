@@ -8,13 +8,13 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
+            <th class="text-center">Nombre del Fondo</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="fund in funds | filter : searchFilter | orderBy:'-id'  | itemsPerPage:itemsPerPageTable">
-              <td>{{fund.name}}</td>
-              <td>
+              <td class="text-center">{{fund.name}}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/fondos/{{fund.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(fund)"><i class="fa fa-trash"></i></a>
               </td>

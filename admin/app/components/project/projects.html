@@ -8,41 +8,64 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Descripción</th>
-            <th>Fecha de Aplicacion</th>
-            <th>Estado Actual</th>
-            <th>Estado de Aplicacion</th>
-            <th>Asesor</th>
-            <th>co_researchers</th>
-            <th>contrapartida</th>
-            <th>currency</th>
-            <th>date_start</th>
-            <th>funds</th>
-            <th>input</th>
-            <th>overhead</th>
-            <th>patent</th>
-            <th>software</th>
-            <th>total_amount</th>
+            <th class="text-center">Descripción</th>
+            <th class="text-center">Investigador</th>
+            <th class="text-center">Año Inicio</th>
+            <th class="text-center">Año Final</th>
+            <th class="text-center">Estado de Aplicación</th>
+            <th class="text-center">Estado Actual</th>
+            <th class="text-center">Co-Investigadores</th>
+            <th class="text-center">Institución Principal</th>
+            <th class="text-center">Otras Instituciones</th>
+            <th class="text-center">Asesor</th>
+            <th class="text-center">Fondo</th>
+            <th class="text-center">Monto Total</th>
+            <th class="text-center">Contrapartida</th>
+            <th class="text-center">Aporte</th>
+            <th class="text-center">Overhead</th>
+            <th class="text-center">Unidad Ejecutora</th>
+            <th class="text-center">Unidad Supervisora</th>
+            <th class="text-center">Patente</th>
+            <th class="text-center">Software</th>
+            <th class="text-center">Otro Producto</th>
             <th></th>
             </thead>
             <tbody>
-            <tr dir-paginate="project in projects | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{project.description}}</td>
-              <td>{{project.date_application}}</td>
-              <td>{{project.actual_status.description}}</td>
-              <td>{{project.application_status.description}}</td>
-              <td>{{project.advisor.id}}</td>
-              <td>{{project.co_researchers}}</td>
-              <td>{{project.contrapartida}}</td>
-              <td>{{project.currency.id}}</td>
-              <td>{{project.date_start}}</td>
-              <td>{{project.funds}}</td>
-              <td>{{project.input}}</td>
-              <td>{{project.overhead}}</td>
-              <td>{{project.patent}}</td>
-              <td>{{project.software}}</td>
-              <td>{{project.total_amount}}</td>
+            <tr
+              dir-paginate="project in projects | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+              <td class="text-center">{{project.description}}</td>
+              <td class="text-center">{{project.researcher.name}} {{project.researcher.lastname}}</td>
+              <td class="text-center">{{project.date_start}}</td>
+              <td class="text-center">{{project.date_application}}</td>
+              <td class="text-center">{{project.application_status.description}}</td>
+              <td class="text-center">{{project.current_status.description}}</td>
+              <td class="text-center">
+                <div ng-repeat="cor in project.co_researchers">
+                  - {{cor.nombre}} {{cor.apellido}}<br>
+                </div>
+              </td>
+              <td class="text-center">{{project.institution.name}}</td>
               <td>
+                <div ng-repeat="i in project.other_institutions">
+                  - {{i.name}}<br>
+                </div>
+              </td>
+              <td class="text-center">{{project.adviser.id}}</td>
+              <td class="text-center">
+                <div ng-repeat="f in project.funds">
+                  - {{f.name}}<br>
+                </div>
+              </td>
+              <td class="text-center">{{project.total_amount}}</td>
+              <td class="text-center">{{project.counterpart}}</td>
+              <td class="text-center">{{project.input}}</td>
+              <td class="text-center">{{project.overhead}}</td>
+              <td class="text-center">{{project.executing_unit.name}}</td>
+              <td class="text-center">{{project.superviser_unit.name}}</td>
+              <td class="text-center">{{project.software}}</td>
+              <td class="text-center">{{project.patent}}</td>
+              <td class="text-center">{{project.other_product}}</td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/proyectos/{{project.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(project)"><i class="fa fa-trash"></i></a>
               </td>
@@ -59,7 +82,7 @@
         <div class="pull-right">
           <dir-pagination-controls
             direction-links="true"
-            boundary-links="true" >
+            boundary-links="true">
           </dir-pagination-controls>
         </div>
       </rd-widget-footer>

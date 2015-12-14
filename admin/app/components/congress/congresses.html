@@ -8,27 +8,27 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <th>Nombre</th>
-            <th>Fecha</th>
-            <th>Tema</th>
-            <th>Lugar</th>
-            <th>Patrocinio</th>
-            <th>Autores</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Tema</th>
+            <th class="text-center">Lugar</th>
+            <th class="text-center">Patrocinio</th>
+            <th class="text-center">Autores</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="congress in congresses | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
-              <td>{{congress.nombre}}</td>
-              <td>{{congress.fecha_congreso}}</td>
-              <td>{{congress.ponencia}}</td>
-              <td>{{congress.lugar}}</td>
-              <td>{{congress.patrocinio.nombre}}</td>
-              <td>
+              <td class="text-center">{{congress.nombre}}</td>
+              <td class="text-center">{{congress.fecha_congreso}}</td>
+              <td class="text-center">{{congress.ponencia}}</td>
+              <td class="text-center">{{congress.lugar}}</td>
+              <td class="text-center">{{congress.patrocinio.nombre}}</td>
+              <td class="text-center">
                 <div ng-repeat="participant in congress.participantes">
-                  {{participant.nombre}} {{participant.apellido}} <br>
+                  - {{participant.nombre}} {{participant.apellido}} <br>
                 </div>
               </td>
-              <td>
+              <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/congresos/{{congress.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(congress)"><i class="fa fa-trash"></i></a>
               </td>
