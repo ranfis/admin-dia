@@ -12,7 +12,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="journal in journals | filter : searchFilter | orderBy:'-id'">
+            <tr ng-repeat="journal in journals | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{journal.description}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/revistas/{{journal.id}}"><i class="fa fa-pencil"></i></a>
@@ -28,6 +28,12 @@
       </rd-widget-body>
       <rd-widget-footer>
         <a class="btn btn-sm btn-success" href="#/revistas/crear"><i class="fa fa-plus"></i></a>
+        <div class="pull-right">
+          <dir-pagination-controls
+            direction-links="true"
+            boundary-links="true" >
+          </dir-pagination-controls>
+        </div>
       </rd-widget-footer>
     </rd-widget>
   </div>

@@ -17,7 +17,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="congress in congresses | filter : searchFilter | orderBy:'-id'">
+            <tr dir-paginate="congress in congresses | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{congress.nombre}}</td>
               <td>{{congress.fecha_congreso}}</td>
               <td>{{congress.ponencia}}</td>
@@ -42,6 +42,12 @@
       </rd-widget-body>
       <rd-widget-footer>
         <a class="btn btn-sm btn-success" href="#/congresos/crear"><i class="fa fa-plus"></i></a>
+        <div class="pull-right">
+          <dir-pagination-controls
+            direction-links="true"
+            boundary-links="true" >
+          </dir-pagination-controls>
+        </div>
       </rd-widget-footer>
     </rd-widget>
   </div>

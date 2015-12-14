@@ -26,7 +26,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="project in projects | filter : searchFilter">
+            <tr ng-repeat="project in projects | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{project.description}}</td>
               <td>{{project.date_application}}</td>
               <td>{{project.actual_status.description}}</td>
@@ -56,6 +56,12 @@
       </rd-widget-body>
       <rd-widget-footer>
         <a class="btn btn-sm btn-success" href="#/proyectos/crear"><i class="fa fa-plus"></i></a>
+        <div class="pull-right">
+          <dir-pagination-controls
+            direction-links="true"
+            boundary-links="true" >
+          </dir-pagination-controls>
+        </div>
       </rd-widget-footer>
     </rd-widget>
   </div>
