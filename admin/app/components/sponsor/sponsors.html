@@ -12,7 +12,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="sponsor in sponsors | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+            <tr dir-paginate="sponsor in sponsors | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{sponsor.nombre}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/patrocinadores/{{sponsor.id}}"><i class="fa fa-pencil"></i></a>

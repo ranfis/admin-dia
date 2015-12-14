@@ -12,7 +12,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="unit in units | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+            <tr dir-paginate="unit in units | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{unit.name}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/unidades/{{unit.id}}"><i class="fa fa-pencil"></i></a>

@@ -18,7 +18,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="publication in publications | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+            <tr dir-paginate="publication in publications | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{publication.description}}</td>
               <td>{{publication.date}}</td>
               <td>{{publication.journal.description}}</td>

@@ -12,7 +12,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="institution in institutions | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+            <tr dir-paginate="institution in institutions | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{institution.name}}</td>
               <td>
                 <a class="btn btn-sm btn-success" href="#/instituciones/{{institution.id}}"><i class="fa fa-pencil"></i></a>

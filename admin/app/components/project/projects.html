@@ -26,7 +26,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="project in projects | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+            <tr dir-paginate="project in projects | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{project.description}}</td>
               <td>{{project.date_application}}</td>
               <td>{{project.actual_status.description}}</td>
