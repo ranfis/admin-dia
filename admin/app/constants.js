@@ -83,7 +83,8 @@ angular.module('diaApp')
     LOGIN: "Se ha inicado sesión",
     LOGOUT: "Se ha cerrado la sesión del usuario",
     ERROR: {
-      NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet."
+      NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet.",
+      UNEXPECTED:"Ha ocurrido un error inesperado. Intente de nuevo mas tarde."
     },
     OK:"OK"
   })
