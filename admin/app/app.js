@@ -14,7 +14,8 @@ angular.module('diaApp', [
   'ui.toggle',
   "diaAppFilters",
   "localytics.directives",
-  "ui.bootstrap"
+  "ui.bootstrap",
+  'angularUtils.directives.dirPagination'
 ]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
 }]);
