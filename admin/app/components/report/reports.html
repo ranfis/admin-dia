@@ -158,16 +158,17 @@
               class="form-control"
               chosen
               ng-required="true"
-              name="researcher"
-              value="report.participant"
               data-error="Este campo es requerido."
               id="researcher"
               data-placeholder="Elige un patrocinador"
               ng-model="report.participant"
               ng-options="participant.id as (participant.nombre+' '+participant.apellido) for participant in participants">
+              <option><option>
             </select>
             <div class="help-block with-errors"></div>
           </div>
+
+        <input type="hidden" name="researcher" value="{{report.participant}}">
         <ui-submit-without></ui-submit-without>
       </fieldset>
     </form>

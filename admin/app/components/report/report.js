@@ -8,7 +8,7 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
     participant: 0
   };
   var encodedSession = btoa(Session.id);
-
+  var final_location = "";
 
   ParticipantService.list(Session.id)
     .then(function(res){
@@ -53,8 +53,15 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
     }
     if (!form.$valid){return;}
     //window.location.href = location_url;
+    if (!project) {
+      final_location = location_url+encodedSession;
+      console.log("hola");
+    } else {
+      final_location = location_url+encodedSession+"?researcher="+$scope.report.participant;
 
-    $scope.report_action = $sce.trustAsResourceUrl(location_url+encodedSession);
+    }
+
+    $scope.report_action = $sce.trustAsResourceUrl(final_location);
 
   }
 
