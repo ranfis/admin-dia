@@ -21,8 +21,18 @@ angular.module('diaApp')
     LOGIN: WS_URL+"/login",
     DASHBOARD: WS_URL+"/dashboard",
     REPORT: {
-      EARNINGS: WS_URL+"report/projects/earnings/",
-      OVERHEAD:   WS_URL+"report/projects/earnings/overhead/"
+      EARNINGS: {
+        SIMPLE: WS_URL+"report/projects/earnings/",
+        OVERHEAD:   WS_URL+"report/projects/earnings/overhead/",
+        TOTALBOTH: WS_URL+"report/projects/earnings/total-amount-overhead/"
+      },
+      PROJECTS: {
+        SIMPLE: WS_URL+"/report/projects/",
+        QUANTITY: WS_URL+"/report/projects/quantity/"
+      },
+      CONGRESS: WS_URL+"/report/congress/",
+      PUBLICATION: WS_URL+"/report/publications/",
+      ANNUAL: WS_URL+"/report/annual/"
     },
     GET: function(service){
       return WS_URL+service+"/get";
