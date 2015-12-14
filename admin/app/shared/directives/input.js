@@ -7,6 +7,7 @@ angular.module('diaApp')
       scope: {
         uName: '@',
         uDesc: '@',
+        uRequired:'=',
         uType: '@',
         uMin: '@',
         uMax: '@',
@@ -16,6 +17,7 @@ angular.module('diaApp')
       link: function(scope){
         scope.uID = "input"+scope.uName;
         scope.uError = "Este campo es requerido.";
+        scope.uRequired = true;
         scope.uDesc = scope.uDesc || scope.uName;
         $("form").validator();
       },
