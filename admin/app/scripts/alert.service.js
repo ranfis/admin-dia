@@ -30,6 +30,10 @@ angular.module('diaApp').service('Alert', function ($uibModal) {
     toastr.error(msg, title);
   };
 
+  this.info = function(msg,title){
+    toastr.info(msg, title);
+  };
+
   this.confirm = function (msg, title, confirmText, cb) {
     swal({
       title: title || "Por favor confirmar",

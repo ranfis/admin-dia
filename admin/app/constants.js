@@ -68,6 +68,7 @@ angular.module('diaApp')
     PARTICIPANT: "Participante",
     PUBLICATION: "Participante",
     INSTITUTION: "Institución",
+    REPORT: "Reporte",
     UNIT: "Unidad",
     // Constant for details of Notifications
     NOTIFICATION_DELETE_SUCCESS : "se ha borrado con exito",
@@ -76,6 +77,8 @@ angular.module('diaApp')
     NOTIFICATION_CREATE_NAME : "creado/a",
     NOTIFICATION_UPDATE_SUCCESS : "se ha actualizado con exito",
     NOTIFICATION_UPDATE_NAME : "actualizado/a",
+    NOTIFICATION_REPORT_INFO_TITLE: " se ha generado",
+    NOTIFICATION_REPORT_INFO: "Espere por favor, sino trate de nuevo.",
     // Messages for login and logout events
     LOGIN: "Se ha inicado sesión",
     LOGOUT: "Se ha cerrado la sesión del usuario",
