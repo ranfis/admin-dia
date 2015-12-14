@@ -121,6 +121,9 @@ angular.module('diaApp')
       SINGLE: "app/components/fund/fund.html",
       PLURAL: "app/components/fund/funds.html"
     },
+    ERROR404: {
+      SINGLE: "/404.html"
+    },
     JOURNAL: {
       LIST: "/revistas",
       CREATE: "/revistas/crear",
