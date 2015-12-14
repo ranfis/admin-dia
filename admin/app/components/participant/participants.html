@@ -13,7 +13,7 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="participant in participants | filter : searchFilter | orderBy: '-id'">
+            <tr dir-paginate="participant in participants | filter : searchFilter | orderBy: '-id' | itemsPerPage:itemsPerPageTable">
               <td>{{participant.nombre}}</td>
               <td>{{participant.apellido}}</td>
               <td>
@@ -30,6 +30,12 @@
       </rd-widget-body>
       <rd-widget-footer>
         <a class="btn btn-sm btn-success" href="#/participantes/crear"><i class="fa fa-plus"></i></a>
+        <div class="pull-right">
+          <dir-pagination-controls
+            direction-links="true"
+            boundary-links="true" >
+          </dir-pagination-controls>
+        </div>
       </rd-widget-footer>
     </rd-widget>
   </div>

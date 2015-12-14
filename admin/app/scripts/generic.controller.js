@@ -8,6 +8,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       $rootScope.title = name;
       $rootScope.nav = name;
       $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
+      $scope.itemsPerPageTable = 10; // Value of items per page for table
       var service = $injector.get(serviceName);
       service.list(Session.id)
         .then(function (res) {
