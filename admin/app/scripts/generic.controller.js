@@ -127,6 +127,9 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
         data: {
           authorizedRoles: [USER_ROLES.ADMIN]
         }
+      })
+      .otherwise({
+        templateUrl: PATH.ERROR404.SINGLE
       });
   };
 };

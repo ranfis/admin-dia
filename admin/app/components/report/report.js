@@ -68,5 +68,8 @@ angular.module('diaApp').controller(ReportCtrl)
           authorizedRoles: [USER_ROLES.ADMIN]
         },
         controller: ReportCtrl
+      })
+      .otherwise({
+        templateUrl: PATH.ERROR404.SINGLE
       });
   });
