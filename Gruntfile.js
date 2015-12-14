@@ -44,7 +44,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            WS_URL: grunt.option('ws') || 'http://104.236.201.101/'
+            WS_URL: grunt.option('ws') || ''
           }
         }
       }
