@@ -84,7 +84,7 @@ angular.module('diaApp')
       PLURAL: "app/components/project/projects.html"
     },
     DASHBOARD: {
-      SINGLE: "app/components/dashboard/dashboard.html",
+      SINGLE: "app/components/dashboard/dashboard.html"
     },
     REPORT: {
       LIST: "/reportes",

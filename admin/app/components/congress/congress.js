@@ -10,7 +10,6 @@ angular.module('diaApp').config(
       $scope["congresses"].forEach(function (congress) {
         congress.fecha_congreso = +congress.fecha_congreso.slice(0, 4);
       });
-      //console.log("Esto va a correr cuando hagan el list",$scope);
     },
     // After Fetch
     function ($scope,Helper) {
@@ -21,7 +20,6 @@ angular.module('diaApp').config(
     // Change Before Submit
     function ($scope) {
       $scope.congress.fecha_congreso += "-00-00";
-      //console.log("Esto va a corer cuando hagan el save()",$scope);
     })
 );
 
