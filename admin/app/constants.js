@@ -99,6 +99,9 @@ angular.module('diaApp')
     DASHBOARD: {
       SINGLE: "app/components/dashboard/dashboard.html"
     },
+    ABOUT: {
+      SINGLE: "app/components/about/about.html"
+    },
     REPORT: {
       LIST: "/reportes",
       SINGLE: "app/components/report/reports.html"

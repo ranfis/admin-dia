@@ -33,6 +33,9 @@ angular.module('diaApp').controller(DashboardCtrl)
         },
         controller: DashboardCtrl
       })
+      .when('/acerca', {
+        templateUrl: PATH.ABOUT.SINGLE
+      })
       .otherwise({
         templateUrl: PATH.ERROR404.SINGLE
       });
