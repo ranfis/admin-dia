@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('diaApp', [
+  'config',
   'ngAnimate',
   'ngAria',
   'ngCookies',
