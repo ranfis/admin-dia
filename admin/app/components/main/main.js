@@ -46,7 +46,6 @@ angular.module('diaApp')
     //console.log("setCurrentUser",user);
     $scope.currentUser = user;
     $rootScope.loggedIn = true;
-    $rootScope.username = user.nombre_completo;
   };
   AuthService.trySessionRestore($scope.setCurrentUser);
 })
@@ -55,7 +54,6 @@ angular.module('diaApp')
       $rootScope.loggedIn = false;
       //console.log("routeChangeStart",next);
       if(next.data){
-        $rootScope.loggedIn = true;
         var authorizedRoles = next.data.authorizedRoles;
         //console.log("authorizedRoles",authorizedRoles);
         if (!AuthService.isAuthorized(authorizedRoles)) {
@@ -71,7 +69,11 @@ angular.module('diaApp')
             $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             $location.path( "/login" );
           }
+        } else {
+          $rootScope.loggedIn = true;
+          $rootScope.username = "Sistema DIA"
         }
+
       }
     });
 });
