@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('diaApp').factory('AuthService', function ($http, Helper,Session,WS, REQUEST) {
+angular.module('diaApp').factory('AuthService', function ($http, Helper,Session,WS,ENV, REQUEST) {
     var authService = {};
 
     authService.login = function (credentials) {
       return $http
-        .post(WS.LOGIN, credentials,REQUEST.PLAIN)
+        .post(ENV.WS_URL+WS.LOGIN, credentials,REQUEST.PLAIN)
         .then(Helper.checkResult,Helper.handleErrors)
         .then(getUserSummary)
         .then(createSession);
@@ -14,7 +14,7 @@ angular.module('diaApp').factory('AuthService', function ($http, Helper,Session,
     var getUserSummary = function(res){
       var session = res.data.result;
       return $http
-        .get(WS.SUMMARY, {params:session})
+        .get(ENV.WS_URL+WS.SUMMARY, {params:session})
         .then(Helper.checkResult,Helper.handleErrors)
         .then(function (res) {
           var user = res.data.result;

@@ -1,6 +1,4 @@
 'use strict';
-(function() {
-var WS_URL = "http://104.236.201.101/";
 
 angular.module('diaApp')
   .constant('AUTH_EVENTS', {
@@ -16,53 +14,53 @@ angular.module('diaApp')
     ADMIN: 'ADMIN',
     EDITOR: 'EDITOR'
   })
-  .constant("WS",{
-    SUMMARY:WS_URL+"/summary",
-    LOGIN: WS_URL+"/login",
-    DASHBOARD: WS_URL+"/dashboard",
+  .constant("WS", {
+    SUMMARY: "/summary",
+    LOGIN: "/login",
+    DASHBOARD: "/dashboard",
     REPORT: {
       EARNINGS: {
-        SIMPLE: WS_URL+"report/projects/earnings/",
-        OVERHEAD:   WS_URL+"report/projects/earnings/overhead/",
-        TOTALBOTH: WS_URL+"report/projects/earnings/total-amount-overhead/"
+        SIMPLE: "report/projects/earnings/",
+        OVERHEAD: "report/projects/earnings/overhead/",
+        TOTALBOTH: "report/projects/earnings/total-amount-overhead/"
       },
       PROJECTS: {
-        SIMPLE: WS_URL+"/report/projects/",
-        QUANTITY: WS_URL+"/report/projects/quantity/"
+        SIMPLE: "/report/projects/",
+        QUANTITY: "/report/projects/quantity/"
       },
-      CONGRESS: WS_URL+"/report/congress/",
-      PUBLICATION: WS_URL+"/report/publications/",
-      ANNUAL: WS_URL+"/report/annual/"
+      CONGRESS: "/report/congress/",
+      PUBLICATION: "/report/publications/",
+      ANNUAL: "/report/annual/"
     },
-    GET: function(service){
-      return WS_URL+service+"/get";
+    GET: function (service) {
+      return service + "/get";
     },
-    LIST: function(service){
-      return WS_URL+service+"/list";
+    LIST: function (service) {
+      return service + "/list";
     },
-    ADD: function(service){
-      return WS_URL+service+"/add";
+    ADD: function (service) {
+      return service + "/add";
     },
-    UPDATE: function(service){
-      return WS_URL+service+"/update";
+    UPDATE: function (service) {
+      return service + "/update";
     },
-    DELETE: function(service){
-      return WS_URL+service+"/del";
+    DELETE: function (service) {
+      return service + "/del";
     },
   })
-  .constant("REQUEST",{
+  .constant("REQUEST", {
     PLAIN: {headers: {'Content-Type': "text/plain"}}
   })
-  .constant("MESSAGES",{
+  .constant("MESSAGES", {
     // Constants for delete function of services
-    DELETE_QUESTION : "¿Está seguro?",
-    DELETE_ELEMENT : "Este registro se borrará.",
-    DELETE_CONFIRM : "Si, borrar",
+    DELETE_QUESTION: "¿Está seguro?",
+    DELETE_ELEMENT: "Este registro se borrará.",
+    DELETE_CONFIRM: "Si, borrar",
     // Constant for errors
-    ERROR_TEXT : "¡Error!",
+    ERROR_TEXT: "¡Error!",
     // Constant of name of Entities for notification purpose
-    SPONSOR : "Patrocinador",
-    CONGRESS : "Congreso",
+    SPONSOR: "Patrocinador",
+    CONGRESS: "Congreso",
     FUND: "Fondo",
     JOURNAL: "Revista",
     PARTICIPANT: "Participante",
@@ -71,12 +69,12 @@ angular.module('diaApp')
     REPORT: "Reporte",
     UNIT: "Unidad",
     // Constant for details of Notifications
-    NOTIFICATION_DELETE_SUCCESS : "se ha borrado con exito",
-    NOTIFICATION_DELETE_NAME : "borrado/a",
-    NOTIFICATION_CREATE_SUCCESS : "se ha creado con exito",
-    NOTIFICATION_CREATE_NAME : "creado/a",
-    NOTIFICATION_UPDATE_SUCCESS : "se ha actualizado con exito",
-    NOTIFICATION_UPDATE_NAME : "actualizado/a",
+    NOTIFICATION_DELETE_SUCCESS: "se ha borrado con exito",
+    NOTIFICATION_DELETE_NAME: "borrado/a",
+    NOTIFICATION_CREATE_SUCCESS: "se ha creado con exito",
+    NOTIFICATION_CREATE_NAME: "creado/a",
+    NOTIFICATION_UPDATE_SUCCESS: "se ha actualizado con exito",
+    NOTIFICATION_UPDATE_NAME: "actualizado/a",
     NOTIFICATION_REPORT_INFO_TITLE: " se ha generado",
     NOTIFICATION_REPORT_INFO: "Espere por favor, sino trate de nuevo.",
     // Messages for login and logout events
@@ -84,12 +82,12 @@ angular.module('diaApp')
     LOGOUT: "Se ha cerrado la sesión del usuario",
     ERROR: {
       NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet.",
-      UNEXPECTED:"Ha ocurrido un error inesperado. Intente de nuevo mas tarde."
+      UNEXPECTED: "Ha ocurrido un error inesperado. Intente de nuevo mas tarde."
     },
-    OK:"OK"
+    OK: "OK"
   })
-  .constant("PATH",{
-    ROOT:"/",
+  .constant("PATH", {
+    ROOT: "/",
     PROJECT: {
       LIST: "/proyectos",
       CREATE: "/proyectos/crear",
@@ -169,4 +167,3 @@ angular.module('diaApp')
     LOGIN: "/login",
     LOGOUT: "/logout"
   });
-})();

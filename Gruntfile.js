@@ -18,7 +18,8 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    ngconstant:'grunt-ng-constant'
   });
 
   // Configurable paths for the application
@@ -30,6 +31,24 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    ngconstant: {
+      options: {
+        space: '  ',
+        wrap: '"use strict";\n\n {%= __ngModule %}',
+        name: 'config',
+      },
+      dev: {
+        options: {
+          dest: '<%= yeoman.app %>/app/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            WS_URL: grunt.option('ws') || 'http://104.236.201.101/'
+          }
+        }
+      }
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -418,6 +437,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:dev',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -442,6 +462,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:prod',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
