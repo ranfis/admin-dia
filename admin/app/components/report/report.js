@@ -1,7 +1,7 @@
 'use strict';
 
 
-var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantService, Helper){
+var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantService, Alert, MESSAGES){
   $rootScope.title = "Reportes";
   $rootScope.nav = "Reportes";
   $scope.report = {
@@ -15,7 +15,7 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
       $scope.participants = res.data.result;
     });
 
-  $scope.save = function(index, form, project) {
+  $scope.save = function(index, form) {
     var location_url = "";
     switch(index) {
       case 1: {
@@ -51,18 +51,11 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
         break;
       }
     }
-    if (!form.$valid){return;}
     //window.location.href = location_url;
-    if (!project) {
-      final_location = location_url+encodedSession;
-      console.log("hola");
-    } else {
-      final_location = location_url+encodedSession+"?researcher="+$scope.report.participant;
 
-    }
-
-    $scope.report_action = $sce.trustAsResourceUrl(final_location);
-
+    if (!form.$valid){return;}
+    $scope.report_action = $sce.trustAsResourceUrl(location_url+encodedSession);
+    Alert.info(MESSAGES.NOTIFICATION_REPORT_INFO, MESSAGES.REPORT+" "+MESSAGES.NOTIFICATION_REPORT_INFO_TITLE);
   }
 
 };
