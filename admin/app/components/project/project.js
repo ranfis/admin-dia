@@ -26,7 +26,6 @@ angular.module('diaApp').config(
           }
         });
         project.executing_units.forEach(function(u){
-          console.info(u)
           if(u.executing_unit){
             project.executing_unit = u;
           }
@@ -38,10 +37,7 @@ angular.module('diaApp').config(
     },
     // After Fetch
     function ($scope,Helper) {
-      console.info($scope);
-      $scope["project"].counterpart = $scope["project"].counterpart; // Retrieve the actual select value
-      //$scope["project"].researcher = $scope["project"].researcher.id; // Retrieve tReally??, he actual select value
-      $scope["project"].researcher = $scope["project"].researcher.id; // TODO: Retrieve the actual select value
+      $scope["project"].researcher = $scope["project"].researcher.id; // Retrieve the actual select value
       $scope["project"].co_researchers = Helper.getIDs($scope["project"].co_researchers); // Retrieve the actual select value
       $scope["project"].funds = Helper.getIDs($scope["project"].funds); // Retrieve the actual select value
       $scope["project"].currency = $scope["project"].currency.id; // Retrieve the actual select value
