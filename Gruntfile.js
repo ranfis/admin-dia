@@ -8,6 +8,12 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+  if (grunt.option('ws')){
+    var WS = grunt.option('ws');
+    if (WS.slice(-1) !== "/") {
+      WS += "/";
+    }
+  }
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -19,7 +25,7 @@ module.exports = function (grunt) {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
     cdnify: 'grunt-google-cdn',
-    ngconstant:'grunt-ng-constant'
+    ngconstant: 'grunt-ng-constant'
   });
 
   // Configurable paths for the application
@@ -44,7 +50,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            WS_URL: grunt.option('ws') || ''
+            WS_URL: WS || ''
           }
         }
       }
@@ -204,13 +210,13 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
+        ignorePath: /\.\.\//,
+        fileTypes: {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
             detect: {
@@ -276,27 +282,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-     cssmin: {
-       dist: {
-         files: {
-           '<%= yeoman.dist %>/styles/main.css': [
-             '.tmp/styles/{,*/}*.css'
-           ]
-         }
-       }
-     },
-     uglify: {
-       dist: {
-         files: {
-           '<%= yeoman.dist %>/scripts/scripts.js': [
-             '<%= yeoman.dist %>/scripts/scripts.js'
-           ]
-         }
-       }
-     },
-     concat: {
-       dist: {}
-     },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {}
+    },
 
     imagemin: {
       dist: {
