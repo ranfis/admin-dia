@@ -68,7 +68,16 @@
           <div class="help-block with-errors"></div>
         </div>
       </div>
-      <ui-submit></ui-submit>
+      <div class="form-group">
+        <div class="btn-group col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5" role="group">
+          <button type="button" onclick="window.history.back()" class="btn btn-default">Cancelar</button>
+          <button
+            type="submit"
+            ng-disabled="!publication.journal || !publication.participantes"
+            class="btn btn-success">Guardar
+          </button>
+        </div>
+      </div>
     </form>
   </rd-widget>
 </div>
