@@ -33,7 +33,7 @@ var ReportCtrl = function($scope, Session, WS, $rootScope){
     }
     if (!form.$valid){return;}
     window.location.href = location_url;
-  }
+  };
 };
 angular.module('diaApp').controller(ReportCtrl)
   .config(function ($routeProvider, PATH, USER_ROLES) {

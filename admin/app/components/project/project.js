@@ -68,6 +68,6 @@ angular.module('diaApp').config(
       $scope["project"].executing_units = [
         {id:$scope["project"].executing_unit,executing_unit:true,superviser_unit:false},
         {id:$scope["project"].superviser_unit,executing_unit:false,superviser_unit:true}
-      ]
+      ];
     })
 );

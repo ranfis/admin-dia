@@ -71,7 +71,7 @@ angular.module('diaApp')
           }
         } else {
           $rootScope.loggedIn = true;
-          $rootScope.username = "Sistema DIA"
+          $rootScope.username = "Sistema DIA";
         }
 
       }

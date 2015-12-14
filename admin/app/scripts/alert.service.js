@@ -52,5 +52,5 @@ angular.module('diaApp').service('Alert', function ($uibModal) {
       this.isModalOpen.close();
       this.isModalOpen = false;
     }
-  }
+  };
 });

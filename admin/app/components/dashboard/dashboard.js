@@ -11,7 +11,7 @@ angular.module('diaApp').service('DashboardService', function ($http, WS, Helper
   };
 });
 
-var DashboardCtrl = function($scope, Session, DashboardService, MESSAGES, $rootScope){
+var DashboardCtrl = function($scope, Session, Alert, DashboardService, MESSAGES, $rootScope){
   $rootScope.title = "Dashboard";
   $rootScope.nav = "Dashboard";
 
