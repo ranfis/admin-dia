@@ -53,6 +53,17 @@ module.exports = function (grunt) {
             WS_URL: WS || ''
           }
         }
+      },
+      test: {
+        options: {
+          dest: '<%= yeoman.app %>/app/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'test',
+            WS_URL: ''
+          }
+        }
       }
     },
     // Project settings
@@ -459,6 +470,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'ngconstant:test',
     'wiredep',
     'concurrent:test',
     'autoprefixer',
