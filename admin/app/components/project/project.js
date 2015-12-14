@@ -16,6 +16,24 @@ angular.module('diaApp').config(
       $scope["projects"].forEach(function(project){
         project.date_application = Helper.getWSYear(project.date_application);
         project.date_start = Helper.getWSYear(project.date_start);
+        project.other_institutions = [];
+        project.institutions.forEach(function(i){
+          if(i.principal){
+            project.institution = i;
+          }
+          else{
+            project.other_institutions.push(i);
+          }
+        });
+        project.executing_units.forEach(function(u){
+          console.info(u)
+          if(u.executing_unit){
+            project.executing_unit = u;
+          }
+          if(u.superviser_unit){
+            project.superviser_unit = u;
+          }
+        });
       });
     },
     // After Fetch
