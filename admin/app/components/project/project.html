@@ -12,7 +12,9 @@
 
       <!-- Investigador Principal-->
       <div class="form-group">
-        <label for="inputInvestigadorPrincipal" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Investigador Principal</label>
+        <label for="inputInvestigadorPrincipal"
+               class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Investigador
+          Principal</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           <select
             class="form-control"
@@ -23,7 +25,8 @@
             data-placeholder="Investigador Principal"
             ng-model="project.researcher"
             ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
-            <option><option>
+            <option>
+            <option>
           </select>
           <div class="help-block with-errors"></div>
         </div>
@@ -51,232 +54,266 @@
 
       <!--Estado de aplicacion-->
       <div class="form-group">
-        <label for="inputEstadoAplicacion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado Aplicación</label>
+        <label for="inputEstadoAplicacion"
+               class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado
+          Aplicación</label>
         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <div id="inputEstadoAplicacion" class="btn-group" data-toggle="buttons" ng-init="project.application_status">
+          <div id="inputEstadoAplicacion" class="btn-group" ng-init="project.application_status">
             <label class="btn btn-primary" ng-model="project.application_status" uib-btn-radio="'3'">Aceptada</label>
             <label class="btn btn-primary" ng-model="project.application_status" uib-btn-radio="'2'">En revisión</label>
             <label class="btn btn-primary" ng-model="project.application_status" uib-btn-radio="'1'">Rechazada</label>
           </div>
+          <div class="help-block with-errors"></div>
         </div>
       </div>
 
-      <!--Estado actual-->
-      <div class="form-group">
-        <label for="inputEstadoActual" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado Actual</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <div id="inputEstadoActual" class="btn-group">
-            <label class="btn btn-primary" ng-model="project.current_status" uib-btn-radio="'3'">Finalizada</label>
-            <label class="btn btn-primary" ng-model="project.current_status" uib-btn-radio="'2'">En proceso</label>
-            <label class="btn btn-primary" ng-model="project.current_status" uib-btn-radio="'1'">No finalizo</label>
+      <div ng-if="project.application_status == 3">
+
+        <!--Estado actual-->
+        <div class="form-group">
+          <label for="inputEstadoActual"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Estado
+            Actual</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <div id="inputEstadoActual" class="btn-group">
+              <label class="btn btn-primary" ng-model="project.current_status" uib-btn-radio="'3'">Finalizada</label>
+              <label class="btn btn-primary" ng-model="project.current_status" uib-btn-radio="'2'">En proceso</label>
+              <label class="btn btn-primary" ng-model="project.current_status" uib-btn-radio="'1'">No finalizo</label>
+            </div>
+            <div class="help-block with-errors"></div>
           </div>
         </div>
-      </div>
 
-      <!--Co-Investigadores-->
-      <div class="form-group">
-        <label for="inputCoInvestigadores" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Co-Investigadores</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputCoInvestigadores"
-            name="inputCoInvestigadores"
-            class="form-control"
-            chosen
-            multiple
-            ng-required="true"
-            data-placeholder="Co-Investigadores"
-            ng-model="project.co_researchers"
-            ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
-          </select>
+        <!--Co-Investigadores-->
+        <div class="form-group">
+          <label for="inputCoInvestigadores"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Co-Investigadores</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputCoInvestigadores"
+              name="inputCoInvestigadores"
+              class="form-control"
+              chosen
+              multiple
+              data-placeholder="Co-Investigadores"
+              ng-model="project.co_researchers"
+              ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Institucion Principal-->
+        <div class="form-group">
+          <label for="inputInstitucion"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Institucion
+            Principal</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputInstitucion"
+              name="inputInstitucion"
+              class="form-control"
+              chosen
+              data-placeholder="Institucion Principal"
+              ng-model="project.institution"
+              ng-options="institution.id as institution.name for institution in institutions">
+              <option>
+              <option>
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Otras Instituciones-->
+        <div class="form-group">
+          <label for="inputInstitucionOtras"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Otras
+            Instituciones</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputInstitucionOtras"
+              name="inputInstitucionOtras"
+              class="form-control"
+              chosen
+              multiple
+              data-placeholder="Otras Instituciones"
+              ng-model="project.other_institutions"
+              ng-options="institution.id as institution.name for institution in institutions">
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Asesor-->
+        <div class="form-group">
+          <label for="inputAsesor"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Asesor</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputAsesor"
+              name="inputAsesor"
+              class="form-control"
+              chosen
+              data-placeholder="Asesor"
+              ng-model="project.adviser"
+              ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
+              <option>
+              <option>
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Fondo-->
+        <div class="form-group">
+          <label for="inputFunds"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fondo</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputFunds"
+              name="inputFunds"
+              class="form-control"
+              chosen
+              multiple
+              data-placeholder="Fondo"
+              ng-model="project.funds"
+              ng-options="fund.id as fund.name for fund in funds">
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Moneda-->
+        <div class="form-group">
+          <label for="inputCurrency"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Moneda</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputCurrency"
+              name="inputCurrency"
+              class="form-control"
+              chosen
+              data-placeholder="Moneda"
+              ng-model="project.currency"
+              ng-options="currency.id as currency.symbol for currency in currencies">
+              <option>
+              <option>
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <ui-input
+          u-type="number"
+          u-required="false"
+          ng-model="project.total_amount"
+          u-name="MontoTotal"
+          u-desc="Monto Total"
+          u-min="0">
+        </ui-input>
+
+        <ui-input
+          u-type="number"
+          u-required="false"
+          ng-model="project.counterpart"
+          u-name="Contrapartida"
+          u-min="0">
+        </ui-input>
+
+        <ui-input
+          u-type="number"
+          u-required="false"
+          ng-model="project.overhead"
+          u-name="Overhead"
+          u-min="0">
+        </ui-input>
+
+        <ui-input
+          ng-model="project.input"
+          u-required="false"
+          u-name="Aporte">
+        </ui-input>
+
+        <ui-input
+          ng-model="project.other_product"
+          u-required="false"
+          u-desc="Otros Productos"
+          u-name="OtrosProductos">
+        </ui-input>
+
+        <!--Unidad Ejecutora-->
+        <div class="form-group">
+          <label for="inputUnitsExecuting"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad
+            Ejecutora</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputUnitsExecuting"
+              name="inputUnitsExecuting"
+              class="form-control"
+              chosen
+              data-placeholder="Unidad Ejecutora"
+              ng-model="project.executing_unit"
+              ng-options="unit.id as unit.name for unit in units">
+              <option>
+              <option>
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Unidad Supervisora-->
+        <div class="form-group">
+          <label for="inputUnitsSuperviser"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad
+            Supervisora</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <select
+              id="inputUnitsSuperviser"
+              name="inputUnitsSuperviser"
+              class="form-control"
+              chosen
+              data-placeholder="Unidad Supervisora"
+              ng-model="project.superviser_unit"
+              ng-options="unit.id as unit.name for unit in units">
+              <option>
+              <option>
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <!--Patente-->
+        <div class="form-group">
+          <label for="inputPatent"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Patente</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <toggle id="inputPatent" name="inputPatent" ng-model="project.patent" on="Si" off="No" onstyle="btn-success"
+                    offstyle="btn-primary"></toggle>
+          </div>
+          <div class="help-block with-errors"></div>
+        </div>
+
+        <!--Software-->
+        <div class="form-group">
+          <label for="inputSoftware"
+                 class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Software</label>
+          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <toggle id="inputSoftware" name="inputSoftware" ng-model="project.software" on="Si" off="No"
+                    onstyle="btn-success" offstyle="btn-primary"></toggle>
+          </div>
           <div class="help-block with-errors"></div>
         </div>
       </div>
-
-      <!--Institucion Principal-->
       <div class="form-group">
-        <label for="inputInstitucion" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Institucion Principal</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputInstitucion"
-            name="inputInstitucion"
-            class="form-control"
-            chosen
-            ng-required="true"
-            data-placeholder="Institucion Principal"
-            ng-model="project.institution"
-            ng-options="institution.id as institution.name for institution in institutions">
-            <option><option>
-          </select>
-          <div class="help-block with-errors"></div>
+        <div class="btn-group col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5" role="group">
+          <button type="button" onclick="window.history.back()" class="btn btn-default">Cancelar</button>
+          <button
+            type="submit"
+            ng-disabled="!project.researcher || !project.application_status"
+            class="btn btn-success">Guardar</button>
         </div>
       </div>
-
-      <!--Otras Instituciones-->
-      <div class="form-group">
-        <label for="inputInstitucionOtras" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Otras Instituciones</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputInstitucionOtras"
-            name="inputInstitucionOtras"
-            class="form-control"
-            chosen
-            multiple
-            ng-required="true"
-            data-placeholder="Otras Instituciones"
-            ng-model="project.other_institutions"
-            ng-options="institution.id as institution.name for institution in institutions">
-          </select>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--Asesor-->
-      <div class="form-group">
-        <label for="inputAsesor" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Asesor</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputAsesor"
-            name="inputAsesor"
-            class="form-control"
-            chosen
-            ng-required="true"
-            data-placeholder="Asesor"
-            ng-model="project.adviser"
-            ng-options="participant.id as (participant.nombre + ' ' + participant.apellido) for participant in participants">
-            <option><option>
-          </select>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--Fondo-->
-      <div class="form-group">
-        <label for="inputFunds" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Fondo</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputFunds"
-            name="inputFunds"
-            class="form-control"
-            chosen
-            multiple
-            ng-required="true"
-            data-placeholder="Fondo"
-            ng-model="project.funds"
-            ng-options="fund.id as fund.name for fund in funds">
-          </select>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--Moneda-->
-      <div class="form-group">
-        <label for="inputCurrency" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Moneda</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputCurrency"
-            name="inputCurrency"
-            class="form-control"
-            chosen
-            ng-required="true"
-            data-placeholder="Moneda"
-            ng-model="project.currency"
-            ng-options="currency.id as currency.symbol for currency in currencies">
-            <option><option>
-          </select>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <ui-input
-        u-type="number"
-        ng-model="project.total_amount"
-        u-name="MontoTotal"
-        u-desc="Monto Total"
-        u-min="0">
-      </ui-input>
-
-      <ui-input
-        u-type="number"
-        ng-model="project.counterpart"
-        u-name="Contrapartida"
-        u-min="0">
-      </ui-input>
-
-      <ui-input
-        u-type="number"
-        ng-model="project.overhead"
-        u-name="Overhead"
-        u-min="0">
-      </ui-input>
-
-      <ui-input
-        ng-model="project.input"
-        u-name="Aporte">
-      </ui-input>
-
-      <ui-input
-        ng-model="project.other_product"
-        u-desc="Otros Productos"
-        u-name="OtrosProductos">
-      </ui-input>
-
-      <!--Unidad Ejecutora-->
-      <div class="form-group">
-        <label for="inputUnitsExecuting" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad Ejecutora</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputUnitsExecuting"
-            name="inputUnitsExecuting"
-            class="form-control"
-            chosen
-            ng-required="true"
-            data-placeholder="Unidad Ejecutora"
-            ng-model="project.executing_unit"
-            ng-options="unit.id as unit.name for unit in units">
-            <option><option>
-          </select>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--Unidad Supervisora-->
-      <div class="form-group">
-        <label for="inputUnitsSuperviser" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Unidad Supervisora</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <select
-            id="inputUnitsSuperviser"
-            name="inputUnitsSuperviser"
-            class="form-control"
-            chosen
-            ng-required="true"
-            data-placeholder="Unidad Supervisora"
-            ng-model="project.superviser_unit"
-            ng-options="unit.id as unit.name for unit in units">
-            <option><option>
-          </select>
-          <div class="help-block with-errors"></div>
-        </div>
-      </div>
-
-      <!--Patente-->
-      <div class="form-group">
-        <label for="inputPatent" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Patente</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <toggle id="inputPatent" name="inputPatent" ng-model="project.patent" on="Si" off="No" onstyle="btn-success" offstyle="btn-primary"></toggle>
-        </div>
-        <div class="help-block with-errors"></div>
-      </div>
-
-      <!--Software-->
-      <div class="form-group">
-        <label for="inputSoftware" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Software</label>
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <toggle id="inputSoftware" name="inputSoftware" ng-model="project.software" on="Si" off="No" onstyle="btn-success" offstyle="btn-primary"></toggle>
-        </div>
-        <div class="help-block with-errors"></div>
-      </div>
-
-      <ui-submit></ui-submit>
     </form>
   </rd-widget>
 </div>
