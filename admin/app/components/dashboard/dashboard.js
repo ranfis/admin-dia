@@ -18,7 +18,7 @@ var DashboardCtrl = function($scope, Session, Alert, DashboardService, MESSAGES,
   DashboardService.list(Session.id)
     .then(function (res) {
       $scope.dashboard = res.data.result;
-      console.log($scope.dashboard);
+      //console.log($scope.dashboard);
     }, function (err) {
       Alert.error(err.message,MESSAGES.ERROR_TEXT);
     });

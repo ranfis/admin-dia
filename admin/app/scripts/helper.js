@@ -36,6 +36,6 @@ angular.module('diaApp')
       return res;
     };
     this.handleErrors = function(){
-      throw new Error(MESSAGES.ERROR.NO_INTERNET);
+      throw new Error(MESSAGES.ERROR.UNEXPECTED);
     };
   });
