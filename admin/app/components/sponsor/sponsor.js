@@ -3,5 +3,11 @@
 angular.module('diaApp').service('SponsorService', new GenericService("sponsor"));
 
 angular.module('diaApp').config(
-  new GenericController("SponsorService", "Patrocinador", "sponsor", "sponsors")
-);
+  new GenericController(
+    {
+      serviceName: "SponsorService",
+      name: "Patrocinador",
+      entity: "sponsor",
+      listName: "sponsors"
+    }
+  ));

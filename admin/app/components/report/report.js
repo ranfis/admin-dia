@@ -9,7 +9,7 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
     participant: 0
   };
   var encodedSession = btoa(Session.id);
-  var final_location = "";
+  //var final_location = ""; // TODO
 
   ParticipantService.list(Session.id)
     .then(function(res){
@@ -57,7 +57,7 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
     if (!form.$valid){return;}
     $scope.report_action = $sce.trustAsResourceUrl(location_url+encodedSession);
     Alert.info(MESSAGES.NOTIFICATION_REPORT_INFO, MESSAGES.REPORT+" "+MESSAGES.NOTIFICATION_REPORT_INFO_TITLE);
-  }
+  };
 
 };
 angular.module('diaApp').controller(ReportCtrl)

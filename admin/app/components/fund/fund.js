@@ -3,5 +3,10 @@
 angular.module('diaApp').service('FundService', new GenericService("fund"));
 
 angular.module('diaApp').config(
-  new GenericController("FundService","Fondo","fund","funds")
+  new GenericController({
+    serviceName: "FundService",
+    name: "Fondo",
+    entity: "fund",
+    listName: "funds"
+  })
 );

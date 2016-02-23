@@ -3,16 +3,17 @@
 angular.module('diaApp').service('ProjectService', new GenericService("project"));
 
 angular.module('diaApp').config(
-  new GenericController("ProjectService", "Proyectos", "project", "projects",
-    [
+  new GenericController({
+    serviceName: "ProjectService"
+    , name: "Proyectos", entity: "project", listName: "projects",
+    resolveDeps: [
       {service: "ParticipantService", list: "participants"},
       {service: "InstitutionService", list: "institutions"},
       {service: "UnitService", list: "units"},
       {service: "CurrencyService", list: "currencies"},
       {service: "FundService", list: "funds"}
     ],
-    // After Fetch List
-    function ($scope, Helper) {
+    afterFetchList: function ($scope, Helper) {
       $scope["projects"].forEach(function (project) {
         project.date_application = Helper.getWSYear(project.date_application);
         project.date_start = Helper.getWSYear(project.date_start);
@@ -35,8 +36,7 @@ angular.module('diaApp').config(
         });
       });
     },
-    // After Fetch
-    function ($scope, Helper) {
+    afterFetch: function ($scope, Helper) {
       $scope["project"].researcher = $scope["project"].researcher.id; // Retrieve the actual select value
       $scope["project"].co_researchers = Helper.getIDs($scope["project"].co_researchers); // Retrieve the actual select value
       $scope["project"].funds = Helper.getIDs($scope["project"].funds); // Retrieve the actual select value
@@ -64,8 +64,7 @@ angular.module('diaApp').config(
         }
       });
     },
-    // Change Before Submit
-    function ($scope, Helper) {
+    beforeSubmit: function ($scope, Helper) {
       $scope["project"].date_application = Helper.setWSYear($scope["project"].date_application);
       $scope["project"].date_start = Helper.setWSYear($scope["project"].date_start);
 
@@ -74,7 +73,7 @@ angular.module('diaApp').config(
         $scope["project"].software = $scope["project"].software || false;
 
         $scope["project"].institutions = [];
-        if($scope["project"].other_institutions) {
+        if ($scope["project"].other_institutions) {
           $scope["project"].other_institutions.forEach(function (i) {
             $scope["project"].institutions.push({id: i, principal: false});
           });
@@ -93,11 +92,6 @@ angular.module('diaApp').config(
           {id: $scope["project"].superviser_unit, executing_unit: false, superviser_unit: true}
         ];
       }
-      //else {
-      //  $scope["project"].institutions = [];
-      //  $scope["project"].co_researchers = [];
-      //  $scope["project"].funds = [];
-      //  $scope["project"].executing_units = [];
-      //}
-    })
+    }
+  })
 );
