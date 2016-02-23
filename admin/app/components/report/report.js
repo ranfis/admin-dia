@@ -1,9 +1,10 @@
 'use strict';
 
 
-var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantService, Alert, MESSAGES){
+var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantService, Alert, MESSAGES, ENV){
   $rootScope.title = "Reportes";
   $rootScope.nav = "Reportes";
+  var WSURL = ENV.WS_URL;
   $scope.report = {
     participant: 0
   };
@@ -19,35 +20,35 @@ var ReportCtrl = function($scope, Session, WS, $rootScope, $sce, ParticipantServ
     var location_url = "";
     switch(index) {
       case 1: {
-        location_url = WS.REPORT.EARNINGS.SIMPLE;
+        location_url = WSURL+WS.REPORT.EARNINGS.SIMPLE;
         break;
       }
       case 2: {
-        location_url = WS.REPORT.EARNINGS.OVERHEAD;
+        location_url = WSURL+WS.REPORT.EARNINGS.OVERHEAD;
         break;
       }
       case 3: {
-        location_url = WS.REPORT.EARNINGS.TOTALBOTH;
+        location_url = WSURL+WS.REPORT.EARNINGS.TOTALBOTH;
         break;
       }
       case 4: {
-        location_url = WS.REPORT.PROJECTS.QUANTITY;
+        location_url = WSURL+WS.REPORT.PROJECTS.QUANTITY;
         break;
       }
       case 5: {
-        location_url = WS.REPORT.PROJECTS.SIMPLE;
+        location_url = WSURL+WS.REPORT.PROJECTS.SIMPLE;
         break;
       }
       case 6: {
-        location_url = WS.REPORT.CONGRESS;
+        location_url = WSURL+WS.REPORT.CONGRESS;
         break;
       }
       case 7: {
-        location_url = WS.REPORT.PUBLICATION;
+        location_url = WSURL+WS.REPORT.PUBLICATION;
         break;
       }
       case 8: {
-        location_url = WS.REPORT.ANNUAL;
+        location_url = WSURL+WS.REPORT.ANNUAL;
         break;
       }
     }
