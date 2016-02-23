@@ -135,16 +135,20 @@
       </div>
     </div>
 
-    <form class="form-horizontal" method="get" action="{{report_action}}" ng-submit="save(5, rForm9)" name="rForm9" novalidate>
+    <form class="form-horizontal" method="get" action="{{report_action}}" ng-submit="save(5, rForm22)" name="rForm22" novalidate>
       <fieldset class="form-group">
-          <label for="radio_status_app1" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">Proyectos por Estado Aplicación</label>
-          <div id="radio_status_app" class="btn-group col-xs-5 col-sm-5 col-md-5 col-lg-5" data-toggle="buttons" >
+        <label for="radio_status__app1" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Proyectos por Estado Aplicación</label>
+        <div id="radio_status__app" class="btn-group col-xs-4 col-sm-4 col-md-4 col-lg-4" data-toggle="buttons" >
           <label class="btn btn-primary">
-            <input type="radio" name="application_status" id="radio_status_app1" value="3" required="required">Aceptada</label>
+            <input type="radio" name="application_status" id="radio_status__app1" value="3" required="required">Aceptada</label>
           <label class="btn btn-primary">
-            <input type="radio" name="application_status" id="radio_status_app2" value="2" required="required">En revisión</label>
+            <input type="radio" name="application_status" id="radio_status__app2" value="2" required="required">En revisión</label>
           <label class="btn btn-primary">
-            <input type="radio" name="application_status" id="radio_status_app3" value="1" required="required">Rechazada</label>
+            <input type="radio" name="application_status" id="radio_status__app3" value="1" required="required">Rechazada</label>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <input type="number" min="2000" max="3000" class="form-control" name="year" id="year_for_status" placeholder="Fecha" ng-model="report.year.status" data-error="Por favor llenar con un año valido.">
+          <div class="help-block with-errors"></div>
         </div>
         <ui-submit-without></ui-submit-without>
       </fieldset>
@@ -153,7 +157,7 @@
     <form class="form-horizontal" method="get" action="{{report_action}}" ng-submit="save(5, rForm10)" name="rForm10" novalidate>
       <fieldset class="form-group">
           <label for="researcher" class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Proyectos por Investigador</label>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
             <select
               class="form-control"
               chosen
@@ -168,6 +172,10 @@
             <div class="help-block with-errors"></div>
           </div>
         <input type="hidden" name="researcher" value="{{report.participant}}">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <input type="number" min="2000" max="3000" class="form-control" name="year" id="year_for_researcher" placeholder="Fecha" ng-model="report.year.researcher" data-error="Por favor llenar con un año valido.">
+          <div class="help-block with-errors"></div>
+        </div>
         <ui-submit-without></ui-submit-without>
       </fieldset>
     </form>
