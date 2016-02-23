@@ -69,7 +69,7 @@ angular.module('diaApp').config(
       $scope["project"].date_application = Helper.setWSYear($scope["project"].date_application);
       $scope["project"].date_start = Helper.setWSYear($scope["project"].date_start);
 
-      if ($scope["project"].application_status === 3) {
+      if ($scope["project"].application_status == 3) {
         $scope["project"].patent = $scope["project"].patent || false;
         $scope["project"].software = $scope["project"].software || false;
 
