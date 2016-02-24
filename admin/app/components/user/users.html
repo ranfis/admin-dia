@@ -12,8 +12,8 @@
             <th></th>
             </thead>
             <tbody>
-            <tr dir-paginate="fund in funds | filter : searchFilter | orderBy:'-id'  | itemsPerPage:itemsPerPageTable">
-              <td class="text-center">{{user.fullname}}</td>
+            <tr dir-paginate="user in users | filter : searchFilter | orderBy:'-id'  | itemsPerPage:itemsPerPageTable">
+              <td class="text-center">{{user.nombreCompleto}}</td>
               <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/usuarios/{{user.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(user)"><i class="fa fa-trash"></i></a>
