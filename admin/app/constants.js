@@ -12,7 +12,8 @@ angular.module('diaApp')
   .constant('USER_ROLES', {
     ALL: '*',
     ADMIN: 'ADMIN',
-    EDITOR: 'EDITOR'
+    REPORT: 'REPORT',
+    SUPER_ADMIN: 'SUPER-ADMIN'
   })
   .constant("WS", {
     SUMMARY: "/summary",
@@ -68,6 +69,7 @@ angular.module('diaApp')
     INSTITUTION: "Institución",
     REPORT: "Reporte",
     UNIT: "Unidad",
+    USER: "Usuario",
     // Constant for details of Notifications
     NOTIFICATION_DELETE_SUCCESS: "se ha borrado con exito",
     NOTIFICATION_DELETE_NAME: "borrado/a",
@@ -163,6 +165,13 @@ angular.module('diaApp')
       EDIT: "/unidades/:id",
       SINGLE: "app/components/unit/unit.html",
       PLURAL: "app/components/unit/units.html"
+    },
+    USER: {
+      LIST: "/usuarios",
+      CREATE: "/usuarios/crear",
+      EDIT: "/usuarios/:id",
+      SINGLE: "app/components/user/user.html",
+      PLURAL: "app/components/user/users.html"
     },
     LOGIN: "/login",
     LOGOUT: "/logout"
