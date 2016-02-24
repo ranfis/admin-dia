@@ -16,7 +16,6 @@
             <tr ng-repeat="user in users | filter : searchFilter | orderBy:'-id'">
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
-
               <td>
                 <a class="btn btn-sm btn-success" href="#/usuarios/{{user.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(user.id,$index)"><i class="fa fa-trash"></i></a>
@@ -31,6 +30,12 @@
       </rd-widget-body>
       <rd-widget-footer>
         <a class="btn btn-sm btn-success" href="#/usuarios/crear"><i class="fa fa-plus"></i></a>
+        <div class="pull-right">
+          <dir-pagination-controls
+            direction-links="true"
+            boundary-links="true" >
+          </dir-pagination-controls>
+        </div>
       </rd-widget-footer>
     </rd-widget>
   </div>

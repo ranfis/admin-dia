@@ -66,7 +66,7 @@ angular.module('diaApp').controller(ReportCtrl)
       .when(PATH.REPORT.LIST, {
         templateUrl: PATH.REPORT.SINGLE,
         data: {
-          authorizedRoles: [USER_ROLES.ADMIN]
+          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.REPORT, USER_ROLES.SUPER_ADMIN]
         },
         controller: ReportCtrl
       })
