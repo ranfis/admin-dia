@@ -59,6 +59,7 @@ angular.module('diaApp')
     DELETE_CONFIRM: "Si, borrar",
     // Constant for errors
     ERROR_TEXT: "¡Error!",
+    DENY_PERMISSION: "Permisos denegados",
     // Constant of name of Entities for notification purpose
     SPONSOR: "Patrocinador",
     CONGRESS: "Congreso",
@@ -85,7 +86,7 @@ angular.module('diaApp')
     ERROR: {
       NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet.",
       UNEXPECTED: "Ha ocurrido un error inesperado. Intente de nuevo mas tarde.",
-      NOT_ALLOWED: "No tiene los permisos necesarios para acceder"
+      NOT_ALLOWED: "No tienes los permisos necesarios para acceder"
     },
     OK: "OK"
   })
