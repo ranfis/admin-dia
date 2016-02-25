@@ -8,9 +8,9 @@
       <div class="comment">Información de usuarios</div>
     </rd-widget-body>
     <form class="form-horizontal" ng-submit="save(userForm)" name="userForm" novalidate>
-      <ui-input u-name="Nombre" ng-model="user.name"></ui-input>
-      <ui-input u-name="Clave" u-type="password" ng-model="user.password"></ui-input>
-      <ui-input u-name="Correo" u-type="email" ng-model="user.email"></ui-input>
+      <ui-input u-name="Nombre" ng-model="user.nombreCompleto"></ui-input>
+      <ui-input u-name="Clave" u-type="clave" ng-model="user.password"></ui-input>
+      <ui-input u-name="Correo" u-type="email" ng-model="user.correo"></ui-input>
       <ui-submit></ui-submit>
     </form>
   </rd-widget>
