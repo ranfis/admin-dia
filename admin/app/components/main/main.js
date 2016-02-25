@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('diaApp')
-  .controller('MainCtrl', function($scope,$rootScope, $cookieStore,USER_ROLES,AuthService) {
+  .controller('MainCtrl', function($scope,$rootScope, $cookieStore,USER_ROLES,AuthService, MESSAGES) {
     $scope.currentUser = null;
     $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
@@ -62,6 +62,7 @@ angular.module('diaApp')
           if (AuthService.isAuthenticated()) {
             //console.log("isAuthenticated");
             // user is not allowedx x
+            Alert.error(MESSAGES.ERROR.NOT_ALLOWED, MESSAGES.ERROR_TEXT);
             $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
           } else {
             //console.log("!isAuthenticated");
