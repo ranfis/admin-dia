@@ -13,9 +13,9 @@
             <th></th>
             </thead>
             <tbody>
-            <tr ng-repeat="user in users | filter : searchFilter | orderBy:'-id'">
-              <td>{{user.name}}</td>
-              <td>{{user.email}}</td>
+            <tr dir-paginate="user in users | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
+              <td>{{user.nombreCompleto}}</td>
+              <td>{{user.correo}}</td>
 
               <td>
                 <a class="btn btn-sm btn-success" href="#/usuarios/{{user.id}}"><i class="fa fa-pencil"></i></a>
