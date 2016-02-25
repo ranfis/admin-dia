@@ -128,6 +128,14 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
           authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN]
         }
       })
+      .when(PATH[ENTITY].CHANGE_PASSWORD, {
+        templateUrl: PATH[ENTITY].PASS,
+        //TODO: Controller for Change Password
+        controller: DetailsCtrl,
+        data: {
+          authorizedRoles: [USER_ROLES.SUPER_ADMIN]
+        }
+      })
       .otherwise({
         templateUrl: PATH.ERROR404.SINGLE
       });
