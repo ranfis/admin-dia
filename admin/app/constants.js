@@ -84,9 +84,16 @@ angular.module('diaApp')
     LOGOUT: "Se ha cerrado la sesión del usuario",
     ERROR: {
       NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet.",
-      UNEXPECTED: "Ha ocurrido un error inesperado. Intente de nuevo mas tarde."
+      UNEXPECTED: "Ha ocurrido un error inesperado. Intente de nuevo mas tarde.",
+      NOT_ALLOWED: "No tiene los permisos necesarios para acceder"
     },
     OK: "OK"
+  })
+  .constant("CLASSES", {
+    NONE: "none",
+    INITIAL: "initial",
+    NO_REPORT: "NO_REPORT",
+    NO_USER: "NO_USER"
   })
   .constant("PATH", {
     ROOT: "/",
