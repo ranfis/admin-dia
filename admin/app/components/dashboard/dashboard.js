@@ -29,7 +29,7 @@ angular.module('diaApp').controller(DashboardCtrl)
       .when('/', {
         templateUrl: PATH.DASHBOARD.SINGLE,
         data: {
-          authorizedRoles: [USER_ROLES.ADMIN]
+          authorizedRoles: [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN, USER_ROLES.REPORT]
         },
         controller: DashboardCtrl
       })
