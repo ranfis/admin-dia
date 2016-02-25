@@ -177,8 +177,10 @@ angular.module('diaApp')
       LIST: "/usuarios",
       CREATE: "/usuarios/crear",
       EDIT: "/usuarios/:id",
+      CHANGE_PASSWORD: "/usuarios/clave",
       SINGLE: "app/components/user/user.html",
-      PLURAL: "app/components/user/users.html"
+      PLURAL: "app/components/user/users.html",
+      PASS: "app/components/user/password.html"
     },
     LOGIN: "/login",
     LOGOUT: "/logout"
