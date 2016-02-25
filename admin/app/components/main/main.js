@@ -49,7 +49,7 @@ angular.module('diaApp')
   };
   AuthService.trySessionRestore($scope.setCurrentUser);
 })
-  .run(function ($rootScope, AUTH_EVENTS, AuthService, $location, Alert, MESSAGES, Session, Helper) {
+  .run(function ($rootScope, AUTH_EVENTS, AuthService, $location, Alert, MESSAGES, Session, Helper, CLASSES) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
       $rootScope.loggedIn = false;
       //console.log("routeChangeStart",next);
