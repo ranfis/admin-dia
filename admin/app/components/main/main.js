@@ -49,7 +49,7 @@ angular.module('diaApp')
   };
   AuthService.trySessionRestore($scope.setCurrentUser);
 })
-  .run(function ($rootScope, AUTH_EVENTS, AuthService, $location) {
+  .run(function ($rootScope, AUTH_EVENTS, AuthService, $location, Alert, MESSAGES, Session, Helper) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
       $rootScope.loggedIn = false;
       //console.log("routeChangeStart",next);
@@ -72,6 +72,16 @@ angular.module('diaApp')
         } else {
           $rootScope.loggedIn = true;
           $rootScope.username = "Sistema DIA";
+
+          //HIDE THE SIDEBAR OPTIONS FOR USERS ROLE
+          if (Session.userRole == "REPORT") {
+            Helper.setSidebarVisibility(CLASSES.NONE, CLASSES.NONE);
+          } else if(Session.userRole == "ADMIN") {
+            Helper.setSidebarVisibility(CLASSES.INITIAL, CLASSES.NONE);
+          } else {
+            Helper.setSidebarVisibility(CLASSES.INITIAL, CLASSES.INITIAL);
+          }
+
         }
 
       }
