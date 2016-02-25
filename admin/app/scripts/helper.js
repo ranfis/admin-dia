@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('diaApp')
-  .service('Helper', function (Alert,MESSAGES, Session,$location,PATH) {
+  .service('Helper', function (Alert,MESSAGES, Session,$location,PATH, CLASSES) {
     this.selectById = function(list,id){
       var match = list.filter(function(e){
         return (e.id === +id);
@@ -38,4 +38,8 @@ angular.module('diaApp')
     this.handleErrors = function(){
       throw new Error(MESSAGES.ERROR.UNEXPECTED);
     };
+    this.setSidebarVisibility = function(value, value2) {
+      document.getElementById(CLASSES.NO_REPORT).style.display = value;
+      document.getElementById(CLASSES.NO_USER).style.display = value2;
+    }
   });
