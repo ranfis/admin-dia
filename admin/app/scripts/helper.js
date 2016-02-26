@@ -15,20 +15,9 @@ angular.module('diaApp')
       });
       return ids;
     };
-    this.cleanURL = function(url){
-	    var newUrl = url;
-	    if(newUrl.indexOf("http")!==0){
-		    newUrl = "http://"+newUrl;
-	    }
-	    var last = newUrl[newUrl.length-1];
-	    if(last!=="/"){
-		    newUrl = newUrl+"/";
-	    }
-	    return newUrl;
-    };
-    this.setWSYear = function(date){
-      var newdate = date+"-00-00";
-      return newdate.slice(0,10) || "0000-00-00";
+    this.setWSYear = function (date) {
+      var newdate = date + "-00-00";
+      return newdate.slice(0, 10) || "0000-00-00";
     };
     this.getWSYear = function (date) {
       return +date.slice(0, 4);
