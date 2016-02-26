@@ -17,11 +17,11 @@ angular.module('diaApp')
     };
     this.cleanURL = function(url){
 	    var newUrl = url;
-	    if(newUrl.indexOf("http")!=0){
+	    if(newUrl.indexOf("http")!==0){
 		    newUrl = "http://"+newUrl;
 	    }
-	    last = newUrl[newUrl.length-1];
-	    if(last!="/"){
+	    var last = newUrl[newUrl.length-1];
+	    if(last!=="/"){
 		    newUrl = newUrl+"/";
 	    }
 	    return newUrl;
