@@ -65,12 +65,10 @@ angular.module('diaApp')
 
 
     this.hideSidebarButtons = function ($rootScope) {
-      console.log("hideSidebarButtons");
       $rootScope.$on('$viewContentLoaded', function () {
         hide();
       });
       hide();
     };
-
 
   });

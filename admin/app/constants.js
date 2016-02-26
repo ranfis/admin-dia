@@ -186,6 +186,8 @@ angular.module('diaApp')
       LIST: "/usuarios",
       CREATE: "/usuarios/crear",
       EDIT: "/usuarios/:id",
+      PROFILE: "/perfil",
+      PROFILE_FORM: "app/components/user/user-profile.html",
       CHANGE_PASSWORD: "/usuarios/clave/:id",
       CHANGE_SELF_PASSWORD: "/cambiar-clave",
       SINGLE: "app/components/user/user.html",
