@@ -41,19 +41,19 @@
               <td class="text-center">{{project.current_status.description}}</td>
               <td class="text-center">
                 <div ng-repeat="cor in project.co_researchers">
-                  - {{cor.nombre}} {{cor.apellido}}<br>
+                  {{cor.nombre}} {{cor.apellido}}{{$last ? '' : ', '}}<br>
                 </div>
               </td>
               <td class="text-center">{{project.institution.name}}</td>
               <td>
                 <div ng-repeat="i in project.other_institutions">
-                  - {{i.name}}<br>
+                  {{i.name}}{{$last ? '' : ', '}}<br>
                 </div>
               </td>
               <td class="text-center">{{project.adviser.name}} {{project.adviser.lastname}}</td>
               <td class="text-center">
                 <div ng-repeat="f in project.funds">
-                  - {{f.name}}<br>
+                  {{f.name}}{{$last ? '' : ', '}}<br>
                 </div>
               </td>
               <td class="text-center">{{project.total_amount}}</td>

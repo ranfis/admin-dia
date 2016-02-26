@@ -26,7 +26,7 @@
               <td class="text-center">{{publication.pages}}</td>
               <td class="text-center">
                 <div ng-repeat="participant in publication.participantes">
-                  - {{participant.nombre}} {{participant.apellido}} <br>
+                  {{participant.nombre}} {{participant.apellido}}{{$last ? '' : ', '}} <br>
                 </div>
               </td>
               <td class="text-center">{{ publication.has_intellectual_prop | sino }}</td>
