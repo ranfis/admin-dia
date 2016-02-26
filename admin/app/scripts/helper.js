@@ -38,12 +38,6 @@ angular.module('diaApp')
     this.handleErrors = function () {
       throw new Error(MESSAGES.ERROR.UNEXPECTED);
     };
-    this.setSidebarVisibility = function (value, value2) {
-      document.getElementById(CLASSES.NO_REPORT).style.display = value;
-      document.getElementById(CLASSES.NO_USER).style.display = value2;
-    };
-
-
     var hide = function (scope) {
       if (Session.userRole == "REPORT") {
         //$( ".sidebar-group" ).not( ".report-buttons" ).remove();
@@ -62,8 +56,6 @@ angular.module('diaApp')
         $(".sidebar-group").hide();
       }
     };
-
-
     this.hideSidebarButtons = function ($rootScope) {
       $rootScope.$on('$viewContentLoaded', function () {
         hide();
