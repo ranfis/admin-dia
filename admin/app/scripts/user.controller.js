@@ -107,6 +107,32 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
     DetailsCtrl.inject = [serviceName];
 
 
+
+
+    var ProfileCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
+      $scope.user = {
+        id:Session._id,
+        session_id: Session.id,
+        nombre_completo: Session.name
+      };
+      $rootScope.title = name;
+      $rootScope.nav = name+" / Perfil / "+$scope.user.id;
+
+      var service = $injector.get(serviceName);
+
+      $scope.save = function (form) {
+        if (!form.$valid) {return;}
+        service.custom("post","/update_info","profile",$scope.user)
+          .then(function () {
+            Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+          }, function (err) {
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
+          });
+      };
+    };
+    ProfileCtrl.inject = [serviceName];
+
+
     var ChangePasswordCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
       var id;
       if($routeParams.id) {
@@ -178,6 +204,14 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
         controller: DetailsCtrl,
         data: {
           authorizedRoles: [USER_ROLES.SUPER_ADMIN]
+        }
+      })
+      .when(PATH[ENTITY].PROFILE, {
+        templateUrl: PATH[ENTITY].PROFILE_FORM,
+        //TODO: Controller for Change Password
+        controller: ProfileCtrl,
+        data: {
+          authorizedRoles: [USER_ROLES.ALL]
         }
       })
       .when(PATH[ENTITY].CHANGE_PASSWORD, {

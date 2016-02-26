@@ -3,6 +3,7 @@
 angular.module('diaApp').service('Session', function () {
   this.create = function (user) {
     this.id = user.sessionId;
+    this._id = user.id;
     this.userEmail = user.correo;
     this.userRole = user.rol.name;
     this.name = user.nombre_completo;
@@ -21,6 +22,7 @@ angular.module('diaApp').service('Session', function () {
   };
   this.destroy = function () {
     this.id = null;
+    this._id = null;
     this.userEmail = null;
     this.userRole = null;
     this.name = null;
