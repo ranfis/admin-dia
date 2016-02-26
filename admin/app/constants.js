@@ -45,6 +45,9 @@ angular.module('diaApp')
     UPDATE: function (service) {
       return service + "/update";
     },
+    CUSTOM: function (name,service) {
+      return service + name;
+    },
     DELETE: function (service) {
       return service + "/del";
     },
@@ -87,6 +90,11 @@ angular.module('diaApp')
       NO_INTERNET: "Ha ocurrido un error, revise su conexion a internet.",
       UNEXPECTED: "Ha ocurrido un error inesperado. Intente de nuevo mas tarde.",
       NOT_ALLOWED: "No tienes los permisos necesarios para acceder"
+    },
+    WARNINGS:{
+      PASSWORD_TOO_SHORT:"La clave es muy corta",
+      PASSWORD_TOO_SHORT_SUGESTION:"Utilize una clave de almenos 6 caracteres",
+      PASSWORD_DOESNT_MATCH:"Las claves no coinciden."
     },
     OK: "OK"
   })
@@ -178,7 +186,7 @@ angular.module('diaApp')
       LIST: "/usuarios",
       CREATE: "/usuarios/crear",
       EDIT: "/usuarios/:id",
-      CHANGE_PASSWORD: "/usuarios/clave",
+      CHANGE_PASSWORD: "/usuarios/clave/:id",
       SINGLE: "app/components/user/user.html",
       PLURAL: "app/components/user/users.html",
       PASS: "app/components/user/password.html"
