@@ -108,7 +108,12 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
 
 
     var ChangePasswordCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
-      var id = $routeParams.id;
+      var id;
+      if($routeParams.id) {
+        id = $routeParams.id;
+      }
+      console.log(id);
+
       $rootScope.title = name;
       $rootScope.nav = name+" / Editar Clave / "+id;
       if(resolveDeps){
@@ -181,6 +186,14 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
         controller: ChangePasswordCtrl,
         data: {
           authorizedRoles: [USER_ROLES.SUPER_ADMIN]
+        }
+      })
+      .when(PATH[ENTITY].CHANGE_PASSWORD, {
+        templateUrl: PATH[ENTITY].PASS,
+        //TODO: Controller for Change Password
+        controller: ChangePasswordCtrl2,
+        data: {
+          authorizedRoles: [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN, USER_ROLES.REPORT]
         }
       })
       .otherwise({
