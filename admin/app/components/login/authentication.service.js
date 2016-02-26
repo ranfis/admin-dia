@@ -38,6 +38,9 @@ angular.module('diaApp').factory('AuthService', function ($http, Helper,Session,
     }
   };
     authService.isAuthorized = function (authorizedRoles) {
+      if(!authorizedRoles.indexOf("*")!==-1){
+        return true;
+      }
       if (!angular.isArray(authorizedRoles)) {
         authorizedRoles = [authorizedRoles];
       }
