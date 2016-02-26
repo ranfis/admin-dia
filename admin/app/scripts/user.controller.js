@@ -123,6 +123,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
         service.custom("post","/update_info","profile",$scope.user)
           .then(function () {
             Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+            $location.path("/");
           }, function (err) {
             Alert.error(err.message,MESSAGES.ERROR_TEXT);
           });
@@ -153,6 +154,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
           service.custom("post","/change_password","profile",$scope.user)
             .then(function () {
               Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+              $location.path("/");
             }, function (err) {
               Alert.error(err.message,MESSAGES.ERROR_TEXT);
             });
