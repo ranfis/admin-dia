@@ -8,11 +8,11 @@ angular.module('diaAppFilters', []).filter('sino', function() {
   .filter('roles', function() {
     return function(input) {
       if (input=="REPORT") {
-        return "Reportes";
+        return "Genera Reportes";
       } else if (input=="ADMIN") {
-        return "Administrador";
+        return "Modifica Registros";
       } else if (input=="SUPER-ADMIN") {
-        return "Super-Administrador";
+        return "Maneja usuarios";
       }
     }
   });
