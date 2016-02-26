@@ -3,8 +3,8 @@
 angular.module('diaApp').service('Session', function () {
   this.create = function (user) {
     this.id = user.sessionId;
-    this.userEmail = user.email;
-    this.userRole = user.role.name;
+    this.userEmail = user.correo;
+    this.userRole = user.rol.name;
     this.name = user.nombre_completo;
     this.store(user);
     return this;

@@ -9,9 +9,9 @@ describe('Service: Session', function () {
 
   var testUser = {
     sessionId: "sessionId",
-    email: "email",
-    role: {
-      name:"role.name"
+    correo: "correo",
+    rol: {
+      name:"rol.name"
     },
     nombre_completo: "nombre_completo"
   };
@@ -22,8 +22,8 @@ describe('Service: Session', function () {
     spyOn(Session, 'store');
     Session.create(testUser);
     expect(Session.id).toBe(testUser.sessionId);
-    expect(Session.userEmail).toBe(testUser.email);
-    expect(Session.userRole).toBe(testUser.role.name);
+    expect(Session.userEmail).toBe(testUser.correo);
+    expect(Session.userRole).toBe(testUser.rol.name);
     expect(Session.name).toBe(testUser.nombre_completo);
     expect(Session.store).toHaveBeenCalledWith(testUser);
   }));
@@ -54,8 +54,8 @@ describe('Service: Session', function () {
     sessionStorage.diaUser = testUserString;
     Session.restore();
     expect(Session.id).toBe(testUser.sessionId);
-    expect(Session.userEmail).toBe(testUser.email);
-    expect(Session.userRole).toBe(testUser.role.name);
+    expect(Session.userEmail).toBe(testUser.correo);
+    expect(Session.userRole).toBe(testUser.rol.name);
     expect(Session.name).toBe(testUser.nombre_completo);
   }));
 
