@@ -95,7 +95,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
         if(beforeSubmit){
           beforeSubmit($scope, Helper);
         }
-        service.update($scope[entity])
+        service.custom("/update",{session_id:$scope[entity].session_id,id:$scope[entity].id,nombre_completo:$scope[entity].nombre_completo,rol:$scope[entity].rol.id})
           .then(function () {
             Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
             $location.path(PATH[ENTITY].LIST);
@@ -139,14 +139,14 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
           beforeSubmit($scope, Helper);
         }
 
-        if(!$scope[entity].password || $scope[entity].password.length < 6){
+        if(!$scope[entity].clave || $scope[entity].clave.length < 6){
           Alert.warn(MESSAGES.WARNINGS.PASSWORD_TOO_SHORT_SUGESTION, MESSAGES.WARNINGS.PASSWORD_TOO_SHORT);
         }
-        else if($scope[entity].password != $scope[entity].password2){
+        else if($scope[entity].clave != $scope[entity].clave2){
           Alert.warn(MESSAGES.WARNINGS.PASSWORD_DOESNT_MATCH);
         }
         else{
-          service.custom("/change_password",{id:$scope[entity].id,password:$scope[entity].password,session_id:$scope[entity].session_id})
+          service.custom("/change_password",{id:$scope[entity].id,clave:$scope[entity].clave,session_id:$scope[entity].session_id})
            .then(function () {
            Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
            $location.path(PATH[ENTITY].LIST);
@@ -174,7 +174,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
         }
       })
       .when(PATH[ENTITY].EDIT, {
-        templateUrl: PATH[ENTITY].SINGLE,
+        templateUrl: PATH[ENTITY].DETAIL,
         controller: DetailsCtrl,
         data: {
           authorizedRoles: [USER_ROLES.SUPER_ADMIN]
