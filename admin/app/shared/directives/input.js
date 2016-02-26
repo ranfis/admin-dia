@@ -7,7 +7,6 @@ angular.module('diaApp')
       scope: {
         uName: '@',
         uDesc: '@',
-        uRequired:'=',
         uType: '@',
         uMin: '@',
         uMax: '@',
