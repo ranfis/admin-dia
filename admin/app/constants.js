@@ -190,6 +190,7 @@ angular.module('diaApp')
       CHANGE_SELF_PASSWORD: "/cambiar-clave",
       SINGLE: "app/components/user/user.html",
       PLURAL: "app/components/user/users.html",
+      DETAIL: "app/components/user/userDetail.html",
       PASS: "app/components/user/password.html"
     },
     LOGIN: "/login",
