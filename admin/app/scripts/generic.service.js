@@ -21,6 +21,11 @@ var GenericService = function(serviceName){
         .put(ENV.WS_URL+WS.UPDATE(serviceName), object,REQUEST.PLAIN)
         .then(Helper.checkResult,Helper.handleErrors);
     };
+    this.custom = function(name,object){
+      return $http
+        .post(ENV.WS_URL+WS.CUSTOM(name,serviceName), object,REQUEST.PLAIN)
+        .then(Helper.checkResult,Helper.handleErrors);
+    };
     this.upsert = function(object){
       var f = function (){
         if(object.id){
