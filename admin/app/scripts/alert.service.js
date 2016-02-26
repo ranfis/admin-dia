@@ -33,6 +33,9 @@ angular.module('diaApp').service('Alert', function ($uibModal) {
   this.info = function(msg,title){
     toastr.info(msg, title);
   };
+  this.warn = function(msg,title){
+    toastr.warning(msg, title);
+  };
 
   this.confirm = function (msg, title, confirmText, cb) {
     swal({
