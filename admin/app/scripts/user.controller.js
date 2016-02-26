@@ -131,7 +131,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
     ProfileCtrl.inject = [serviceName];
 
 
-    var ProfileChangeCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
+    var ProfileChangePassCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
       $scope.user = {
         id:Session._id,
         session_id: Session.id,
@@ -143,15 +143,24 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
 
       $scope.save = function (form) {
         if (!form.$valid) {return;}
-        service.custom("post","/change_password","profile",$scope.user)
-          .then(function () {
-            Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
-          }, function (err) {
-            Alert.error(err.message,MESSAGES.ERROR_TEXT);
-          });
+        if(!$scope[entity].clave || $scope[entity].clave.length < 6){
+          Alert.warn(MESSAGES.WARNINGS.PASSWORD_TOO_SHORT_SUGESTION, MESSAGES.WARNINGS.PASSWORD_TOO_SHORT);
+        }
+        else if($scope[entity].clave != $scope[entity].clave2){
+          Alert.warn(MESSAGES.WARNINGS.PASSWORD_DOESNT_MATCH);
+        }
+        else{
+          service.custom("post","/change_password","profile",$scope.user)
+            .then(function () {
+              Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+            }, function (err) {
+              Alert.error(err.message,MESSAGES.ERROR_TEXT);
+            });
+        }
+
       };
     };
-    ProfileChangeCtrl.inject = [serviceName];
+    ProfileChangePassCtrl.inject = [serviceName];
 
     var ChangePasswordCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
       var id;
@@ -235,7 +244,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
       })
       .when(PATH[ENTITY].PROFILE_PASS, {
         templateUrl: PATH[ENTITY].PROFILE_PASS_FORM,
-        controller: ProfileChangeCtrl,
+        controller: ProfileChangePassCtrl,
         data: {
           authorizedRoles: [USER_ROLES.ALL]
         }
