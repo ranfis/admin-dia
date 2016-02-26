@@ -95,7 +95,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
         if(beforeSubmit){
           beforeSubmit($scope, Helper);
         }
-        service.custom("/update",{session_id:$scope[entity].session_id,id:$scope[entity].id,nombre_completo:$scope[entity].nombre_completo,rol:$scope[entity].rol.id})
+        service.custom("post","/update","user",{session_id:$scope[entity].session_id,id:$scope[entity].id,nombre_completo:$scope[entity].nombre_completo,rol:$scope[entity].rol.id})
           .then(function () {
             Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
             $location.path(PATH[ENTITY].LIST);
@@ -105,8 +105,6 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
       };
     };
     DetailsCtrl.inject = [serviceName];
-
-
 
 
     var ProfileCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
