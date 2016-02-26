@@ -10,12 +10,14 @@
             <thead>
             <th>Nombre</th>
             <th>Correo</th>
+            <th>Rol</th>
             <th></th>
             </thead>
             <tbody>
             <tr dir-paginate="user in users | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td>{{user.nombre_completo}}</td>
               <td>{{user.correo}}</td>
+              <td>{{user.rol.name | roles}}</td>
 
               <td>
                 <a class="btn btn-sm btn-success" href="#/usuarios/{{user.id}}"><i class="fa fa-pencil"></i></a>
