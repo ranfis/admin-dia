@@ -131,6 +131,28 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
     ProfileCtrl.inject = [serviceName];
 
 
+    var ProfileChangeCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
+      $scope.user = {
+        id:Session._id,
+        session_id: Session.id,
+      };
+      $rootScope.title = name;
+      $rootScope.nav = name+" / Perfil / "+$scope.user.id;
+
+      var service = $injector.get(serviceName);
+
+      $scope.save = function (form) {
+        if (!form.$valid) {return;}
+        service.custom("post","/change_password","profile",$scope.user)
+          .then(function () {
+            Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+          }, function (err) {
+            Alert.error(err.message,MESSAGES.ERROR_TEXT);
+          });
+      };
+    };
+    ProfileChangeCtrl.inject = [serviceName];
+
     var ChangePasswordCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
       var id;
       if($routeParams.id) {
@@ -170,7 +192,7 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
           Alert.warn(MESSAGES.WARNINGS.PASSWORD_DOESNT_MATCH);
         }
         else{
-          service.custom("/change_password",{id:$scope[entity].id,clave:$scope[entity].clave,session_id:$scope[entity].session_id})
+          service.custom("post","/change_password","user",{id:$scope[entity].id,clave:$scope[entity].clave,session_id:$scope[entity].session_id})
            .then(function () {
            Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
            $location.path(PATH[ENTITY].LIST);
@@ -206,15 +228,20 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
       })
       .when(PATH[ENTITY].PROFILE, {
         templateUrl: PATH[ENTITY].PROFILE_FORM,
-        //TODO: Controller for Change Password
         controller: ProfileCtrl,
+        data: {
+          authorizedRoles: [USER_ROLES.ALL]
+        }
+      })
+      .when(PATH[ENTITY].PROFILE_PASS, {
+        templateUrl: PATH[ENTITY].PROFILE_PASS_FORM,
+        controller: ProfileChangeCtrl,
         data: {
           authorizedRoles: [USER_ROLES.ALL]
         }
       })
       .when(PATH[ENTITY].CHANGE_PASSWORD, {
         templateUrl: PATH[ENTITY].PASS,
-        //TODO: Controller for Change Password
         controller: ChangePasswordCtrl,
         data: {
           authorizedRoles: [USER_ROLES.SUPER_ADMIN]
