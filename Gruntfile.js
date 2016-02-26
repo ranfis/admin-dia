@@ -7,12 +7,22 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var cleanURL = function(url){
+  var newUrl = url;
+  if(newUrl.indexOf("http")!=0){
+    newUrl = "http://"+newUrl;
+  }
+  var last = newUrl[newUrl.length-1];
+  if(last!="/"){
+    newUrl = newUrl+"/";
+  }
+  return newUrl;
+};
+
 module.exports = function (grunt) {
   if (grunt.option('ws')){
     var WS = grunt.option('ws');
-    if (WS.slice(-1) !== "/") {
-      WS += "/";
-    }
+    WS = cleanURL(WS);
   }
 
   // Time how long tasks take. Can help when optimizing build times
