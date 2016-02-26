@@ -188,14 +188,6 @@ var UserController = function(serviceName, name, entity, listName, resolveDeps, 
           authorizedRoles: [USER_ROLES.SUPER_ADMIN]
         }
       })
-      .when(PATH[ENTITY].CHANGE_PASSWORD, {
-        templateUrl: PATH[ENTITY].PASS,
-        //TODO: Controller for Change Password
-        controller: ChangePasswordCtrl2,
-        data: {
-          authorizedRoles: [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN, USER_ROLES.REPORT]
-        }
-      })
       .otherwise({
         templateUrl: PATH.ERROR404.SINGLE
       });
