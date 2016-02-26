@@ -106,6 +106,53 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
     };
     DetailsCtrl.inject = [serviceName];
 
+
+    var ChangePasswordCtrl = function ($scope, $rootScope,Session, Alert, Helper, $routeParams, $location, $injector) {
+      var id = $routeParams.id;
+      $rootScope.title = name;
+      $rootScope.nav = name+" / Editar Clave / "+id;
+      if(resolveDeps){
+        resolveDeps.forEach(function(dep){
+          var depService = $injector.get(dep.service);
+          depService.list(Session.id)
+            .then(function(res){
+              $scope[dep.list] = res.data.result;
+            });
+        });
+      }
+      var service = $injector.get(serviceName);
+      $scope[entity] = Helper.selectById(service[listName], id); // Getting the selected congress from memory
+      $scope[entity].session_id = Session.id;
+
+      if(afterFetch){
+        afterFetch($scope,Helper);
+      }
+
+      $scope.save = function (form) {
+        if (!form.$valid) {return;}
+        if(beforeSubmit){
+          beforeSubmit($scope, Helper);
+        }
+
+        if(!$scope[entity].password || $scope[entity].password.length < 6){
+          Alert.warn(MESSAGES.WARNINGS.PASSWORD_TOO_SHORT_SUGESTION, MESSAGES.WARNINGS.PASSWORD_TOO_SHORT);
+        }
+        else if($scope[entity].password != $scope[entity].password2){
+          Alert.warn(MESSAGES.WARNINGS.PASSWORD_DOESNT_MATCH);
+        }
+        else{
+          service.custom("/change_password",{id:$scope[entity].id,password:$scope[entity].password,session_id:$scope[entity].session_id})
+           .then(function () {
+           Alert.success(name+" "+MESSAGES.NOTIFICATION_UPDATE_SUCCESS,"¡"+name+" "+MESSAGES.NOTIFICATION_UPDATE_NAME+"!");
+           $location.path(PATH[ENTITY].LIST);
+           }, function (err) {
+           Alert.error(err.message,MESSAGES.ERROR_TEXT);
+           });
+        }
+      };
+    };
+    ChangePasswordCtrl.inject = [serviceName];
+
     $routeProvider
       .when(PATH[ENTITY].LIST, {
         templateUrl: PATH[ENTITY].PLURAL,
@@ -131,7 +178,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       .when(PATH[ENTITY].CHANGE_PASSWORD, {
         templateUrl: PATH[ENTITY].PASS,
         //TODO: Controller for Change Password
-        controller: DetailsCtrl,
+        controller: ChangePasswordCtrl,
         data: {
           authorizedRoles: [USER_ROLES.SUPER_ADMIN]
         }
