@@ -25,12 +25,16 @@ angular.module('diaApp')
     this.checkResult = function (res) {
       if (res.data.msg === "Sesi&oacute;n expirada") {
         Session.destroy();
-        Alert.openModal({
-          templateUrl: 'app/components/login/login.html'
-        });
+        //Alert.openModal({
+        //  templateUrl: 'app/components/login/login.html'
+        //});
         $location.path(PATH.LOGIN);
       }
-      if (res.data.msg !== MESSAGES.OK) {
+      if (res.data.msg === "Sesi&oacute;n inv&aacute;lida") {
+        Session.destroy();
+        $location.path(PATH.LOGIN);
+      }
+      if (res.data.msg !== MESSAGES.OK && !(res.data.msg === "Sesi&oacute;n inv&aacute;lida")) {
         throw new Error(res.data.msg);
       }
       return res;
