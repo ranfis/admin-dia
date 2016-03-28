@@ -283,6 +283,14 @@
           </div>
         </div>
 
+        <ui-input
+          ng-model="project.ethical_approved_number"
+          u-required="false"
+          u-desc="Aprobación CE"
+          u-name="comiteEtica">
+        </ui-input>
+
+
         <!--Patente-->
         <div class="form-group">
           <label for="inputPatent"
@@ -305,6 +313,8 @@
           <div class="help-block with-errors"></div>
         </div>
       </div>
+
+
       <div class="form-group">
         <div class="btn-group col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5" role="group">
           <button type="button" onclick="window.history.back()" class="btn btn-default">Cancelar</button>
