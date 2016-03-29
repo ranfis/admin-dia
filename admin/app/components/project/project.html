@@ -312,8 +312,20 @@
           </div>
           <div class="help-block with-errors"></div>
         </div>
+
+      <!--Confidencial-->
+      <div class="form-group" ng-if="project.session_role=='SUPER-ADMIN' || project.session_role=='ADMIN-CONFIDENTIAL'">
+        <label for="inputConfidencial"
+               class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Confidencial</label>
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <toggle id="inputConfidencial" name="inputConfidencial" ng-model="project.is_confidential" on="Si" off="No" onstyle="btn-success"
+                  offstyle="btn-primary"></toggle>
+        </div>
+        <div class="help-block with-errors"></div>
       </div>
 
+      <!-- End of "estado aprobado"-->
+      </div>
 
       <div class="form-group">
         <div class="btn-group col-xs-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-offset-5" role="group">

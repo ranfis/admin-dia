@@ -72,6 +72,7 @@ angular.module('diaApp').config(
       if ($scope["project"].application_status == 3) {
         $scope["project"].patent = $scope["project"].patent || false;
         $scope["project"].software = $scope["project"].software || false;
+        $scope["project"].is_confidential = $scope["project"].is_confidential || false;
 
         $scope["project"].institutions = [];
         if($scope["project"].other_institutions) {
