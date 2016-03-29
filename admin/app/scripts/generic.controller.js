@@ -15,7 +15,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
           $scope[listName] = res.data.result;
           service[listName] = $scope[listName];
           if(afterFetchList){
-            afterFetchList($scope, Helper);
+            afterFetchList($scope, Helper, Session.userRole);
           }
         }, function (err) {
           Alert.error(err.message,MESSAGES.ERROR_TEXT);
