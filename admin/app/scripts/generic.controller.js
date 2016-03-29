@@ -50,7 +50,8 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
 
       var service = $injector.get(serviceName);
       $scope[entity] = {
-        session_id: Session.id
+        session_id: Session.id,
+        session_role: Session.userRole
       };
       $scope.save = function (form) {
         if (!form.$valid){return;}
@@ -85,6 +86,7 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
       var service = $injector.get(serviceName);
       $scope[entity] = Helper.selectById(service[listName], id); // Getting the selected congress from memory
       $scope[entity].session_id = Session.id;
+      $scope[entity].session_role = Session.userRole;
 
       if(afterFetch){
         afterFetch($scope,Helper);
