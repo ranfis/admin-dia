@@ -42,7 +42,7 @@ angular.module('diaApp')
     this.handleErrors = function () {
       throw new Error(MESSAGES.ERROR.UNEXPECTED);
     };
-    var hide = function (scope) {
+    var hide = function () {
       if (Session.userRole == "REPORT") {
         //$( ".sidebar-group" ).not( ".report-buttons" ).remove();
         $(".sidebar-group.report-buttons").show();
