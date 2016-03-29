@@ -29,6 +29,7 @@
             <th class="text-center">Software</th>
             <th class="text-center">Otro Producto</th>
             <th class="text-center">Comité de Ética</th>
+            <th class="text-center" ng-if="session_role=='SUPER-ADMIN' || session_role=='ADMIN-CF'">Confidencial</th>
             <th></th>
             </thead>
             <tbody>
@@ -67,6 +68,7 @@
               <td class="text-center">{{project.software | sino}}</td>
               <td class="text-center">{{project.other_product}}</td>
               <td class="text-center">{{project.ethical_approved_number}}</td>
+              <td class="text-center" ng-if="session_role=='SUPER-ADMIN' || session_role=='ADMIN-CF'">{{project.is_confidential | sino}}</td>
               <td class="text-right">
                 <a class="btn btn-sm btn-success" href="#/proyectos/{{project.id}}"><i class="fa fa-pencil"></i></a>
                 <a class="btn btn-sm btn-danger" ng-click="delete(project)"><i class="fa fa-trash"></i></a>

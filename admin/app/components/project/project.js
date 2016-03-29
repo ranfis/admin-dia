@@ -12,7 +12,8 @@ angular.module('diaApp').config(
       {service: "FundService", list: "funds"}
     ],
     // After Fetch List
-    function ($scope, Helper) {
+    function ($scope, Helper, Role) {
+      $scope.session_role = Role;
       $scope["projects"].forEach(function (project) {
         project.date_application = Helper.getWSYear(project.date_application);
         project.date_start = Helper.getWSYear(project.date_start);
