@@ -111,21 +111,21 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
         templateUrl: PATH[ENTITY].PLURAL,
         controller: ListCtrl,
         data: {
-          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN]
+          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMINCONF, USER_ROLES.REPORTCONF]
         }
       })
       .when(PATH[ENTITY].CREATE, {
         templateUrl: PATH[ENTITY].SINGLE,
         controller: CreateCtrl,
         data: {
-          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN]
+          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMINCONF, USER_ROLES.REPORTCONF]
         }
       })
       .when(PATH[ENTITY].EDIT, {
         templateUrl: PATH[ENTITY].SINGLE,
         controller: DetailsCtrl,
         data: {
-          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN]
+          authorizedRoles: [USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMINCONF, USER_ROLES.REPORTCONF]
         }
       })
       .otherwise({

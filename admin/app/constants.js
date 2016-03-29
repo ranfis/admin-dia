@@ -13,7 +13,9 @@ angular.module('diaApp')
     ALL: '*',
     ADMIN: 'ADMIN',
     REPORT: 'REPORT',
-    SUPER_ADMIN: 'SUPER-ADMIN'
+    SUPER_ADMIN: 'SUPER-ADMIN',
+    ADMINCONF: 'ADMIN-CONFIDENTIAL',
+    REPORTCONF: 'REPORT-CONFIDENTIAL'
   })
   .constant("WS", {
     SUMMARY: "/summary",
