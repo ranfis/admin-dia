@@ -43,15 +43,15 @@ angular.module('diaApp')
       throw new Error(MESSAGES.ERROR.UNEXPECTED);
     };
     var hide = function () {
-      if (Session.userRole == "REPORT") {
+      if (Session.userRole == USER_ROLES.REPORT || Session.userRole == USER_ROLES.REPORTCONF) {
         //$( ".sidebar-group" ).not( ".report-buttons" ).remove();
         $(".sidebar-group.report-buttons").show();
         $(".sidebar-group").not(".report-buttons").hide();
-      } else if (Session.userRole == "ADMIN") {
+      } else if (Session.userRole == USER_ROLES.ADMIN || Session.userRole == USER_ROLES.ADMINCONF) {
         //$( ".sidebar-group" ).not( ".admin-buttons" ).remove();
         $(".sidebar-group.admin-buttons").show();
         $(".sidebar-group").not(".admin-buttons").hide();
-      } else if (Session.userRole == "SUPER-ADMIN") {
+      } else if (Session.userRole == USER_ROLES.SUPER_ADMIN) {
         //$( ".sidebar-group" ).not( ".super-admin-buttons" ).remove();
         $(".sidebar-group.super-admin-buttons").show();
         $(".sidebar-group").not(".super-admin-buttons").hide();
