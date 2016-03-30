@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('diaApp')
-  .service('Helper', function (Alert, MESSAGES, Session, $location, PATH, CLASSES) {
+  .service('Helper', function (Alert, MESSAGES, Session, $location, PATH, CLASSES, USER_ROLES) {
     this.selectById = function (list, id) {
       var match = list.filter(function (e) {
         return (e.id === +id);
@@ -66,5 +66,11 @@ angular.module('diaApp')
       });
       hide();
     };
+    this.isRoleConfidential = function(actualRole) {
+      return actualRole==USER_ROLES.SUPER_ADMIN || actualRole==USER_ROLES.ADMINCONF;
+    }
+    this.isReportOnly = function(actualRole) {
+      return actualRole == USER_ROLES.REPORT || actualRole== USER_ROLES.REPORTCONF;
+    }
 
   });

@@ -49,7 +49,7 @@
   <div class="col-lg-6">
     <rd-widget>
       <rd-widget-header icon="fa-folder-open" title="Resumen de Proyectos">
-        <a href="#/proyectos">Gestionar</a>
+        <a href="#/proyectos" ng-hide="isThisReportOnly">Gestionar</a>
       </rd-widget-header>
       <rd-widget-body classes="medium no-padding">
         <div class="table-responsive">
@@ -68,7 +68,7 @@
     <rd-widget>
       <rd-widget-header icon="fa-users" title="Últimos Congresos">
         <!--<input type="text" placeholder="Search" class="form-control input-sm" />-->
-        <a href="#/congresos">Gestionar</a>
+        <a href="#/congresos" ng-hide="isThisReportOnly">Gestionar</a>
       </rd-widget-header>
       <rd-widget-body classes="medium no-padding">
         <div class="table-responsive">
@@ -102,7 +102,7 @@
   <div class="col-lg-6">
     <rd-widget>
       <rd-widget-header icon="fa-newspaper-o" title="Últimas de Publicaciones">
-        <a href="#/publicaciones">Gestionar</a>
+        <a href="#/publicaciones" ng-hide="isThisReportOnly">Gestionar</a>
       </rd-widget-header>
       <rd-widget-body classes="medium no-padding">
         <div class="table-responsive">
