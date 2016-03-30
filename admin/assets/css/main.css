@@ -82,6 +82,25 @@ body {
   }
 }
 
+/* Size for large tables, added to RDASH*/
+.widget .widget-body.xlarge {
+  min-height: 350px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.widget .widget-body.large {
+  min-height: 200px;
+  height: auto;
+  overflow-y: auto;
+}
+
+/* Size for auto tables, added to RDASH*/
+.widget .widget-body.autosize {
+  /*min-height: 350px;*/
+  height: auto;
+  overflow-y: auto;
+}
 .ng-invalid.ng-dirty {
   border-color: #FA787E;
 }
