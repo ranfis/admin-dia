@@ -37,8 +37,8 @@
               dir-paginate="project in projects | filter : searchFilter | orderBy:'-id' | itemsPerPage:itemsPerPageTable">
               <td class="text-center">{{project.description}}</td>
               <td class="text-center">{{project.researcher.name}} {{project.researcher.lastname}}</td>
-              <td class="text-center">{{project.date_start}}</td>
               <td class="text-center">{{project.date_application}}</td>
+              <td class="text-center">{{project.date_start}}</td>
               <td class="text-center">{{project.application_status.description}}</td>
               <td class="text-center">{{project.current_status.description}}</td>
               <td class="text-center">
