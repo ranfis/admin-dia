@@ -4,9 +4,10 @@ var GenericController = function(serviceName, name, entity, listName, resolveDep
   var ENTITY = entity.toUpperCase();
   return function ($routeProvider, USER_ROLES, PATH, MESSAGES) {
 
-    var ListCtrl = function ($scope, Session, Alert, Helper, $injector, $rootScope) {
+    var ListCtrl = function ($scope, Session, Alert, Helper, $injector, $rootScope, MESSAGES) {
       $rootScope.title = name;
       $rootScope.nav = name;
+      $rootScope.no_data = MESSAGES.NO_DATA;
       $rootScope.searchFilter = ""; // Reset the filter value when changing between routes
       $scope.itemsPerPageTable = 10; // Value of items per page for table
       var service = $injector.get(serviceName);

@@ -65,6 +65,7 @@ angular.module('diaApp')
     // Constant for errors
     ERROR_TEXT: "¡Error!",
     DENY_PERMISSION: "Permisos denegados",
+    NO_DATA: "No datos disponibles",
     // Constant of name of Entities for notification purpose
     SPONSOR: "Patrocinador",
     CONGRESS: "Congreso",
