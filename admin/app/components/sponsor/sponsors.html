@@ -22,13 +22,16 @@
             </tbody>
           </table>
           <div ng-if="!sponsors.length > 0">
-            <rd-loading></rd-loading>
+            <rd-loading ng-if="sponsors.length!=0"></rd-loading>
+            <div ng-if="sponsors.length == 0">
+              <p class="text-center">{{$root.no_data}}</p>
+            </div>
           </div>
         </div>
       </rd-widget-body>
       <rd-widget-footer>
         <a class="btn btn-sm btn-success" href="#/patrocinadores/crear"><i class="fa fa-plus"></i></a>
-        <div class="pull-right">
+        <div class="pull-right" ng-if="sponsors.length > 0">
           <dir-pagination-controls
             direction-links="true"
             boundary-links="true" >
