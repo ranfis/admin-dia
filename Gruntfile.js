@@ -20,9 +20,9 @@ var cleanURL = function(url){
 };
 
 module.exports = function (grunt) {
+  var WS = "http://10.5.11.84:81/";
   if (grunt.option('ws')){
-    var WS = grunt.option('ws');
-    WS = cleanURL(WS);
+    WS = "http://10.5.11.84:81/";
   }
 
   // Time how long tasks take. Can help when optimizing build times
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            WS_URL: WS || ''
+            WS_URL: WS
           }
         }
       },
